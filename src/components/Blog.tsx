@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Calendar, User, ArrowRight, Clock, Tag } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import newTechRevolutionImage from '../images/new-tech-revolution.png';
 import tchadMissionImage from '../images/tchad-mission.png';
 import santeImage from '../images/sante.png';
@@ -6,14 +8,21 @@ import remoteHealthImage from '../images/remote-heatlh.png';
 import clinicHomeImage from '../images/clinic-home.jpg';
 
 const Blog: React.FC = () => {
+  const [selectedCategory, setSelectedCategory] = useState('Tous');
+
+  const categories = ['Tous', 'Télémédecine', 'Missions', 'Formation', 'Partenariats'];
+
   const blogPosts = [
     {
       id: 1,
       title: "La télémédecine : une révolution pour l'Afrique rurale",
-      excerpt: "Comment les nouvelles technologies permettent de désenclaver médicalement les zones rurales africaines...",
+      excerpt: "Comment les nouvelles technologies permettent de désenclaver médicalement les zones rurales africaines et d'améliorer l'accès aux soins spécialisés...",
       image: newTechRevolutionImage,
       date: "15 mai 2025",
-      author: "Dr. Aminata Diallo"
+      author: "Dr. Aminata Diallo",
+      category: "Télémédecine",
+      readTime: "5 min",
+      featured: true
     },
     {
       id: 2,
@@ -21,7 +30,10 @@ const Blog: React.FC = () => {
       excerpt: "Retour sur le déploiement de conteneurs médicalisés dans l'est de la RDC et leur impact sur les populations déplacées...",
       image: "https://images.pexels.com/photos/247786/pexels-photo-247786.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       date: "3 avril 2025",
-      author: "Jean Ndongo"
+      author: "Jean Ndongo",
+      category: "Missions",
+      readTime: "7 min",
+      featured: false
     },
     {
       id: 3,
@@ -29,7 +41,10 @@ const Blog: React.FC = () => {
       excerpt: "Formation des agents de santé locaux et installation de 3 mallettes de télémédecine dans la région du Lac Tchad...",
       image: tchadMissionImage,
       date: "18 mars 2025",
-      author: "Martine Koné"
+      author: "Martine Koné",
+      category: "Missions",
+      readTime: "6 min",
+      featured: false
     },
     {
       id: 4,
@@ -37,7 +52,10 @@ const Blog: React.FC = () => {
       excerpt: "Comment nos solutions numériques améliorent le suivi des grossesses et réduisent la mortalité maternelle dans les zones rurales...",
       image: santeImage,
       date: "28 février 2025",
-      author: "Dr. Fatoumata Sow"
+      author: "Dr. Fatoumata Sow",
+      category: "Télémédecine",
+      readTime: "8 min",
+      featured: true
     },
     {
       id: 5,
@@ -45,7 +63,10 @@ const Blog: React.FC = () => {
       excerpt: "Présentation de notre nouvelle plateforme d'apprentissage en ligne pour les professionnels de santé africains...",
       image: remoteHealthImage,
       date: "15 février 2025",
-      author: "Dr. Moussa Diop"
+      author: "Dr. Moussa Diop",
+      category: "Formation",
+      readTime: "4 min",
+      featured: false
     },
     {
       id: 6,
@@ -53,33 +74,209 @@ const Blog: React.FC = () => {
       excerpt: "Détails de notre collaboration avec l'Organisation Mondiale de la Santé pour améliorer l'accès aux soins dans les pays africains...",
       image: clinicHomeImage,
       date: "31 janvier 2025",
-      author: "Dr. Aminata Diallo"
+      author: "Dr. Aminata Diallo",
+      category: "Partenariats",
+      readTime: "6 min",
+      featured: true
     }
   ];
 
+  const filteredPosts = selectedCategory === 'Tous' 
+    ? blogPosts 
+    : blogPosts.filter(post => post.category === selectedCategory);
+
+  const featuredPost = blogPosts.find(post => post.featured);
+  const regularPosts = blogPosts.filter(post => !post.featured);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: [0.4, 0, 0.2, 1]
+      }
+    }
+  };
+
   return (
-    <section id="blog" className="py-20 bg-white">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4 text-gray-900">
-            Actualités
+    <section id="blog" className="py-20 bg-gradient-to-br from-white via-gray-50 to-white relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary-200 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent-200 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.div
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100 text-primary-700 text-sm font-medium mb-6"
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <div className="w-2 h-2 bg-primary-500 rounded-full animate-pulse"></div>
+            Blog & Actualités
+          </motion.div>
+
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 text-modern">
+            <span className="gradient-text">Actualités</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          
+          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
             Découvrez nos dernières actualités et articles sur la santé digitale en Afrique.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogPosts.map((post) => (
-            <BlogCard key={post.id} post={post} />
+        {/* Category Filter */}
+        <motion.div
+          className="flex flex-wrap justify-center gap-4 mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          {categories.map((category) => (
+            <motion.button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                selectedCategory === category
+                  ? 'bg-gradient-to-r from-primary-600 to-accent-600 text-white shadow-glow'
+                  : 'glass text-gray-700 hover:bg-white/70'
+              }`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {category}
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="mt-12 text-center">
-          <button className="inline-flex items-center px-6 py-3 border-2 border-primary-600 text-primary-600 font-medium rounded-lg hover:bg-primary-50 transition-colors duration-200">
+        {/* Featured Post */}
+        {featuredPost && selectedCategory === 'Tous' && (
+          <motion.div
+            className="mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="glass rounded-3xl overflow-hidden backdrop-blur-xl shadow-2xl">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                <div className="relative group overflow-hidden">
+                  <motion.img
+                    src={featuredPost.image}
+                    alt={featuredPost.title}
+                    className="w-full h-full object-cover min-h-[400px]"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                  <div className="absolute top-6 left-6 px-3 py-1 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-full text-sm font-medium">
+                    Article vedette
+                  </div>
+                </div>
+                
+                <div className="p-8 lg:p-12 flex flex-col justify-center">
+                  <div className="flex items-center gap-4 mb-6 text-sm text-gray-500">
+                    <div className="flex items-center gap-2">
+                      <Calendar className="w-4 h-4" />
+                      <span>{featuredPost.date}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <User className="w-4 h-4" />
+                      <span>{featuredPost.author}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Clock className="w-4 h-4" />
+                      <span>{featuredPost.readTime}</span>
+                    </div>
+                  </div>
+                  
+                  <h3 className="text-2xl lg:text-3xl font-bold mb-4 gradient-text">
+                    {featuredPost.title}
+                  </h3>
+                  
+                  <p className="text-gray-600 mb-8 text-lg leading-relaxed">
+                    {featuredPost.excerpt}
+                  </p>
+                  
+                  <motion.a
+                    href="#"
+                    className="inline-flex items-center gap-2 text-primary-600 font-semibold hover:text-primary-700 transition-colors group"
+                    whileHover={{ x: 4 }}
+                  >
+                    Lire l'article complet
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </motion.a>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Blog Grid */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <AnimatePresence mode="wait">
+            {filteredPosts.map((post, index) => (
+              <motion.div
+                key={post.id}
+                variants={itemVariants}
+                layout
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+              >
+                <BlogCard post={post} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+
+        {/* Load More Button */}
+        <motion.div
+          className="mt-16 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <motion.button
+            className="btn-modern inline-flex items-center gap-3 px-8 py-4 glass rounded-2xl font-semibold text-lg hover:bg-white/70 transition-all duration-300"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+          >
             Voir tous les articles
-          </button>
-        </div>
+            <ArrowRight className="w-5 h-5" />
+          </motion.button>
+        </motion.div>
       </div>
     </section>
   );
@@ -92,6 +289,9 @@ interface BlogPost {
   image: string;
   date: string;
   author: string;
+  category: string;
+  readTime: string;
+  featured: boolean;
 }
 
 interface BlogCardProps {
@@ -99,35 +299,80 @@ interface BlogCardProps {
 }
 
 const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
+  const getCategoryColor = (category: string) => {
+    switch (category) {
+      case 'Télémédecine': return 'from-blue-500 to-purple-600';
+      case 'Missions': return 'from-green-500 to-teal-600';
+      case 'Formation': return 'from-orange-500 to-red-500';
+      case 'Partenariats': return 'from-pink-500 to-rose-600';
+      default: return 'from-gray-500 to-gray-600';
+    }
+  };
+
   return (
-    <article className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-      <div className="aspect-[4/3] overflow-hidden relative">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-        <img 
-          src={post.image} 
-          alt={post.title} 
-          className="w-full h-full object-cover transition-transform duration-500 hover:scale-110 hover:opacity-90"
+    <motion.article
+      className="group glass rounded-3xl overflow-hidden backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-500"
+      whileHover={{ y: -8, scale: 1.02 }}
+    >
+      {/* Image */}
+      <div className="relative overflow-hidden">
+        <motion.img
+          src={post.image}
+          alt={post.title}
+          className="w-full h-64 object-cover"
+          whileHover={{ scale: 1.1 }}
+          transition={{ duration: 0.3 }}
         />
-      </div>
-      <div className="p-6">
-        <div className="flex items-center text-sm text-gray-500 mb-3">
-          <span>{post.date}</span>
-          <span className="mx-2">•</span>
-          <span>Par {post.author}</span>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        
+        {/* Category Badge */}
+        <div className={`absolute top-4 left-4 px-3 py-1 bg-gradient-to-r ${getCategoryColor(post.category)} text-white rounded-full text-sm font-medium`}>
+          {post.category}
         </div>
-        <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">{post.title}</h3>
-        <p className="text-gray-600 mb-4">{post.excerpt}</p>
-        <a 
-          href="#" 
-          className="text-primary-600 font-medium hover:text-primary-700 inline-flex items-center"
-        >
-          Lire la suite
-          <svg className="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </a>
       </div>
-    </article>
+
+      {/* Content */}
+      <div className="p-6">
+        {/* Meta Info */}
+        <div className="flex items-center gap-4 mb-4 text-sm text-gray-500">
+          <div className="flex items-center gap-1">
+            <Calendar className="w-3 h-3" />
+            <span>{post.date}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <Clock className="w-3 h-3" />
+            <span>{post.readTime}</span>
+          </div>
+        </div>
+
+        {/* Title */}
+        <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:gradient-text transition-all duration-300 line-clamp-2">
+          {post.title}
+        </h3>
+
+        {/* Excerpt */}
+        <p className="text-gray-600 mb-4 leading-relaxed line-clamp-3">
+          {post.excerpt}
+        </p>
+
+        {/* Author & CTA */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2 text-sm text-gray-500">
+            <User className="w-3 h-3" />
+            <span>{post.author}</span>
+          </div>
+          
+          <motion.a
+            href="#"
+            className="text-primary-600 font-medium hover:text-primary-700 inline-flex items-center gap-1 group/link"
+            whileHover={{ x: 2 }}
+          >
+            Lire
+            <ArrowRight className="w-3 h-3 group-hover/link:translate-x-0.5 transition-transform" />
+          </motion.a>
+        </div>
+      </div>
+    </motion.article>
   );
 };
 
