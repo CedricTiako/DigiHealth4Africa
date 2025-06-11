@@ -1,6 +1,18 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { Users, Eye, Leaf, Award, Globe, Heart } from 'lucide-react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+  faUsers, 
+  faEye, 
+  faLeaf, 
+  faAward, 
+  faGlobe, 
+  faHeart,
+  faStethoscope,
+  faHandHoldingHeart,
+  faUserMd,
+  faHospital
+} from '@fortawesome/free-solid-svg-icons';
 import doctorImage from '../images/docor.png';
 
 const About: React.FC = () => {
@@ -39,25 +51,25 @@ const About: React.FC = () => {
 
   const values = [
     {
-      icon: <Award className="h-8 w-8" />,
+      icon: <FontAwesomeIcon icon={faAward} className="fa-glow-custom" />,
       title: "Innovation responsable",
       description: "Des solutions technologiques adaptées aux contextes locaux et aux besoins réels.",
       color: "from-blue-500 to-purple-600"
     },
     {
-      icon: <Heart className="h-8 w-8" />,
+      icon: <FontAwesomeIcon icon={faHandHoldingHeart} className="fa-heartbeat-custom" />,
       title: "Accessibilité des soins",
       description: "Réduire les barrières géographiques et financières pour un accès équitable à la santé.",
       color: "from-pink-500 to-red-500"
     },
     {
-      icon: <Users className="h-8 w-8" />,
+      icon: <FontAwesomeIcon icon={faUsers} className="fa-pulse-custom" />,
       title: "Solidarité médicale",
       description: "Créer des ponts entre professionnels de santé pour un partage d'expertise bénéfique.",
       color: "from-green-500 to-teal-500"
     },
     {
-      icon: <Globe className="h-8 w-8" />,
+      icon: <FontAwesomeIcon icon={faGlobe} className="fa-rotate-custom" />,
       title: "Respect des contextes locaux",
       description: "Des solutions ancrées dans les réalités culturelles et socio-économiques africaines.",
       color: "from-orange-500 to-yellow-500"
@@ -65,7 +77,11 @@ const About: React.FC = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-gradient-to-br from-white via-gray-50 to-white relative overflow-hidden" ref={ref}>
+    <section id="about" className="py-20 relative overflow-hidden" ref={ref}>
+      {/* African Pattern Background */}
+      <div className="absolute inset-0 african-pattern-3"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-white/95 via-gray-50/90 to-white/95"></div>
+
       {/* Animated Background Elements */}
       <motion.div
         className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-r from-primary-200/30 to-accent-200/30 rounded-full blur-3xl"
@@ -75,6 +91,40 @@ const About: React.FC = () => {
         className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-r from-accent-200/30 to-secondary-200/30 rounded-full blur-3xl"
         style={{ y: useTransform(scrollYProgress, [0, 1], [-50, 50]), opacity }}
       />
+
+      {/* Floating Medical Icons */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-32 right-16 text-primary-200"
+          animate={{
+            y: [0, -25, 0],
+            rotate: [0, 15, 0],
+          }}
+          transition={{
+            duration: 7,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        >
+          <FontAwesomeIcon icon={faStethoscope} className="text-5xl opacity-20" />
+        </motion.div>
+        
+        <motion.div
+          className="absolute bottom-32 left-16 text-accent-200"
+          animate={{
+            y: [0, 20, 0],
+            rotate: [0, -15, 0],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1.5
+          }}
+        >
+          <FontAwesomeIcon icon={faHospital} className="text-4xl opacity-20" />
+        </motion.div>
+      </div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <motion.div
@@ -91,7 +141,7 @@ const About: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="w-2 h-2 bg-primary-500 rounded-full animate-pulse"></div>
+            <FontAwesomeIcon icon={faHeart} className="fa-heartbeat-custom" />
             Notre Histoire
           </motion.div>
 
@@ -112,19 +162,26 @@ const About: React.FC = () => {
           animate={isInView ? "visible" : "hidden"}
         >
           <motion.div variants={itemVariants} className="space-y-8">
-            <div className="glass rounded-3xl p-8 backdrop-blur-xl">
-              <h3 className="text-3xl font-bold mb-6 gradient-text">À propos</h3>
-              <div className="space-y-6 text-gray-600 leading-relaxed">
-                <p className="text-lg">
-                  DIGIHEALTH4AFRICA a été fondée par une infirmière française d'origine camerounaise 
-                  et un médecin africain ayant exercé en France et au Cameroun, avec la conviction que 
-                  les innovations en santé peuvent transformer l'accès aux soins en Afrique.
-                </p>
-                <p className="text-lg">
-                  Notre équipe est composée de professionnels de santé, d'ingénieurs, de logisticiens 
-                  et d'experts en santé digitale unis par une même mission : rapprocher les soins de 
-                  santé des populations, même dans les zones les plus reculées.
-                </p>
+            <div className="glass rounded-3xl p-8 backdrop-blur-xl relative overflow-hidden">
+              {/* African pattern overlay */}
+              <div className="absolute inset-0 african-pattern-4 opacity-30"></div>
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-6">
+                  <FontAwesomeIcon icon={faUserMd} className="text-2xl text-primary-600 fa-pulse-custom" />
+                  <h3 className="text-3xl font-bold gradient-text">À propos</h3>
+                </div>
+                <div className="space-y-6 text-gray-600 leading-relaxed">
+                  <p className="text-lg">
+                    DIGIHEALTH4AFRICA a été fondée par une infirmière française d'origine camerounaise 
+                    et un médecin africain ayant exercé en France et au Cameroun, avec la conviction que 
+                    les innovations en santé peuvent transformer l'accès aux soins en Afrique.
+                  </p>
+                  <p className="text-lg">
+                    Notre équipe est composée de professionnels de santé, d'ingénieurs, de logisticiens 
+                    et d'experts en santé digitale unis par une même mission : rapprocher les soins de 
+                    santé des populations, même dans les zones les plus reculées.
+                  </p>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -148,7 +205,7 @@ const About: React.FC = () => {
                 transition={{ duration: 0.8, delay: 0.5 }}
               >
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                  <FontAwesomeIcon icon={faStethoscope} className="text-green-500 fa-pulse-custom" />
                   <span className="font-semibold text-gray-900">Expertise Internationale</span>
                 </div>
                 <p className="text-sm text-gray-600">
@@ -172,6 +229,7 @@ const About: React.FC = () => {
           transition={{ duration: 0.8 }}
         >
           <div className="glass rounded-3xl p-12 backdrop-blur-xl relative overflow-hidden">
+            <div className="absolute inset-0 african-pattern-5"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-primary-50/50 to-accent-50/50"></div>
             <div className="relative z-10 flex flex-col lg:flex-row items-center gap-12">
               <motion.div
@@ -181,7 +239,7 @@ const About: React.FC = () => {
               >
                 <div className="relative">
                   <div className="w-24 h-24 bg-gradient-to-br from-primary-500 to-accent-500 rounded-3xl flex items-center justify-center text-white shadow-xl">
-                    <Eye className="h-12 w-12" />
+                    <FontAwesomeIcon icon={faEye} className="text-3xl fa-glow-custom" />
                   </div>
                   <div className="absolute inset-0 w-24 h-24 bg-gradient-to-br from-primary-500 to-accent-500 rounded-3xl blur-xl opacity-30"></div>
                 </div>
@@ -206,7 +264,10 @@ const About: React.FC = () => {
           transition={{ duration: 0.8 }}
         >
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold gradient-text mb-4">Nos valeurs</h3>
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <FontAwesomeIcon icon={faHeart} className="text-2xl text-primary-600 fa-heartbeat-custom" />
+              <h3 className="text-3xl font-bold gradient-text">Nos valeurs</h3>
+            </div>
             <p className="text-gray-600 text-lg">Les principes qui guident notre mission</p>
           </div>
 
@@ -222,6 +283,9 @@ const About: React.FC = () => {
                 whileHover={{ y: -8 }}
               >
                 <div className="glass rounded-3xl p-8 h-full backdrop-blur-xl relative overflow-hidden">
+                  {/* African pattern background */}
+                  <div className="absolute inset-0 african-pattern-2 opacity-20"></div>
+                  
                   {/* Background Gradient */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${value.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
                   
@@ -232,7 +296,9 @@ const About: React.FC = () => {
                     transition={{ duration: 0.3 }}
                   >
                     <div className={`w-16 h-16 bg-gradient-to-br ${value.color} rounded-2xl flex items-center justify-center text-white shadow-lg mb-4`}>
-                      {value.icon}
+                      <div className="text-2xl">
+                        {value.icon}
+                      </div>
                     </div>
                     <div className={`absolute inset-0 w-16 h-16 bg-gradient-to-br ${value.color} rounded-2xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300`}></div>
                   </motion.div>

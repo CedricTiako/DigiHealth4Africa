@@ -27,6 +27,49 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* African Pattern Backgrounds */
+.african-pattern-1 {
+  background-image: 
+    radial-gradient(circle at 25% 25%, #f59e0b 2px, transparent 2px),
+    radial-gradient(circle at 75% 75%, #dc2626 2px, transparent 2px),
+    radial-gradient(circle at 25% 75%, #059669 2px, transparent 2px),
+    radial-gradient(circle at 75% 25%, #7c3aed 2px, transparent 2px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px, 0 20px, 20px 0;
+  opacity: 0.1;
+}
+
+.african-pattern-2 {
+  background-image: 
+    repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(245, 158, 11, 0.1) 10px, rgba(245, 158, 11, 0.1) 20px),
+    repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(220, 38, 38, 0.1) 10px, rgba(220, 38, 38, 0.1) 20px);
+}
+
+.african-pattern-3 {
+  background-image: 
+    conic-gradient(from 0deg at 50% 50%, #f59e0b 0deg, transparent 60deg, #dc2626 120deg, transparent 180deg, #059669 240deg, transparent 300deg, #7c3aed 360deg);
+  background-size: 60px 60px;
+  opacity: 0.08;
+}
+
+.african-pattern-4 {
+  background-image: 
+    linear-gradient(45deg, rgba(245, 158, 11, 0.1) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(220, 38, 38, 0.1) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(5, 150, 105, 0.1) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(124, 58, 237, 0.1) 75%);
+  background-size: 30px 30px;
+  background-position: 0 0, 0 15px, 15px -15px, -15px 0px;
+}
+
+.african-pattern-5 {
+  background-image: 
+    radial-gradient(ellipse at center, rgba(245, 158, 11, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 25% 25%, rgba(220, 38, 38, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 75% 75%, rgba(5, 150, 105, 0.1) 0%, transparent 50%);
+  background-size: 80px 80px, 40px 40px, 60px 60px;
+}
+
 /* Glass Morphism Effect */
 .glass {
   background: rgba(255, 255, 255, 0.1);
@@ -55,6 +98,93 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* FontAwesome Icon Animations */
+.fa-pulse-custom {
+  animation: fa-pulse-custom 2s ease-in-out infinite;
+}
+
+@keyframes fa-pulse-custom {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.fa-bounce-custom {
+  animation: fa-bounce-custom 2s ease-in-out infinite;
+}
+
+@keyframes fa-bounce-custom {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.fa-rotate-custom {
+  animation: fa-rotate-custom 3s linear infinite;
+}
+
+@keyframes fa-rotate-custom {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.fa-heartbeat-custom {
+  animation: fa-heartbeat-custom 1.5s ease-in-out infinite;
+}
+
+@keyframes fa-heartbeat-custom {
+  0%, 50%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+}
+
+.fa-glow-custom {
+  animation: fa-glow-custom 2s ease-in-out infinite alternate;
+}
+
+@keyframes fa-glow-custom {
+  from {
+    filter: drop-shadow(0 0 5px currentColor);
+  }
+  to {
+    filter: drop-shadow(0 0 15px currentColor);
+  }
+}
+
+.fa-float-custom {
+  animation: fa-float-custom 3s ease-in-out infinite;
+}
+
+@keyframes fa-float-custom {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 /* Modern Button Styles */

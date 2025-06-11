@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 import { Calendar, User, ArrowRight, Clock, Tag } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+  faNewspaper, 
+  faStethoscope, 
+  faGlobe, 
+  faGraduationCap, 
+  faHandshake,
+  faHeartbeat,
+  faUserMd
+} from '@fortawesome/free-solid-svg-icons';
 import newTechRevolutionImage from '../images/new-tech-revolution.png';
 import tchadMissionImage from '../images/tchad-mission.png';
 import santeImage from '../images/sante.png';
@@ -10,7 +20,13 @@ import clinicHomeImage from '../images/clinic-home.jpg';
 const Blog: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('Tous');
 
-  const categories = ['Tous', 'Télémédecine', 'Missions', 'Formation', 'Partenariats'];
+  const categories = [
+    { name: 'Tous', icon: faNewspaper },
+    { name: 'Télémédecine', icon: faStethoscope },
+    { name: 'Missions', icon: faGlobe },
+    { name: 'Formation', icon: faGraduationCap },
+    { name: 'Partenariats', icon: faHandshake }
+  ];
 
   const blogPosts = [
     {
@@ -112,11 +128,43 @@ const Blog: React.FC = () => {
   };
 
   return (
-    <section id="blog" className="py-20 bg-gradient-to-br from-white via-gray-50 to-white relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary-200 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent-200 rounded-full blur-3xl"></div>
+    <section id="blog" className="py-20 relative overflow-hidden">
+      {/* African Pattern Background */}
+      <div className="absolute inset-0 african-pattern-4"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-white/95 via-gray-50/90 to-white/95"></div>
+
+      {/* Floating Medical Icons */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-20 left-10 text-primary-200"
+          animate={{
+            y: [0, -20, 0],
+            rotate: [0, 10, 0],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        >
+          <FontAwesomeIcon icon={faNewspaper} className="text-4xl opacity-30" />
+        </motion.div>
+        
+        <motion.div
+          className="absolute bottom-20 right-10 text-accent-200"
+          animate={{
+            y: [0, 15, 0],
+            rotate: [0, -10, 0],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+        >
+          <FontAwesomeIcon icon={faHeartbeat} className="text-3xl opacity-30" />
+        </motion.div>
       </div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -134,7 +182,7 @@ const Blog: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="w-2 h-2 bg-primary-500 rounded-full animate-pulse"></div>
+            <FontAwesomeIcon icon={faNewspaper} className="fa-pulse-custom" />
             Blog & Actualités
           </motion.div>
 
@@ -157,17 +205,21 @@ const Blog: React.FC = () => {
         >
           {categories.map((category) => (
             <motion.button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                selectedCategory === category
+              key={category.name}
+              onClick={() => setSelectedCategory(category.name)}
+              className={`flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                selectedCategory === category.name
                   ? 'bg-gradient-to-r from-primary-600 to-accent-600 text-white shadow-glow'
                   : 'glass text-gray-700 hover:bg-white/70'
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {category}
+              <FontAwesomeIcon 
+                icon={category.icon} 
+                className={selectedCategory === category.name ? 'fa-pulse-custom' : ''} 
+              />
+              {category.name}
             </motion.button>
           ))}
         </motion.div>
@@ -181,8 +233,10 @@ const Blog: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <div className="glass rounded-3xl overflow-hidden backdrop-blur-xl shadow-2xl">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+            <div className="glass rounded-3xl overflow-hidden backdrop-blur-xl shadow-2xl relative">
+              {/* African pattern overlay */}
+              <div className="absolute inset-0 african-pattern-5 opacity-20"></div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 relative z-10">
                 <div className="relative group overflow-hidden">
                   <motion.img
                     src={featuredPost.image}
@@ -192,7 +246,8 @@ const Blog: React.FC = () => {
                     transition={{ duration: 0.3 }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-                  <div className="absolute top-6 left-6 px-3 py-1 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-full text-sm font-medium">
+                  <div className="absolute top-6 left-6 flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-full text-sm font-medium">
+                    <FontAwesomeIcon icon={faUserMd} className="fa-heartbeat-custom" />
                     Article vedette
                   </div>
                 </div>
@@ -273,6 +328,7 @@ const Blog: React.FC = () => {
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
           >
+            <FontAwesomeIcon icon={faNewspaper} className="fa-bounce-custom" />
             Voir tous les articles
             <ArrowRight className="w-5 h-5" />
           </motion.button>
@@ -309,11 +365,24 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
     }
   };
 
+  const getCategoryIcon = (category: string) => {
+    switch (category) {
+      case 'Télémédecine': return faStethoscope;
+      case 'Missions': return faGlobe;
+      case 'Formation': return faGraduationCap;
+      case 'Partenariats': return faHandshake;
+      default: return faNewspaper;
+    }
+  };
+
   return (
     <motion.article
-      className="group glass rounded-3xl overflow-hidden backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-500"
+      className="group glass rounded-3xl overflow-hidden backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-500 relative"
       whileHover={{ y: -8, scale: 1.02 }}
     >
+      {/* African pattern overlay */}
+      <div className="absolute inset-0 african-pattern-2 opacity-10"></div>
+      
       {/* Image */}
       <div className="relative overflow-hidden">
         <motion.img
@@ -326,13 +395,14 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         
         {/* Category Badge */}
-        <div className={`absolute top-4 left-4 px-3 py-1 bg-gradient-to-r ${getCategoryColor(post.category)} text-white rounded-full text-sm font-medium`}>
+        <div className={`absolute top-4 left-4 flex items-center gap-2 px-3 py-1 bg-gradient-to-r ${getCategoryColor(post.category)} text-white rounded-full text-sm font-medium`}>
+          <FontAwesomeIcon icon={getCategoryIcon(post.category)} className="fa-pulse-custom" />
           {post.category}
         </div>
       </div>
 
       {/* Content */}
-      <div className="p-6">
+      <div className="p-6 relative z-10">
         {/* Meta Info */}
         <div className="flex items-center gap-4 mb-4 text-sm text-gray-500">
           <div className="flex items-center gap-1">

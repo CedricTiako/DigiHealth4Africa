@@ -1,6 +1,17 @@
 import React, { useRef } from 'react';
 import { CheckCircle, ArrowRight, Users, MapPin, Calendar } from 'lucide-react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+  faProjectDiagram, 
+  faStethoscope, 
+  faGraduationCap, 
+  faHandshake,
+  faHeartbeat,
+  faUserMd,
+  faHospital,
+  faTrophy
+} from '@fortawesome/free-solid-svg-icons';
 import formationImage from '../images/formation.png';
 import nordMissionImage from '../images/nord-mission.png';
 import partenartImage from '../images/partenart.png';
@@ -26,7 +37,8 @@ const Projects: React.FC = () => {
         { label: "Patients bénéficiaires", value: "1200+", icon: <Users className="w-4 h-4" /> },
         { label: "Téléconsultations", value: "450", icon: <Calendar className="w-4 h-4" /> }
       ],
-      color: "from-blue-500 to-purple-600"
+      color: "from-blue-500 to-purple-600",
+      faIcon: faStethoscope
     },
     {
       id: 2,
@@ -38,7 +50,8 @@ const Projects: React.FC = () => {
         { label: "Heures de formation", value: "120", icon: <Calendar className="w-4 h-4" /> },
         { label: "Taux de satisfaction", value: "92%", icon: <CheckCircle className="w-4 h-4" /> }
       ],
-      color: "from-green-500 to-teal-600"
+      color: "from-green-500 to-teal-600",
+      faIcon: faGraduationCap
     },
     {
       id: 3,
@@ -50,7 +63,8 @@ const Projects: React.FC = () => {
         { label: "Population couverte", value: "25 000", icon: <Users className="w-4 h-4" /> },
         { label: "Médecins à distance", value: "12", icon: <Users className="w-4 h-4" /> }
       ],
-      color: "from-orange-500 to-red-500"
+      color: "from-orange-500 to-red-500",
+      faIcon: faHandshake
     }
   ];
 
@@ -87,7 +101,11 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <section id="projects" className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden" ref={ref}>
+    <section id="projects" className="py-20 relative overflow-hidden" ref={ref}>
+      {/* African Pattern Background */}
+      <div className="absolute inset-0 african-pattern-2"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50/95 via-white/90 to-gray-50/95"></div>
+
       {/* Animated Background */}
       <motion.div
         className="absolute top-20 right-10 w-96 h-96 bg-gradient-to-r from-primary-200/20 to-accent-200/20 rounded-full blur-3xl"
@@ -97,6 +115,40 @@ const Projects: React.FC = () => {
         className="absolute bottom-20 left-10 w-80 h-80 bg-gradient-to-r from-accent-200/20 to-secondary-200/20 rounded-full blur-3xl"
         style={{ y: useTransform(scrollYProgress, [0, 1], [-30, 30]) }}
       />
+
+      {/* Floating Medical Icons */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-32 right-16 text-primary-200"
+          animate={{
+            y: [0, -25, 0],
+            rotate: [0, 15, 0],
+          }}
+          transition={{
+            duration: 7,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        >
+          <FontAwesomeIcon icon={faProjectDiagram} className="text-5xl opacity-20" />
+        </motion.div>
+        
+        <motion.div
+          className="absolute bottom-32 left-16 text-accent-200"
+          animate={{
+            y: [0, 20, 0],
+            rotate: [0, -15, 0],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1.5
+          }}
+        >
+          <FontAwesomeIcon icon={faHospital} className="text-4xl opacity-20" />
+        </motion.div>
+      </div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <motion.div
@@ -113,7 +165,7 @@ const Projects: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="w-2 h-2 bg-primary-500 rounded-full animate-pulse"></div>
+            <FontAwesomeIcon icon={faTrophy} className="fa-bounce-custom" />
             Nos Succès
           </motion.div>
 
@@ -155,12 +207,13 @@ const Projects: React.FC = () => {
                   
                   {/* Floating Badge */}
                   <motion.div
-                    className={`absolute top-6 left-6 px-4 py-2 bg-gradient-to-r ${project.color} text-white rounded-full text-sm font-medium shadow-lg`}
+                    className={`absolute top-6 left-6 flex items-center gap-2 px-4 py-2 bg-gradient-to-r ${project.color} text-white rounded-full text-sm font-medium shadow-lg`}
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.3 }}
                   >
+                    <FontAwesomeIcon icon={project.faIcon} className="fa-pulse-custom" />
                     Projet #{project.id}
                   </motion.div>
                 </motion.div>
@@ -172,32 +225,43 @@ const Projects: React.FC = () => {
 
               {/* Content */}
               <div className="lg:w-1/2 space-y-8">
-                <div className="glass rounded-3xl p-8 backdrop-blur-xl">
-                  <h3 className="text-3xl font-bold mb-6 gradient-text">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-600 mb-8 text-lg leading-relaxed">
-                    {project.description}
-                  </p>
+                <div className="glass rounded-3xl p-8 backdrop-blur-xl relative overflow-hidden">
+                  {/* African pattern overlay */}
+                  <div className="absolute inset-0 african-pattern-5 opacity-20"></div>
+                  
+                  <div className="relative z-10">
+                    <div className="flex items-center gap-3 mb-6">
+                      <FontAwesomeIcon icon={project.faIcon} className={`text-2xl text-primary-600 fa-glow-custom`} />
+                      <h3 className="text-3xl font-bold gradient-text">
+                        {project.title}
+                      </h3>
+                    </div>
+                    <p className="text-gray-600 mb-8 text-lg leading-relaxed">
+                      {project.description}
+                    </p>
 
-                  {/* Stats */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {project.stats.map((stat, i) => (
-                      <motion.div
-                        key={i}
-                        className="text-center p-4 rounded-2xl bg-white/50 backdrop-blur-sm"
-                        whileHover={{ scale: 1.05, y: -2 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <div className="flex items-center justify-center gap-2 mb-2">
-                          <div className={`p-2 bg-gradient-to-r ${project.color} rounded-lg text-white`}>
-                            {stat.icon}
+                    {/* Stats */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      {project.stats.map((stat, i) => (
+                        <motion.div
+                          key={i}
+                          className="text-center p-4 rounded-2xl bg-white/50 backdrop-blur-sm relative overflow-hidden"
+                          whileHover={{ scale: 1.05, y: -2 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <div className="absolute inset-0 african-pattern-1 opacity-10"></div>
+                          <div className="relative z-10">
+                            <div className="flex items-center justify-center gap-2 mb-2">
+                              <div className={`p-2 bg-gradient-to-r ${project.color} rounded-lg text-white`}>
+                                {stat.icon}
+                              </div>
+                            </div>
+                            <p className="text-2xl font-bold gradient-text mb-1">{stat.value}</p>
+                            <p className="text-sm text-gray-600">{stat.label}</p>
                           </div>
-                        </div>
-                        <p className="text-2xl font-bold gradient-text mb-1">{stat.value}</p>
-                        <p className="text-sm text-gray-600">{stat.label}</p>
-                      </motion.div>
-                    ))}
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -213,11 +277,15 @@ const Projects: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
+          <div className="absolute inset-0 african-pattern-3"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-primary-50/30 to-accent-50/30"></div>
           
           <div className="relative z-10">
             <div className="text-center mb-12">
-              <h3 className="text-3xl font-bold gradient-text mb-4">Nos principaux résultats</h3>
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <FontAwesomeIcon icon={faHeartbeat} className="text-2xl text-primary-600 fa-heartbeat-custom" />
+                <h3 className="text-3xl font-bold gradient-text">Nos principaux résultats</h3>
+              </div>
               <p className="text-gray-600 text-lg">L'impact concret de nos actions sur le terrain</p>
             </div>
 
@@ -225,21 +293,22 @@ const Projects: React.FC = () => {
               {achievements.map((achievement, index) => (
                 <motion.div
                   key={index}
-                  className="group flex items-start gap-4 p-6 rounded-2xl bg-white/50 backdrop-blur-sm hover:bg-white/70 transition-all duration-300"
+                  className="group flex items-start gap-4 p-6 rounded-2xl bg-white/50 backdrop-blur-sm hover:bg-white/70 transition-all duration-300 relative overflow-hidden"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   whileHover={{ scale: 1.02, x: 4 }}
                 >
+                  <div className="absolute inset-0 african-pattern-4 opacity-10"></div>
                   <motion.div
-                    className="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center"
+                    className="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center relative z-10"
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     transition={{ duration: 0.2 }}
                   >
                     <CheckCircle className="w-5 h-5 text-white" />
                   </motion.div>
-                  <p className="text-gray-700 font-medium group-hover:text-gray-900 transition-colors">
+                  <p className="text-gray-700 font-medium group-hover:text-gray-900 transition-colors relative z-10">
                     {achievement}
                   </p>
                 </motion.div>
@@ -260,6 +329,7 @@ const Projects: React.FC = () => {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
+                <FontAwesomeIcon icon={faUserMd} className="fa-heartbeat-custom" />
                 Rejoignez notre mission
                 <ArrowRight className="w-5 h-5" />
               </motion.a>

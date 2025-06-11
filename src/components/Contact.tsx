@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Facebook, Linkedin, Twitter, Instagram, Send, CheckCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+  faEnvelope, 
+  faPhone, 
+  faMapMarkerAlt, 
+  faComments,
+  faHeartbeat,
+  faUserMd,
+  faStethoscope
+} from '@fortawesome/free-solid-svg-icons';
 import { useForm } from 'react-hook-form';
 
 const Contact: React.FC = () => {
@@ -48,19 +58,19 @@ const Contact: React.FC = () => {
 
   const contactInfo = [
     {
-      icon: <MapPin className="h-6 w-6" />,
+      icon: <FontAwesomeIcon icon={faMapMarkerAlt} className="fa-pulse-custom" />,
       title: "Adresse",
       content: "37 Avenue Duguay Trouin, 93150 Le Blanc Mesnil, France",
       color: "from-red-500 to-pink-500"
     },
     {
-      icon: <Phone className="h-6 w-6" />,
+      icon: <FontAwesomeIcon icon={faPhone} className="fa-bounce-custom" />,
       title: "Téléphone",
       content: "+33 7 53 45 82 24",
       color: "from-green-500 to-teal-500"
     },
     {
-      icon: <Mail className="h-6 w-6" />,
+      icon: <FontAwesomeIcon icon={faEnvelope} className="fa-glow-custom" />,
       title: "Email",
       content: "contact@digihealth4africa.fr",
       color: "from-blue-500 to-purple-500"
@@ -68,11 +78,43 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-primary-200 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-accent-200 rounded-full blur-3xl"></div>
+    <section id="contact" className="py-20 relative overflow-hidden">
+      {/* African Pattern Background */}
+      <div className="absolute inset-0 african-pattern-5"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50/95 via-white/90 to-gray-50/95"></div>
+
+      {/* Floating Medical Icons */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-20 left-10 text-primary-200"
+          animate={{
+            y: [0, -20, 0],
+            rotate: [0, 10, 0],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        >
+          <FontAwesomeIcon icon={faComments} className="text-4xl opacity-30" />
+        </motion.div>
+        
+        <motion.div
+          className="absolute bottom-20 right-10 text-accent-200"
+          animate={{
+            y: [0, 15, 0],
+            rotate: [0, -10, 0],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+        >
+          <FontAwesomeIcon icon={faStethoscope} className="text-3xl opacity-30" />
+        </motion.div>
       </div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -90,7 +132,7 @@ const Contact: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="w-2 h-2 bg-primary-500 rounded-full animate-pulse"></div>
+            <FontAwesomeIcon icon={faComments} className="fa-pulse-custom" />
             Contactez-nous
           </motion.div>
 
@@ -114,12 +156,13 @@ const Contact: React.FC = () => {
           {/* Contact Form */}
           <motion.div variants={itemVariants}>
             <div className="glass rounded-3xl p-8 backdrop-blur-xl shadow-xl relative overflow-hidden">
+              <div className="absolute inset-0 african-pattern-1 opacity-20"></div>
               <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-white/30"></div>
               
               <div className="relative z-10">
                 <div className="flex items-center gap-4 mb-8">
                   <div className="w-12 h-12 bg-gradient-to-r from-primary-600 to-accent-600 rounded-2xl flex items-center justify-center text-white">
-                    <Send className="w-6 h-6" />
+                    <FontAwesomeIcon icon={faEnvelope} className="fa-pulse-custom" />
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold gradient-text">Envoyez-nous un message</h3>
@@ -258,6 +301,7 @@ const Contact: React.FC = () => {
                         whileTap={{ scale: 0.98 }}
                       >
                         <span className="flex items-center justify-center gap-2">
+                          <FontAwesomeIcon icon={faEnvelope} className="fa-bounce-custom" />
                           Envoyer le message
                           <Send className="w-5 h-5" />
                         </span>
@@ -292,89 +336,104 @@ const Contact: React.FC = () => {
           {/* Contact Information */}
           <motion.div variants={itemVariants} className="space-y-8">
             {/* Contact Details */}
-            <div className="glass rounded-3xl p-8 backdrop-blur-xl shadow-xl">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-12 h-12 bg-gradient-to-r from-primary-600 to-accent-600 rounded-2xl flex items-center justify-center text-white">
-                  <MapPin className="w-6 h-6" />
+            <div className="glass rounded-3xl p-8 backdrop-blur-xl shadow-xl relative overflow-hidden">
+              <div className="absolute inset-0 african-pattern-3 opacity-20"></div>
+              <div className="relative z-10">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-12 h-12 bg-gradient-to-r from-primary-600 to-accent-600 rounded-2xl flex items-center justify-center text-white">
+                    <FontAwesomeIcon icon={faMapMarkerAlt} className="fa-pulse-custom" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold gradient-text">Nos coordonnées</h3>
+                    <p className="text-gray-600">Retrouvez-nous facilement</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-2xl font-bold gradient-text">Nos coordonnées</h3>
-                  <p className="text-gray-600">Retrouvez-nous facilement</p>
+                
+                <div className="space-y-6">
+                  {contactInfo.map((info, index) => (
+                    <motion.div
+                      key={index}
+                      className="flex items-start gap-4 p-4 rounded-2xl bg-white/30 backdrop-blur-sm hover:bg-white/50 transition-all duration-300 relative overflow-hidden"
+                      whileHover={{ scale: 1.02, x: 4 }}
+                    >
+                      <div className="absolute inset-0 african-pattern-4 opacity-10"></div>
+                      <div className={`w-12 h-12 bg-gradient-to-r ${info.color} rounded-xl flex items-center justify-center text-white flex-shrink-0 relative z-10`}>
+                        <div className="text-lg">
+                          {info.icon}
+                        </div>
+                      </div>
+                      <div className="relative z-10">
+                        <p className="font-semibold text-gray-900 mb-1">{info.title}</p>
+                        <p className="text-gray-600">{info.content}</p>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
-              </div>
-              
-              <div className="space-y-6">
-                {contactInfo.map((info, index) => (
-                  <motion.div
-                    key={index}
-                    className="flex items-start gap-4 p-4 rounded-2xl bg-white/30 backdrop-blur-sm hover:bg-white/50 transition-all duration-300"
-                    whileHover={{ scale: 1.02, x: 4 }}
-                  >
-                    <div className={`w-12 h-12 bg-gradient-to-r ${info.color} rounded-xl flex items-center justify-center text-white flex-shrink-0`}>
-                      {info.icon}
-                    </div>
-                    <div>
-                      <p className="font-semibold text-gray-900 mb-1">{info.title}</p>
-                      <p className="text-gray-600">{info.content}</p>
-                    </div>
-                  </motion.div>
-                ))}
               </div>
             </div>
             
             {/* Social Media */}
-            <div className="glass rounded-3xl p-8 backdrop-blur-xl shadow-xl">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-12 h-12 bg-gradient-to-r from-primary-600 to-accent-600 rounded-2xl flex items-center justify-center text-white">
-                  <Instagram className="w-6 h-6" />
+            <div className="glass rounded-3xl p-8 backdrop-blur-xl shadow-xl relative overflow-hidden">
+              <div className="absolute inset-0 african-pattern-2 opacity-20"></div>
+              <div className="relative z-10">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-12 h-12 bg-gradient-to-r from-primary-600 to-accent-600 rounded-2xl flex items-center justify-center text-white">
+                    <Instagram className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold gradient-text">Suivez-nous</h3>
+                    <p className="text-gray-600">Restez connectés avec nos actualités</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-2xl font-bold gradient-text">Suivez-nous</h3>
-                  <p className="text-gray-600">Restez connectés avec nos actualités</p>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  {socialLinks.map((social, index) => (
+                    <motion.a
+                      key={index}
+                      href="#"
+                      className={`flex items-center justify-center gap-3 p-4 bg-gradient-to-r ${social.color} text-white rounded-2xl font-medium hover:shadow-lg transition-all duration-300`}
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {social.icon}
+                      <span className="hidden sm:inline">{social.label}</span>
+                    </motion.a>
+                  ))}
                 </div>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-4">
-                {socialLinks.map((social, index) => (
-                  <motion.a
-                    key={index}
-                    href="#"
-                    className={`flex items-center justify-center gap-3 p-4 bg-gradient-to-r ${social.color} text-white rounded-2xl font-medium hover:shadow-lg transition-all duration-300`}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {social.icon}
-                    <span className="hidden sm:inline">{social.label}</span>
-                  </motion.a>
-                ))}
               </div>
             </div>
 
             {/* Quick Contact */}
-            <div className="glass rounded-3xl p-8 backdrop-blur-xl shadow-xl">
-              <h3 className="text-xl font-bold gradient-text mb-4">Besoin d'une réponse rapide ?</h3>
-              <p className="text-gray-600 mb-6">
-                Pour les urgences ou les demandes prioritaires, contactez-nous directement.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <motion.a
-                  href="tel:+33753458224"
-                  className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-green-500 to-teal-500 text-white rounded-xl font-medium hover:shadow-lg transition-all duration-300"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Phone className="w-4 h-4" />
-                  Appeler
-                </motion.a>
-                <motion.a
-                  href="mailto:contact@digihealth4africa.fr"
-                  className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl font-medium hover:shadow-lg transition-all duration-300"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Mail className="w-4 h-4" />
-                  Email
-                </motion.a>
+            <div className="glass rounded-3xl p-8 backdrop-blur-xl shadow-xl relative overflow-hidden">
+              <div className="absolute inset-0 african-pattern-1 opacity-20"></div>
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-4">
+                  <FontAwesomeIcon icon={faHeartbeat} className="text-xl text-primary-600 fa-heartbeat-custom" />
+                  <h3 className="text-xl font-bold gradient-text">Besoin d'une réponse rapide ?</h3>
+                </div>
+                <p className="text-gray-600 mb-6">
+                  Pour les urgences ou les demandes prioritaires, contactez-nous directement.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <motion.a
+                    href="tel:+33753458224"
+                    className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-green-500 to-teal-500 text-white rounded-xl font-medium hover:shadow-lg transition-all duration-300"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <FontAwesomeIcon icon={faPhone} className="fa-bounce-custom" />
+                    Appeler
+                  </motion.a>
+                  <motion.a
+                    href="mailto:contact@digihealth4africa.fr"
+                    className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl font-medium hover:shadow-lg transition-all duration-300"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <FontAwesomeIcon icon={faEnvelope} className="fa-glow-custom" />
+                    Email
+                  </motion.a>
+                </div>
               </div>
             </div>
           </motion.div>
