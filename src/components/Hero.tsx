@@ -9,6 +9,7 @@ import {
   faHospital,
   faStar
 } from '@fortawesome/free-solid-svg-icons';
+import { cn } from '../utils/cn';
 
 const Hero: React.FC = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -46,14 +47,14 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="hero min-h-screen relative overflow-hidden">
       {/* Animated Background */}
-      <div className="absolute inset-0 gradient-animated"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-medical-500 via-health-500 to-africa-500 opacity-90"></div>
       
       {/* African Pattern Background */}
       <div className="absolute inset-0 african-pattern-1 opacity-20"></div>
       
-      {/* Floating Geometric Shapes - Hidden on mobile for performance */}
+      {/* Floating Medical Icons - Hidden on mobile for performance */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none hidden md:block">
         <motion.div
           className="absolute top-20 left-10 text-white/10"
@@ -109,11 +110,11 @@ const Hero: React.FC = () => {
       />
 
       {/* Glass Overlay */}
-      <div className="absolute inset-0 glass-dark"></div>
+      <div className="absolute inset-0 bg-black/20"></div>
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10 text-white">
+      <div className="hero-content text-center text-white relative z-10">
         <motion.div
-          className="max-w-5xl mx-auto text-center"
+          className="max-w-5xl"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -121,9 +122,9 @@ const Hero: React.FC = () => {
           {/* Badge */}
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 rounded-full glass mb-6 md:mb-8 text-xs md:text-sm font-medium"
+            className="badge badge-lg bg-white/20 text-white border-white/30 mb-6 md:mb-8 backdrop-blur-sm"
           >
-            <FontAwesomeIcon icon={faStar} className="fa-pulse-custom text-yellow-400" />
+            <FontAwesomeIcon icon={faStar} className="mr-2 text-warning animate-pulse" />
             <span className="hidden sm:inline">Innovation en Santé Digitale</span>
             <span className="sm:hidden">Innovation Santé</span>
           </motion.div>
@@ -131,11 +132,13 @@ const Hero: React.FC = () => {
           {/* Main Heading - Responsive typography */}
           <motion.h1
             variants={itemVariants}
-            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 md:mb-8 leading-tight"
-            style={{ fontFamily: 'Space Grotesk, sans-serif' }}
+            className={cn(
+              "text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl",
+              "font-bold mb-6 md:mb-8 leading-tight font-heading"
+            )}
           >
             <span className="block">La télémédecine</span>
-            <span className="block gradient-text-accent">au service de</span>
+            <span className="block text-health-300">au service de</span>
             <span className="block">l'Afrique</span>
           </motion.h1>
 
@@ -155,24 +158,22 @@ const Hero: React.FC = () => {
           >
             <motion.a
               href="#solutions"
-              className="btn-modern group relative w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 bg-white text-gray-900 rounded-xl md:rounded-2xl font-semibold text-base md:text-lg shadow-glow hover:shadow-glow-accent transition-all duration-300"
+              className="btn btn-primary btn-lg w-full sm:w-auto gap-2 shadow-glow"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                <FontAwesomeIcon icon={faStethoscope} className="fa-pulse-custom" />
-                <span className="hidden sm:inline">Découvrir nos solutions</span>
-                <span className="sm:hidden">Nos solutions</span>
-                <ArrowDown className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-y-1 transition-transform" />
-              </span>
+              <FontAwesomeIcon icon={faStethoscope} className="animate-medical-pulse" />
+              <span className="hidden sm:inline">Découvrir nos solutions</span>
+              <span className="sm:hidden">Nos solutions</span>
+              <ArrowDown className="w-4 h-4 md:w-5 md:h-5" />
             </motion.a>
 
             <motion.button
-              className="btn-modern group flex items-center justify-center gap-3 w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 glass rounded-xl md:rounded-2xl font-semibold text-base md:text-lg hover:bg-white/20 transition-all duration-300"
+              className="btn btn-outline btn-lg w-full sm:w-auto gap-2 text-white border-white/30 hover:bg-white/20"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-white/20 rounded-full flex items-center justify-center">
                 <Play className="w-4 h-4 md:w-5 md:h-5 ml-0.5" />
               </div>
               <span>Voir la démo</span>
@@ -182,28 +183,30 @@ const Hero: React.FC = () => {
           {/* Stats - Mobile-optimized grid */}
           <motion.div
             variants={itemVariants}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-8 max-w-3xl mx-auto px-4"
+            className="stats stats-vertical sm:stats-horizontal shadow-lg bg-white/10 backdrop-blur-md border border-white/20"
           >
-            <div className="glass rounded-xl md:rounded-2xl p-4 md:p-6 backdrop-blur-xl">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <FontAwesomeIcon icon={faUserMd} className="text-primary-400 fa-heartbeat-custom" />
-                <div className="text-2xl md:text-3xl font-bold gradient-text">3000+</div>
+            <div className="stat">
+              <div className="stat-figure text-health-300">
+                <FontAwesomeIcon icon={faUserMd} className="text-2xl animate-heartbeat" />
               </div>
-              <div className="text-white/80 text-sm md:text-base">Patients pris en charge</div>
+              <div className="stat-title text-white/80">Patients pris en charge</div>
+              <div className="stat-value text-white">3000+</div>
             </div>
-            <div className="glass rounded-xl md:rounded-2xl p-4 md:p-6 backdrop-blur-xl">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <FontAwesomeIcon icon={faHospital} className="text-primary-400 fa-pulse-custom" />
-                <div className="text-2xl md:text-3xl font-bold gradient-text">15</div>
+            
+            <div className="stat">
+              <div className="stat-figure text-medical-300">
+                <FontAwesomeIcon icon={faHospital} className="text-2xl animate-pulse" />
               </div>
-              <div className="text-white/80 text-sm md:text-base">Centres équipés</div>
+              <div className="stat-title text-white/80">Centres équipés</div>
+              <div className="stat-value text-white">15</div>
             </div>
-            <div className="glass rounded-xl md:rounded-2xl p-4 md:p-6 backdrop-blur-xl sm:col-span-1 col-span-1">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <FontAwesomeIcon icon={faHeartbeat} className="text-primary-400 fa-glow-custom" />
-                <div className="text-2xl md:text-3xl font-bold gradient-text">75%</div>
+            
+            <div className="stat">
+              <div className="stat-figure text-africa-300">
+                <FontAwesomeIcon icon={faHeartbeat} className="text-2xl animate-bounce" />
               </div>
-              <div className="text-white/80 text-sm md:text-base">Réduction des évacuations</div>
+              <div className="stat-title text-white/80">Réduction des évacuations</div>
+              <div className="stat-value text-white">75%</div>
             </div>
           </motion.div>
         </motion.div>
