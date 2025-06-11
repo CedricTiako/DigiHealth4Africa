@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ArrowRight } from 'lucide-react';
+import { X, ArrowRight, ExternalLink } from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faCalendarCheck } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 import SolutionForm from './SolutionForm';
 
 interface FormField {
@@ -19,6 +20,7 @@ interface Solution {
   icon: React.ReactNode;
   action: string;
   formFields: FormField[];
+  href?: string;
 }
 
 interface SolutionCardProps {
@@ -29,6 +31,18 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ solution }) => {
   const [showForm, setShowForm] = useState(false);
 
   const toggleForm = () => setShowForm(!showForm);
+
+  const getServiceHref = (id: number) => {
+    const routes = {
+      1: '/services/mallettes',
+      2: '/services/bornes',
+      3: '/services/vehicules',
+      4: '/services/conteneurs',
+      5: '/services/tele-expertise',
+      6: '/services/evacuations'
+    };
+    return routes[id as keyof typeof routes] || '#';
+  };
 
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -118,30 +132,36 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ solution }) => {
 
           {/* Content */}
           <div className="text-center flex-grow flex flex-col">
-            <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 text-gray-900 dark:text-white group-hover:gradient-text transition-all duration-300 leading-tight">
+            <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 text-gray-900 dark:text-white group-hover:bg-gradient-to-r group-hover:from-primary-600 group-hover:to-accent-600 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 leading-tight">
               {solution.title}
             </h3>
             <p className="text-gray-600 dark:text-gray-300 mb-6 md:mb-8 leading-relaxed text-sm md:text-base flex-grow">
               {solution.description}
             </p>
 
-            {/* CTA Button */}
-            <motion.button
-              onClick={toggleForm}
-              className="w-full btn-modern group/btn relative overflow-hidden bg-gradient-to-r from-primary-600 to-accent-600 dark:from-primary-500 dark:to-accent-500 text-white py-3 md:py-4 px-4 md:px-6 rounded-xl md:rounded-2xl font-semibold text-sm md:text-base shadow-lg hover:shadow-xl transition-all duration-300 mt-auto"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                <FontAwesomeIcon icon={faEnvelope} className="fa-pulse-custom" />
-                <span className="hidden sm:inline">{solution.action}</span>
-                <span className="sm:hidden">En savoir plus</span>
-                <ArrowRight className="w-3 h-3 md:w-4 md:h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
-              </span>
-              
-              {/* Button Glow */}
-              <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-white/10 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
-            </motion.button>
+            {/* Action Buttons */}
+            <div className="space-y-3 mt-auto">
+              {/* En savoir plus Button */}
+              <Link
+                to={getServiceHref(solution.id)}
+                className="w-full flex items-center justify-center gap-2 py-3 px-4 border-2 border-primary-600 text-primary-600 dark:text-primary-400 rounded-xl font-semibold text-sm md:text-base hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all duration-300"
+              >
+                <ExternalLink className="w-4 h-4" />
+                En savoir plus
+              </Link>
+
+              {/* Prendre Rendez-vous Button */}
+              <motion.button
+                onClick={toggleForm}
+                className="w-full bg-gradient-to-r from-primary-600 to-accent-600 dark:from-primary-500 dark:to-accent-500 text-white py-3 md:py-4 px-4 md:px-6 rounded-xl md:rounded-2xl font-semibold text-sm md:text-base shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <FontAwesomeIcon icon={faCalendarCheck} className="animate-pulse" />
+                Prendre Rendez-vous
+                <ArrowRight className="w-3 h-3 md:w-4 md:h-4" />
+              </motion.button>
+            </div>
           </div>
         </div>
 
@@ -150,7 +170,7 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ solution }) => {
         <div className="absolute bottom-3 left-3 md:bottom-4 md:left-4 w-4 h-4 md:w-6 md:h-6 bg-gradient-to-br from-accent-200 to-primary-200 dark:from-accent-300 dark:to-primary-300 rounded-full opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
       </motion.div>
 
-      {/* Modal - Mobile-optimized */}
+      {/* Modal */}
       <AnimatePresence>
         {showForm && (
           <motion.div
@@ -180,7 +200,7 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ solution }) => {
                     </div>
                     <div className="min-w-0 flex-1">
                       <h3 className="text-lg md:text-xl font-bold truncate">{solution.title}</h3>
-                      <p className="text-white/80 text-xs md:text-sm">Demande d'information</p>
+                      <p className="text-white/80 text-xs md:text-sm">Prendre rendez-vous</p>
                     </div>
                   </div>
                   <motion.button

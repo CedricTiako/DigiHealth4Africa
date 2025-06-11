@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Heart, Phone, Mail } from 'lucide-react';
+import { Menu, X, Heart, Phone, Mail, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStethoscope } from '@fortawesome/free-solid-svg-icons';
+import { 
+  faStethoscope, 
+  faBriefcaseMedical, 
+  faDesktop, 
+  faAmbulance, 
+  faHospital, 
+  faSatellite, 
+  faPlane 
+} from '@fortawesome/free-solid-svg-icons';
 import ThemeToggle from './ThemeToggle';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showSolutions, setShowSolutions] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,6 +29,45 @@ const Navbar: React.FC = () => {
   }, []);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  const solutions = [
+    {
+      title: "Mallettes de télémédecine",
+      description: "Kits portables pour consultations à distance",
+      icon: faBriefcaseMedical,
+      href: "/services/mallettes"
+    },
+    {
+      title: "Bornes de télémédecine",
+      description: "Dispositifs fixes connectés",
+      icon: faDesktop,
+      href: "/services/bornes"
+    },
+    {
+      title: "Véhicules médicalisés",
+      description: "Ambulances et unités mobiles",
+      icon: faAmbulance,
+      href: "/services/vehicules"
+    },
+    {
+      title: "Conteneurs santé",
+      description: "Structures médicalisées modulaires",
+      icon: faHospital,
+      href: "/services/conteneurs"
+    },
+    {
+      title: "Télé-expertise médicale",
+      description: "Réseau de spécialistes",
+      icon: faSatellite,
+      href: "/services/tele-expertise"
+    },
+    {
+      title: "Évacuations sanitaires",
+      description: "Transferts médicaux d'urgence",
+      icon: faPlane,
+      href: "/services/evacuations"
+    }
+  ];
 
   const navVariants = {
     hidden: { y: -100, opacity: 0 },
@@ -127,10 +175,57 @@ const Navbar: React.FC = () => {
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center justify-center flex-1 mx-12">
               <div className="flex items-center space-x-8">
-                <NavLink href="#solutions">Solutions</NavLink>
-                <NavLink href="#about">À propos</NavLink>
-                <NavLink href="#projects">Réalisations</NavLink>
-                <NavLink href="#blog">Actualités</NavLink>
+                {/* Solutions Dropdown */}
+                <div 
+                  className="relative group"
+                  onMouseEnter={() => setShowSolutions(true)}
+                  onMouseLeave={() => setShowSolutions(false)}
+                >
+                  <button className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-colors duration-300 py-2 px-3">
+                    Nos solutions
+                    <ChevronDown className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180" />
+                  </button>
+                  
+                  <AnimatePresence>
+                    {showSolutions && (
+                      <motion.div
+                        className="absolute top-full left-0 mt-2 w-96 glass backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 overflow-hidden"
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <div className="p-4">
+                          <div className="grid grid-cols-1 gap-2">
+                            {solutions.map((solution, index) => (
+                              <Link
+                                key={index}
+                                to={solution.href}
+                                className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/20 dark:hover:bg-gray-800/50 transition-all duration-300 group/item"
+                              >
+                                <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-500 rounded-lg flex items-center justify-center text-white group-hover/item:scale-110 transition-transform duration-300">
+                                  <FontAwesomeIcon icon={solution.icon} className="text-sm" />
+                                </div>
+                                <div className="flex-1">
+                                  <h4 className="font-semibold text-gray-900 dark:text-white text-sm">
+                                    {solution.title}
+                                  </h4>
+                                  <p className="text-xs text-gray-600 dark:text-gray-400">
+                                    {solution.description}
+                                  </p>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                <NavLink href="/#about">À propos</NavLink>
+                <NavLink href="/#projects">Réalisations</NavLink>
+                <NavLink href="/#blog">Actualités</NavLink>
               </div>
             </div>
 
@@ -138,7 +233,7 @@ const Navbar: React.FC = () => {
             <div className="hidden lg:flex items-center space-x-4 flex-shrink-0">
               <ThemeToggle />
               <motion.a
-                href="#contact"
+                href="/#contact"
                 className="px-6 py-3 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-xl font-semibold hover:shadow-glow transition-all duration-300 flex items-center gap-2"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -196,24 +291,45 @@ const Navbar: React.FC = () => {
               exit="hidden"
             >
               <div className="container mx-auto px-4 py-6">
+                {/* Solutions Section */}
+                <motion.div variants={itemVariants} className="mb-6">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Nos solutions</h3>
+                  <div className="space-y-2">
+                    {solutions.map((solution, index) => (
+                      <Link
+                        key={index}
+                        to={solution.href}
+                        className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/20 dark:hover:bg-gray-800/50 transition-all duration-300"
+                        onClick={toggleMenu}
+                      >
+                        <div className="w-8 h-8 bg-gradient-to-br from-primary-500 to-accent-500 rounded-lg flex items-center justify-center text-white">
+                          <FontAwesomeIcon icon={solution.icon} className="text-xs" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-gray-900 dark:text-white text-sm">
+                            {solution.title}
+                          </h4>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </motion.div>
+
                 <motion.div variants={itemVariants} className="space-y-2 mb-6">
-                  <MobileNavLink href="#solutions" onClick={toggleMenu}>
-                    Solutions
-                  </MobileNavLink>
-                  <MobileNavLink href="#about" onClick={toggleMenu}>
+                  <MobileNavLink href="/#about" onClick={toggleMenu}>
                     À propos
                   </MobileNavLink>
-                  <MobileNavLink href="#projects" onClick={toggleMenu}>
+                  <MobileNavLink href="/#projects" onClick={toggleMenu}>
                     Réalisations
                   </MobileNavLink>
-                  <MobileNavLink href="#blog" onClick={toggleMenu}>
+                  <MobileNavLink href="/#blog" onClick={toggleMenu}>
                     Actualités
                   </MobileNavLink>
                 </motion.div>
 
                 <motion.div variants={itemVariants} className="border-t border-gray-200 dark:border-gray-700 pt-4">
                   <a
-                    href="#contact"
+                    href="/#contact"
                     className="block w-full text-center py-3 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-xl font-semibold"
                     onClick={toggleMenu}
                   >
