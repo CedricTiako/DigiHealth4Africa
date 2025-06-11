@@ -65,26 +65,26 @@ const Navbar: React.FC = () => {
     <motion.nav
       className={`fixed w-full z-50 transition-all duration-500 ${
         isScrolled
-          ? 'glass backdrop-blur-xl py-2 shadow-lg dark:shadow-gray-900/20'
-          : 'bg-transparent py-4'
+          ? 'glass backdrop-blur-xl py-3 md:py-4 shadow-lg dark:shadow-gray-900/20'
+          : 'bg-transparent py-4 md:py-6'
       }`}
       variants={navVariants}
       initial="hidden"
       animate="visible"
     >
       <div className="container mx-auto px-4 md:px-6">
-        <div className="flex justify-between items-center">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 group">
+        <div className="flex justify-between items-center h-12 md:h-14">
+          {/* Logo - Optimisé pour mobile */}
+          <Link to="/" className="flex items-center space-x-2 md:space-x-3 group flex-shrink-0">
             <motion.div
               className="relative"
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.6 }}
             >
-              <Heart className="h-8 w-8 text-primary-600 dark:text-primary-400" />
-              <div className="absolute inset-0 h-8 w-8 bg-primary-600/20 dark:bg-primary-400/20 rounded-full blur-md group-hover:bg-primary-600/40 dark:group-hover:bg-primary-400/40 transition-colors"></div>
+              <Heart className="h-6 w-6 md:h-8 md:w-8 text-primary-600 dark:text-primary-400" />
+              <div className="absolute inset-0 h-6 w-6 md:h-8 md:w-8 bg-primary-600/20 dark:bg-primary-400/20 rounded-full blur-md group-hover:bg-primary-600/40 dark:group-hover:bg-primary-400/40 transition-colors"></div>
             </motion.div>
-            <span className="text-xl font-bold text-modern">
+            <span className="text-lg md:text-xl font-bold text-modern">
               <span className="gradient-text">DIGI</span>
               <span className="gradient-text-accent">HEALTH</span>
               <span className="gradient-text">4</span>
@@ -92,19 +92,22 @@ const Navbar: React.FC = () => {
             </span>
           </Link>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
-            <NavLink href="#solutions">Solutions</NavLink>
-            <NavLink href="#about">À propos</NavLink>
-            <NavLink href="#projects">Réalisations</NavLink>
-            <NavLink href="#blog">Actualités</NavLink>
-            
-            {/* Theme Toggle */}
+          {/* Desktop Menu - Centré et bien espacé */}
+          <div className="hidden lg:flex items-center justify-center flex-1 mx-8">
+            <div className="flex items-center space-x-8 xl:space-x-10">
+              <NavLink href="#solutions">Solutions</NavLink>
+              <NavLink href="#about">À propos</NavLink>
+              <NavLink href="#projects">Réalisations</NavLink>
+              <NavLink href="#blog">Actualités</NavLink>
+            </div>
+          </div>
+
+          {/* Actions Desktop - Alignées à droite */}
+          <div className="hidden lg:flex items-center space-x-4 xl:space-x-6 flex-shrink-0">
             <ThemeToggle />
-            
             <motion.a
               href="#contact"
-              className="btn-modern px-6 py-2 bg-gradient-to-r from-primary-600 to-primary-700 dark:from-primary-500 dark:to-primary-600 text-white rounded-full font-medium hover:shadow-glow transition-all duration-300"
+              className="btn-modern px-6 py-2.5 bg-gradient-to-r from-primary-600 to-primary-700 dark:from-primary-500 dark:to-primary-600 text-white rounded-full font-medium hover:shadow-glow transition-all duration-300 whitespace-nowrap"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -112,14 +115,15 @@ const Navbar: React.FC = () => {
             </motion.a>
           </div>
 
-          {/* Mobile Menu Button & Theme Toggle */}
-          <div className="md:hidden flex items-center space-x-3">
+          {/* Mobile Actions - Compacts et alignés */}
+          <div className="lg:hidden flex items-center space-x-3 flex-shrink-0">
             <ThemeToggle />
             <motion.button
-              className="p-2 rounded-lg glass focus:outline-none"
+              className="p-2 rounded-lg glass focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
               onClick={toggleMenu}
               whileTap={{ scale: 0.95 }}
               aria-label="Toggle menu"
+              aria-expanded={isOpen}
             >
               <AnimatePresence mode="wait">
                 {isOpen ? (
@@ -130,7 +134,7 @@ const Navbar: React.FC = () => {
                     exit={{ rotate: 90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <X className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+                    <X className="h-5 w-5 md:h-6 md:w-6 text-gray-700 dark:text-gray-300" />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -140,7 +144,7 @@ const Navbar: React.FC = () => {
                     exit={{ rotate: -90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Menu className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+                    <Menu className="h-5 w-5 md:h-6 md:w-6 text-gray-700 dark:text-gray-300" />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -149,44 +153,47 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Optimisé */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="md:hidden glass backdrop-blur-xl border-t border-white/10 dark:border-gray-700/50"
+            className="lg:hidden glass backdrop-blur-xl border-t border-white/10 dark:border-gray-700/50"
             variants={menuVariants}
             initial="hidden"
             animate="visible"
             exit="hidden"
           >
-            <div className="container mx-auto px-4 py-6 space-y-4">
-              <motion.div variants={itemVariants}>
+            <div className="container mx-auto px-4 py-6 space-y-1">
+              {/* Navigation Links */}
+              <motion.div variants={itemVariants} className="space-y-1">
                 <MobileNavLink href="#solutions" onClick={toggleMenu}>
                   Solutions
                 </MobileNavLink>
-              </motion.div>
-              <motion.div variants={itemVariants}>
                 <MobileNavLink href="#about" onClick={toggleMenu}>
                   À propos
                 </MobileNavLink>
-              </motion.div>
-              <motion.div variants={itemVariants}>
                 <MobileNavLink href="#projects" onClick={toggleMenu}>
                   Réalisations
                 </MobileNavLink>
-              </motion.div>
-              <motion.div variants={itemVariants}>
                 <MobileNavLink href="#blog" onClick={toggleMenu}>
                   Actualités
                 </MobileNavLink>
               </motion.div>
+
+              {/* Separator */}
+              <motion.div 
+                variants={itemVariants}
+                className="border-t border-gray-200 dark:border-gray-700 my-4"
+              />
+
+              {/* Contact Button */}
               <motion.div variants={itemVariants}>
                 <a
                   href="#contact"
-                  className="block w-full text-center py-3 bg-gradient-to-r from-primary-600 to-primary-700 dark:from-primary-500 dark:to-primary-600 text-white rounded-xl font-medium"
+                  className="block w-full text-center py-3 bg-gradient-to-r from-primary-600 to-primary-700 dark:from-primary-500 dark:to-primary-600 text-white rounded-xl font-medium hover:shadow-glow transition-all duration-300"
                   onClick={toggleMenu}
                 >
-                  Contact
+                  Nous contacter
                 </a>
               </motion.div>
             </div>
@@ -206,7 +213,7 @@ const NavLink: React.FC<NavLinkProps> = ({ href, children }) => {
   return (
     <motion.a
       href={href}
-      className="relative text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-colors duration-300 group"
+      className="relative text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-colors duration-300 group py-2 px-1"
       whileHover={{ y: -2 }}
     >
       {children}
@@ -223,7 +230,7 @@ const MobileNavLink: React.FC<MobileNavLinkProps> = ({ href, onClick, children }
   return (
     <a
       href={href}
-      className="block py-3 px-4 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium text-lg rounded-lg hover:bg-white/10 dark:hover:bg-gray-800/50 transition-all duration-300"
+      className="block py-3 px-4 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium text-base rounded-lg hover:bg-white/10 dark:hover:bg-gray-800/50 transition-all duration-300"
       onClick={onClick}
     >
       {children}

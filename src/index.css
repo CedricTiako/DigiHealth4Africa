@@ -49,6 +49,119 @@ html {
   }
 }
 
+/* Header Optimization */
+.navbar-height {
+  height: 60px;
+}
+
+@media (min-width: 768px) {
+  .navbar-height {
+    height: 72px;
+  }
+}
+
+/* Improved Logo Responsiveness */
+.logo-text {
+  font-size: 1.125rem;
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .logo-text {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .logo-text {
+    font-size: 1.375rem;
+  }
+}
+
+/* Navigation Link Improvements */
+.nav-link {
+  position: relative;
+  padding: 0.5rem 0.25rem;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Mobile Menu Improvements */
+.mobile-menu-item {
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.mobile-menu-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(4px);
+}
+
+.dark .mobile-menu-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Button Optimizations */
+.btn-contact {
+  padding: 0.625rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (min-width: 1280px) {
+  .btn-contact {
+    padding: 0.75rem 1.75rem;
+  }
+}
+
+/* Theme Toggle Improvements */
+.theme-toggle {
+  width: 3rem;
+  height: 1.75rem;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .theme-toggle {
+    width: 3.5rem;
+    height: 2rem;
+  }
+}
+
+.theme-toggle-indicator {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (min-width: 768px) {
+  .theme-toggle-indicator {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
 /* African Pattern Backgrounds */
 .african-pattern-1 {
   background-image: 
