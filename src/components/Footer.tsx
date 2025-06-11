@@ -143,16 +143,16 @@ const Footer: React.FC = () => {
         <ArrowUp className="w-5 h-5" />
       </motion.button>
 
-      <div className="container mx-auto px-4 md:px-6 py-16 relative z-10">
+      <div className="container mx-auto px-4 md:px-6 xl:px-8 py-16 relative z-10 max-w-7xl">
         <motion.div
-          className="grid grid-cols-1 lg:grid-cols-5 gap-12"
+          className="grid grid-cols-1 lg:grid-cols-6 xl:grid-cols-12 gap-8 lg:gap-12"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {/* Logo and Company Info - Takes 2 columns on large screens */}
-          <motion.div variants={itemVariants} className="lg:col-span-2">
+          {/* Logo and Company Info - Takes more space on larger screens */}
+          <motion.div variants={itemVariants} className="lg:col-span-3 xl:col-span-5">
             <div className="flex items-center space-x-3 mb-6">
               <motion.div
                 className="relative"
@@ -162,7 +162,7 @@ const Footer: React.FC = () => {
                 <Heart className="h-10 w-10 text-primary-400" />
                 <div className="absolute inset-0 h-10 w-10 bg-primary-400/30 rounded-full blur-md"></div>
               </motion.div>
-              <span className="text-2xl font-bold text-modern">
+              <span className="text-2xl xl:text-3xl font-bold text-modern">
                 <span className="gradient-text">DIGI</span>
                 <span className="gradient-text-accent">HEALTH</span>
                 <span className="gradient-text">4</span>
@@ -170,7 +170,7 @@ const Footer: React.FC = () => {
               </span>
             </div>
             
-            <p className="text-gray-300 mb-8 text-lg leading-relaxed max-w-md">
+            <p className="text-gray-300 mb-8 text-lg xl:text-xl leading-relaxed max-w-lg">
               La télémédecine au service de l'Afrique. Des solutions innovantes pour 
               renforcer les systèmes de santé et améliorer l'accès aux soins.
             </p>
@@ -182,12 +182,12 @@ const Footer: React.FC = () => {
                 className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors group"
                 whileHover={{ x: 4 }}
               >
-                <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-teal-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Phone className="w-5 h-5" />
+                <div className="w-10 h-10 xl:w-12 xl:h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Phone className="w-5 h-5 xl:w-6 xl:h-6" />
                 </div>
                 <div>
                   <p className="text-sm text-gray-400">Téléphone</p>
-                  <p className="font-medium">+33 7 53 45 82 24</p>
+                  <p className="font-medium xl:text-lg">+33 7 53 45 82 24</p>
                 </div>
               </motion.a>
               
@@ -196,12 +196,12 @@ const Footer: React.FC = () => {
                 className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors group"
                 whileHover={{ x: 4 }}
               >
-                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Mail className="w-5 h-5" />
+                <div className="w-10 h-10 xl:w-12 xl:h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Mail className="w-5 h-5 xl:w-6 xl:h-6" />
                 </div>
                 <div>
                   <p className="text-sm text-gray-400">Email</p>
-                  <p className="font-medium">contact@digihealth4africa.fr</p>
+                  <p className="font-medium xl:text-lg">contact@digihealth4africa.fr</p>
                 </div>
               </motion.a>
               
@@ -209,12 +209,12 @@ const Footer: React.FC = () => {
                 className="flex items-start gap-3 text-gray-300"
                 whileHover={{ x: 4 }}
               >
-                <div className="w-10 h-10 bg-gradient-to-r from-red-500 to-pink-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <MapPin className="w-5 h-5" />
+                <div className="w-10 h-10 xl:w-12 xl:h-12 bg-gradient-to-r from-red-500 to-pink-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <MapPin className="w-5 h-5 xl:w-6 xl:h-6" />
                 </div>
                 <div>
                   <p className="text-sm text-gray-400">Adresse</p>
-                  <address className="not-italic font-medium">
+                  <address className="not-italic font-medium xl:text-lg">
                     37 Avenue Duguay Trouin<br />
                     93150 Le Blanc Mesnil, France
                   </address>
@@ -223,9 +223,9 @@ const Footer: React.FC = () => {
             </div>
 
             {/* Newsletter */}
-            <div className="glass rounded-2xl p-6 backdrop-blur-xl border border-white/10">
-              <h4 className="text-lg font-bold mb-3 gradient-text">Newsletter</h4>
-              <p className="text-gray-400 text-sm mb-4">
+            <div className="glass rounded-2xl p-6 xl:p-8 backdrop-blur-xl border border-white/10">
+              <h4 className="text-lg xl:text-xl font-bold mb-3 gradient-text">Newsletter</h4>
+              <p className="text-gray-400 text-sm xl:text-base mb-4">
                 Restez informé de nos dernières actualités et innovations.
               </p>
               <form onSubmit={handleNewsletterSubmit} className="space-y-3">
@@ -235,21 +235,21 @@ const Footer: React.FC = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Votre email"
-                    className="flex-1 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors"
+                    className="flex-1 px-4 py-3 xl:py-4 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors xl:text-lg"
                     required
                   />
                   <motion.button
                     type="submit"
-                    className="px-4 py-2 bg-gradient-to-r from-primary-600 to-accent-600 rounded-lg hover:shadow-lg transition-all duration-300"
+                    className="px-4 py-3 xl:px-6 xl:py-4 bg-gradient-to-r from-primary-600 to-accent-600 rounded-lg hover:shadow-lg transition-all duration-300"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <Send className="w-4 h-4" />
+                    <Send className="w-4 h-4 xl:w-5 xl:h-5" />
                   </motion.button>
                 </div>
                 {isSubscribed && (
                   <motion.p
-                    className="text-green-400 text-sm"
+                    className="text-green-400 text-sm xl:text-base"
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                   >
@@ -260,16 +260,16 @@ const Footer: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Footer Sections - Each takes 1 column */}
+          {/* Footer Sections - Better distribution on larger screens */}
           {footerSections.map((section, index) => (
-            <motion.div key={index} variants={itemVariants}>
-              <h4 className="text-xl font-bold mb-6 gradient-text">{section.title}</h4>
-              <ul className="space-y-3">
+            <motion.div key={index} variants={itemVariants} className="lg:col-span-1 xl:col-span-2">
+              <h4 className="text-xl xl:text-2xl font-bold mb-6 gradient-text">{section.title}</h4>
+              <ul className="space-y-3 xl:space-y-4">
                 {section.links.map((link, linkIndex) => (
                   <motion.li key={linkIndex}>
                     <motion.a
                       href={link.href}
-                      className="text-gray-400 hover:text-white transition-colors duration-200 block py-1 hover:translate-x-1"
+                      className="text-gray-400 hover:text-white transition-colors duration-200 block py-1 hover:translate-x-1 xl:text-lg"
                       whileHover={{ x: 4, color: "#ffffff" }}
                     >
                       {link.name}
@@ -279,42 +279,45 @@ const Footer: React.FC = () => {
               </ul>
             </motion.div>
           ))}
+
+          {/* Additional space for very large screens */}
+          <div className="hidden xl:block xl:col-span-1"></div>
         </motion.div>
 
         {/* Social Media */}
         <motion.div
-          className="mt-12 pt-8 border-t border-gray-700"
+          className="mt-16 xl:mt-20 pt-8 border-t border-gray-700"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div>
-              <h4 className="text-lg font-bold mb-4 gradient-text">Suivez-nous</h4>
-              <div className="flex gap-4">
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
+            <div className="text-center lg:text-left">
+              <h4 className="text-lg xl:text-xl font-bold mb-4 gradient-text">Suivez-nous</h4>
+              <div className="flex gap-4 xl:gap-6 justify-center lg:justify-start">
                 {socialLinks.map((social, index) => (
                   <motion.a
                     key={index}
                     href={social.href}
-                    className={`w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center text-white transition-all duration-300 ${social.color}`}
+                    className={`w-12 h-12 xl:w-14 xl:h-14 bg-gray-700 rounded-lg flex items-center justify-center text-white transition-all duration-300 ${social.color}`}
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.9 }}
                     aria-label={social.label}
                   >
-                    <FontAwesomeIcon icon={social.icon} className="text-sm" />
+                    <FontAwesomeIcon icon={social.icon} className="text-base xl:text-lg" />
                   </motion.a>
                 ))}
               </div>
             </div>
 
-            <div className="text-center md:text-right">
-              <p className="text-gray-400 text-sm mb-2">
+            <div className="text-center lg:text-right">
+              <p className="text-gray-400 text-sm xl:text-base mb-2">
                 Une solution pour chaque besoin de santé
               </p>
-              <div className="flex items-center gap-2 text-primary-400">
-                <Heart className="w-4 h-4" />
-                <span className="text-sm font-medium">Santé digitale pour l'Afrique</span>
+              <div className="flex items-center gap-2 text-primary-400 justify-center lg:justify-end">
+                <Heart className="w-4 h-4 xl:w-5 xl:h-5" />
+                <span className="text-sm xl:text-base font-medium">Santé digitale pour l'Afrique</span>
               </div>
             </div>
           </div>
@@ -322,19 +325,19 @@ const Footer: React.FC = () => {
 
         {/* Bottom Section */}
         <motion.div
-          className="border-t border-gray-700 mt-12 pt-8"
+          className="border-t border-gray-700 mt-12 xl:mt-16 pt-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
-            <div className="flex flex-col sm:flex-row items-center gap-4 text-center lg:text-left">
-              <p className="text-gray-400">
+          <div className="flex flex-col xl:flex-row justify-between items-center gap-6 xl:gap-8">
+            <div className="flex flex-col lg:flex-row items-center gap-4 xl:gap-6 text-center xl:text-left">
+              <p className="text-gray-400 xl:text-lg">
                 © {new Date().getFullYear()} DIGIHEALTH4AFRICA. Tous droits réservés.
               </p>
-              <div className="flex items-center gap-2 text-gray-400">
-                <span>•</span>
+              <div className="flex items-center gap-2 text-gray-400 xl:text-lg">
+                <span className="hidden lg:inline">•</span>
                 <span>Site réalisé par</span>
                 <motion.a
                   href="https://smart-solutions-it.vercel.app/"
@@ -344,36 +347,36 @@ const Footer: React.FC = () => {
                   whileHover={{ scale: 1.05 }}
                 >
                   Smart Solution IT
-                  <ExternalLink className="w-3 h-3" />
+                  <ExternalLink className="w-3 h-3 xl:w-4 xl:h-4" />
                 </motion.a>
               </div>
             </div>
             
-            <div className="flex flex-wrap items-center justify-center gap-6">
+            <div className="flex flex-wrap items-center justify-center xl:justify-end gap-6 xl:gap-8">
               <motion.a
                 href="#"
-                className="text-gray-400 hover:text-white transition-colors text-sm"
+                className="text-gray-400 hover:text-white transition-colors text-sm xl:text-base"
                 whileHover={{ scale: 1.05 }}
               >
                 Mentions légales
               </motion.a>
               <motion.a
                 href="#"
-                className="text-gray-400 hover:text-white transition-colors text-sm"
+                className="text-gray-400 hover:text-white transition-colors text-sm xl:text-base"
                 whileHover={{ scale: 1.05 }}
               >
                 Confidentialité
               </motion.a>
               <motion.a
                 href="#"
-                className="text-gray-400 hover:text-white transition-colors text-sm"
+                className="text-gray-400 hover:text-white transition-colors text-sm xl:text-base"
                 whileHover={{ scale: 1.05 }}
               >
                 Cookies
               </motion.a>
               <motion.a
                 href="#"
-                className="text-gray-400 hover:text-white transition-colors text-sm"
+                className="text-gray-400 hover:text-white transition-colors text-sm xl:text-base"
                 whileHover={{ scale: 1.05 }}
               >
                 Plan du site
