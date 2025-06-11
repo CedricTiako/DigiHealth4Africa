@@ -24,7 +24,7 @@ const Solutions: React.FC = () => {
       title: "Mallettes de télémédecine",
       description: "Kits portables avec outils de diagnostic (ECG, tension, otoscope…) pour consultations à distance dans les zones reculées.",
       icon: <FontAwesomeIcon icon={faBriefcaseMedical} className="animate-pulse" />,
-      action: "Demander une démonstration",
+      action: "Prendre Rendez-vous",
       formFields: [
         { name: "entityName", label: "Nom de l'entité", type: "text" },
         { name: "country", label: "Pays & ville", type: "text" },
@@ -42,7 +42,7 @@ const Solutions: React.FC = () => {
       title: "Bornes de télémédecine",
       description: "Dispositifs fixes connectés pour téléconsultations dans les centres de santé et hôpitaux.",
       icon: <FontAwesomeIcon icon={faDesktop} className="animate-pulse" />,
-      action: "Planifier un rendez-vous",
+      action: "Prendre Rendez-vous",
       formFields: [
         { name: "establishmentName", label: "Nom de l'établissement", type: "text" },
         { name: "location", label: "Localisation", type: "text" },
@@ -58,7 +58,7 @@ const Solutions: React.FC = () => {
       title: "Véhicules médicalisés",
       description: "Ambulances et unités mobiles équipées pour interventions d'urgence et soins dans les zones isolées.",
       icon: <FontAwesomeIcon icon={faAmbulance} className="animate-bounce" />,
-      action: "Obtenir un devis",
+      action: "Prendre Rendez-vous",
       formFields: [
         { name: "structure", label: "Structure concernée", type: "text" },
         { name: "vehicleType", label: "Type de véhicule recherché", type: "text" },
@@ -74,7 +74,7 @@ const Solutions: React.FC = () => {
       title: "Conteneurs santé",
       description: "Structures médicalisées modulaires à installer rapidement pour créer des centres de soins temporaires ou permanents.",
       icon: <FontAwesomeIcon icon={faHospital} className="animate-pulse" />,
-      action: "Demander un échange",
+      action: "Prendre Rendez-vous",
       formFields: [
         { name: "organization", label: "Organisation demandeuse", type: "text" },
         { name: "containerType", label: "Type de conteneur", type: "text" },
@@ -90,7 +90,7 @@ const Solutions: React.FC = () => {
       title: "Télé-expertise médicale",
       description: "Mise en réseau avec spécialistes internationaux pour consultations expertes et formation continue.",
       icon: <FontAwesomeIcon icon={faSatellite} className="animate-spin" style={{ animationDuration: '3s' }} />,
-      action: "Organiser une réunion",
+      action: "Prendre Rendez-vous",
       formFields: [
         { name: "medicalStructure", label: "Structure médicale", type: "text" },
         { name: "specialties", label: "Spécialités visées", type: "text" },
@@ -105,7 +105,7 @@ const Solutions: React.FC = () => {
       title: "Évacuations sanitaires",
       description: "Assistance et coordination pour transferts médicaux d'urgence vers centres spécialisés.",
       icon: <FontAwesomeIcon icon={faPlane} className="animate-pulse" />,
-      action: "Demander un partenariat",
+      action: "Prendre Rendez-vous",
       formFields: [
         { name: "entityType", label: "Type d'entité", type: "text" },
         { name: "careCountry", label: "Pays de prise en charge", type: "text" },
