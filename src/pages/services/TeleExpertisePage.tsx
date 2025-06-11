@@ -13,7 +13,16 @@ import {
   faShieldAlt,
   faCalendarAlt,
   faChartLine,
-  faLanguage
+  faLanguage,
+  faCamera,
+  faTabletAlt,
+  faWifi,
+  faFolderOpen,
+  faBrain,
+  faBaby,
+  faFemale,
+  faVirus,
+  faLungs
 } from '@fortawesome/free-solid-svg-icons';
 import { ArrowLeft, Globe, Users, Shield, Calendar, BarChart, Languages } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -37,9 +46,18 @@ const TeleExpertisePage: React.FC = () => {
       icon: faUsers,
       color: "from-blue-500 to-blue-600",
       items: [
-        "Collaboration entre professionnels d'un même pays",
-        "Renforcement des capacités internes",
-        "Mise en réseau des spécialistes disponibles au niveau régional ou national"
+        {
+          text: "Collaboration entre professionnels d'un même pays",
+          icon: faStethoscope
+        },
+        {
+          text: "Renforcement des capacités internes",
+          icon: faUserMd
+        },
+        {
+          text: "Mise en réseau des spécialistes disponibles au niveau régional ou national",
+          icon: faGlobe
+        }
       ]
     },
     {
@@ -47,9 +65,18 @@ const TeleExpertisePage: React.FC = () => {
       icon: faGlobe,
       color: "from-green-500 to-green-600",
       items: [
-        "Accès à des spécialistes en France, Europe ou Afrique du Nord",
-        "Échanges encadrés par des conventions ou protocoles",
-        "Valorisation de la coopération médicale Sud–Nord et Sud–Sud"
+        {
+          text: "Accès à des spécialistes en France, Europe ou Afrique du Nord",
+          icon: faSatellite
+        },
+        {
+          text: "Échanges encadrés par des conventions ou protocoles",
+          icon: faShieldAlt
+        },
+        {
+          text: "Valorisation de la coopération médicale Sud–Nord et Sud–Sud",
+          icon: faUsers
+        }
       ]
     }
   ];
@@ -57,27 +84,27 @@ const TeleExpertisePage: React.FC = () => {
   const platformFeatures = [
     {
       feature: "Transmission sécurisée des données médicales (chiffrement, RGPD / HDS)",
-      icon: <Shield className="w-5 h-5" />
+      icon: faShieldAlt
     },
     {
       feature: "Envoi d'imagerie médicale, photos dermatologiques, vidéos cliniques",
-      icon: <BarChart className="w-5 h-5" />
+      icon: faCamera
     },
     {
       feature: "Partage de dossiers médicaux électroniques (format standard)",
-      icon: <Users className="w-5 h-5" />
+      icon: faFolderOpen
     },
     {
       feature: "Prise de rendez-vous d'expertise asynchrone ou en direct",
-      icon: <Calendar className="w-5 h-5" />
+      icon: faCalendarAlt
     },
     {
       feature: "Historique de tous les échanges et recommandations archivées",
-      icon: <BarChart className="w-5 h-5" />
+      icon: faChartLine
     },
     {
       feature: "Interface multilingue pour la coopération francophone, anglophone, arabophone",
-      icon: <Languages className="w-5 h-5" />
+      icon: faLanguage
     }
   ];
 
@@ -85,46 +112,61 @@ const TeleExpertisePage: React.FC = () => {
     {
       specialty: "Cardiologie",
       cases: "Lecture ECG, insuffisance cardiaque, palpitations",
-      icon: "🫀"
+      icon: faHeartbeat
     },
     {
       specialty: "Neurologie",
       cases: "Crises convulsives, AVC suspects, paralysies",
-      icon: "🧠"
+      icon: faBrain
     },
     {
       specialty: "Pédiatrie",
       cases: "Cas cliniques complexes, anomalies congénitales",
-      icon: "👶"
+      icon: faBaby
     },
     {
       specialty: "Gynécologie-obstétrique",
       cases: "Suivi grossesse à risque, échographies, infections vaginales",
-      icon: "👩‍⚕️"
+      icon: faFemale
     },
     {
       specialty: "Dermatologie",
       cases: "Lésions cutanées, ulcères, tumeurs suspectes",
-      icon: "🖐"
+      icon: faCamera
     },
     {
       specialty: "Maladies infectieuses",
       cases: "VIH, tuberculose, co-infections, fièvres prolongées",
-      icon: "🧫"
+      icon: faVirus
     },
     {
       specialty: "Pneumologie",
       cases: "Suivi post-COVID, BPCO, signes de détresse respiratoire",
-      icon: "🫁"
+      icon: faLungs
     }
   ];
 
   const practicalUses = [
-    "Demande d'avis en zone rurale par un infirmier ou médecin isolé",
-    "Deuxième lecture d'imagerie (radio, échographie, ECG)",
-    "Appui à la décision pour évacuation sanitaire",
-    "Formations cliniques à distance entre confrères",
-    "Réduction des erreurs de diagnostic ou retards de traitement"
+    {
+      text: "Demande d'avis en zone rurale par un infirmier ou médecin isolé",
+      icon: faStethoscope
+    },
+    {
+      text: "Deuxième lecture d'imagerie (radio, échographie, ECG)",
+      icon: faCamera
+    },
+    {
+      text: "Appui à la décision pour évacuation sanitaire",
+      icon: faUserMd
+    },
+    {
+      text: "Formations cliniques à distance entre confrères",
+      icon: faUsers
+    },
+    {
+      text: "Réduction des erreurs de diagnostic ou retards de traitement",
+      icon: faShieldAlt
+    }
   ];
 
   const impacts = [
@@ -277,8 +319,8 @@ const TeleExpertisePage: React.FC = () => {
                 <ul className="space-y-2">
                   {dimension.items.map((item, itemIndex) => (
                     <li key={itemIndex} className="flex items-start gap-2 text-gray-600 dark:text-gray-300">
-                      <FontAwesomeIcon icon={faCheckCircle} className="text-green-500 mt-1 flex-shrink-0" />
-                      <span>{item}</span>
+                      <FontAwesomeIcon icon={item.icon} className="text-primary-500 mt-1 flex-shrink-0" />
+                      <span>{item.text}</span>
                     </li>
                   ))}
                 </ul>
@@ -313,9 +355,7 @@ const TeleExpertisePage: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                   >
-                    <div className="text-primary-600 mt-1">
-                      {feature.icon}
-                    </div>
+                    <FontAwesomeIcon icon={feature.icon} className="text-primary-500 mt-1 flex-shrink-0" />
                     <span className="text-gray-700 dark:text-gray-300">{feature.feature}</span>
                   </motion.div>
                 ))}
@@ -358,7 +398,7 @@ const TeleExpertisePage: React.FC = () => {
                     >
                       <td className="py-4 px-4">
                         <div className="flex items-center gap-3">
-                          <span className="text-2xl">{specialty.icon}</span>
+                          <FontAwesomeIcon icon={specialty.icon} className="text-primary-600" />
                           <span className="font-medium text-gray-900 dark:text-white">{specialty.specialty}</span>
                         </div>
                       </td>
@@ -394,8 +434,8 @@ const TeleExpertisePage: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <FontAwesomeIcon icon={faCheckCircle} className="text-green-500 mt-1 flex-shrink-0" />
-                <span className="text-gray-700 dark:text-gray-300 font-medium">{use}</span>
+                <FontAwesomeIcon icon={use.icon} className="text-primary-500 mt-1 flex-shrink-0" />
+                <span className="text-gray-700 dark:text-gray-300 font-medium">{use.text}</span>
               </motion.div>
             ))}
           </div>

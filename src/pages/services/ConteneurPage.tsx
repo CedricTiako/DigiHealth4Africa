@@ -11,7 +11,16 @@ import {
   faFlask,
   faBed,
   faAmbulance,
-  faSatellite
+  faSatellite,
+  faWrench,
+  faSnowflake,
+  faSolarPanel,
+  faDroplet,
+  faShieldAlt,
+  faWifi,
+  faCamera,
+  faTabletAlt,
+  faBriefcaseMedical
 } from '@fortawesome/free-solid-svg-icons';
 import { ArrowLeft, Building, Users, Zap, Wifi, Shield, Droplets } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -72,44 +81,59 @@ const ConteneurPage: React.FC = () => {
   const technicalFeatures = [
     {
       feature: "Structure en acier renforcé, isolée thermiquement",
-      icon: <Building className="w-5 h-5" />
+      icon: faWrench
     },
     {
       feature: "Climatisation ou ventilation naturelle selon projet",
-      icon: <Zap className="w-5 h-5" />
+      icon: faSnowflake
     },
     {
       feature: "Système électrique autonome (panneaux solaires + batteries)",
-      icon: <Zap className="w-5 h-5" />
+      icon: faSolarPanel
     },
     {
       feature: "Réseau d'eau propre et eaux usées avec pompe",
-      icon: <Droplets className="w-5 h-5" />
+      icon: faDroplet
     },
     {
       feature: "Sol antidérapant, parois lavables, éclairage médical",
-      icon: <Building className="w-5 h-5" />
+      icon: faShieldAlt
     },
     {
       feature: "Lavabo avec distributeur sans contact",
-      icon: <Droplets className="w-5 h-5" />
+      icon: faDroplet
     },
     {
       feature: "Connexion 4G/5G/satellite",
-      icon: <Wifi className="w-5 h-5" />
+      icon: faWifi
     },
     {
       feature: "Caméra HD + tablette pour télémédecine intégrée",
-      icon: <Shield className="w-5 h-5" />
+      icon: faCamera
     }
   ];
 
   const telemedicineFeatures = [
-    "Consultation assistée à distance (généraliste ou spécialiste)",
-    "Stockage numérique sécurisé des données",
-    "Imagerie numérique (photo/vidéo)",
-    "Système de suivi patient intégré",
-    "Connexion aux plateformes nationales de santé digitale"
+    {
+      text: "Consultation assistée à distance (généraliste ou spécialiste)",
+      icon: faStethoscope
+    },
+    {
+      text: "Stockage numérique sécurisé des données",
+      icon: faShieldAlt
+    },
+    {
+      text: "Imagerie numérique (photo/vidéo)",
+      icon: faCamera
+    },
+    {
+      text: "Système de suivi patient intégré",
+      icon: faTabletAlt
+    },
+    {
+      text: "Connexion aux plateformes nationales de santé digitale",
+      icon: faWifi
+    }
   ];
 
   const useCases = [
@@ -117,46 +141,97 @@ const ConteneurPage: React.FC = () => {
       title: "Zones rurales sans hôpitaux",
       icon: "👩‍⚕️",
       items: [
-        "Consultation médicale de proximité",
-        "Suivi des maladies chroniques",
-        "Soins maternels et vaccinaux"
+        {
+          text: "Consultation médicale de proximité",
+          icon: faStethoscope
+        },
+        {
+          text: "Suivi des maladies chroniques",
+          icon: faUserMd
+        },
+        {
+          text: "Soins maternels et vaccinaux",
+          icon: faHeartbeat
+        }
       ]
     },
     {
       title: "Zones de crise humanitaire",
       icon: "🆘",
       items: [
-        "Interventions d'urgence dans les camps de réfugiés",
-        "Réponse post-catastrophe naturelle",
-        "Santé dans les conflits armés"
+        {
+          text: "Interventions d'urgence dans les camps de réfugiés",
+          icon: faAmbulance
+        },
+        {
+          text: "Réponse post-catastrophe naturelle",
+          icon: faBriefcaseMedical
+        },
+        {
+          text: "Santé dans les conflits armés",
+          icon: faShieldAlt
+        }
       ]
     },
     {
       title: "Déploiement militaire ou industriel",
       icon: "🚐",
       items: [
-        "Camps militaires, bases de l'ONU",
-        "Sites miniers, chantiers pétroliers",
-        "Projets de santé d'entreprise"
+        {
+          text: "Camps militaires, bases de l'ONU",
+          icon: faUserMd
+        },
+        {
+          text: "Sites miniers, chantiers pétroliers",
+          icon: faStethoscope
+        },
+        {
+          text: "Projets de santé d'entreprise",
+          icon: faBriefcaseMedical
+        }
       ]
     },
     {
       title: "Projets de santé publique",
       icon: "🏥",
       items: [
-        "Centres de vaccination ou dépistage itinérants",
-        "Programmes santé scolaire",
-        "Complément à une clinique mobile"
+        {
+          text: "Centres de vaccination ou dépistage itinérants",
+          icon: faFlask
+        },
+        {
+          text: "Programmes santé scolaire",
+          icon: faUserMd
+        },
+        {
+          text: "Complément à une clinique mobile",
+          icon: faHospital
+        }
       ]
     }
   ];
 
   const advantages = [
-    "Prêts à l'emploi : installation rapide en 24 à 72h",
-    "Zéro construction : pas besoin d'infrastructure existante",
-    "Déplaçables : peuvent être réaffectés à d'autres régions",
-    "Équipés pour les normes OMS / MSF",
-    "Personnalisables selon besoins médicaux et environnement"
+    {
+      text: "Prêts à l'emploi : installation rapide en 24 à 72h",
+      icon: faWrench
+    },
+    {
+      text: "Zéro construction : pas besoin d'infrastructure existante",
+      icon: faHospital
+    },
+    {
+      text: "Déplaçables : peuvent être réaffectés à d'autres régions",
+      icon: faAmbulance
+    },
+    {
+      text: "Équipés pour les normes OMS / MSF",
+      icon: faShieldAlt
+    },
+    {
+      text: "Personnalisables selon besoins médicaux et environnement",
+      icon: faStethoscope
+    }
   ];
 
   const projects = [
@@ -335,9 +410,7 @@ const ConteneurPage: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                   >
-                    <div className="text-primary-600 mt-1">
-                      {feature.icon}
-                    </div>
+                    <FontAwesomeIcon icon={feature.icon} className="text-primary-500 mt-1 flex-shrink-0" />
                     <span className="text-gray-700 dark:text-gray-300">{feature.feature}</span>
                   </motion.div>
                 ))}
@@ -369,8 +442,8 @@ const ConteneurPage: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <FontAwesomeIcon icon={faCheckCircle} className="text-green-500 mt-1 flex-shrink-0" />
-                <span className="text-gray-700 dark:text-gray-300 font-medium">{feature}</span>
+                <FontAwesomeIcon icon={feature.icon} className="text-primary-500 mt-1 flex-shrink-0" />
+                <span className="text-gray-700 dark:text-gray-300 font-medium">{feature.text}</span>
               </motion.div>
             ))}
           </div>
@@ -406,8 +479,8 @@ const ConteneurPage: React.FC = () => {
                 <ul className="space-y-2">
                   {useCase.items.map((item, itemIndex) => (
                     <li key={itemIndex} className="flex items-start gap-2 text-gray-600 dark:text-gray-300">
-                      <FontAwesomeIcon icon={faCheckCircle} className="text-green-500 mt-1 flex-shrink-0" />
-                      <span>{item}</span>
+                      <FontAwesomeIcon icon={item.icon} className="text-primary-500 mt-1 flex-shrink-0" />
+                      <span>{item.text}</span>
                     </li>
                   ))}
                 </ul>
@@ -439,8 +512,8 @@ const ConteneurPage: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <FontAwesomeIcon icon={faCheckCircle} className="text-green-500 mt-1 flex-shrink-0" />
-                <span className="text-gray-700 dark:text-gray-300 font-medium">{advantage}</span>
+                <FontAwesomeIcon icon={advantage.icon} className="text-primary-500 mt-1 flex-shrink-0" />
+                <span className="text-gray-700 dark:text-gray-300 font-medium">{advantage.text}</span>
               </motion.div>
             ))}
           </div>

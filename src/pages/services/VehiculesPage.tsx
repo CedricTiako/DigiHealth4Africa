@@ -11,7 +11,17 @@ import {
   faTruck,
   faFlask,
   faFemale,
-  faSatellite
+  faSatellite,
+  faTabletAlt,
+  faCamera,
+  faThermometerHalf,
+  faWeight,
+  faDroplet,
+  faSolarPanel,
+  faSnowflake,
+  faLightbulb,
+  faBriefcaseMedical,
+  faWifi
 } from '@fortawesome/free-solid-svg-icons';
 import { ArrowLeft, Truck, Users, Heart, TestTube, Baby, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -76,17 +86,50 @@ const VehiculesPage: React.FC = () => {
   ];
 
   const equipment = [
-    "Tablette / ordinateur avec connexion 4G/5G ou satellite",
-    "Caméra HD pour téléconsultation",
-    "ECG portable",
-    "Tensiomètre / oxymètre / thermomètre / glucomètre",
-    "Balance + IMC",
-    "Stéthoscope numérique",
-    "Otoscope / dermatoscope HD",
-    "Lit d'examen rabattable ou civière",
-    "Groupe électrogène ou panneaux solaires",
-    "Climatisation / ventilation",
-    "Éclairage LED médical"
+    {
+      item: "Tablette / ordinateur avec connexion 4G/5G ou satellite",
+      icon: faTabletAlt
+    },
+    {
+      item: "Caméra HD pour téléconsultation",
+      icon: faCamera
+    },
+    {
+      item: "ECG portable",
+      icon: faHeartbeat
+    },
+    {
+      item: "Tensiomètre / oxymètre / thermomètre / glucomètre",
+      icon: faStethoscope
+    },
+    {
+      item: "Balance + IMC",
+      icon: faWeight
+    },
+    {
+      item: "Stéthoscope numérique",
+      icon: faStethoscope
+    },
+    {
+      item: "Otoscope / dermatoscope HD",
+      icon: faCamera
+    },
+    {
+      item: "Lit d'examen rabattable ou civière",
+      icon: faUserMd
+    },
+    {
+      item: "Groupe électrogène ou panneaux solaires",
+      icon: faSolarPanel
+    },
+    {
+      item: "Climatisation / ventilation",
+      icon: faSnowflake
+    },
+    {
+      item: "Éclairage LED médical",
+      icon: faLightbulb
+    }
   ];
 
   const applications = [
@@ -94,53 +137,107 @@ const VehiculesPage: React.FC = () => {
       title: "Santé maternelle et infantile",
       icon: "👩‍👦",
       items: [
-        "Suivi prénatal itinérant",
-        "Accouchement assisté en mobilité",
-        "Vaccinations et suivi postnatal"
+        {
+          text: "Suivi prénatal itinérant",
+          icon: faHeartbeat
+        },
+        {
+          text: "Accouchement assisté en mobilité",
+          icon: faUserMd
+        },
+        {
+          text: "Vaccinations et suivi postnatal",
+          icon: faStethoscope
+        }
       ]
     },
     {
       title: "Cardiologie / HTA / Diabétologie",
       icon: "❤️",
       items: [
-        "Dépistage et suivi de maladies chroniques dans les villages",
-        "Télésurveillance avec médecins spécialisés"
+        {
+          text: "Dépistage et suivi de maladies chroniques dans les villages",
+          icon: faHeartbeat
+        },
+        {
+          text: "Télésurveillance avec médecins spécialisés",
+          icon: faSatellite
+        }
       ]
     },
     {
       title: "Santé communautaire et campagnes",
       icon: "🧫",
       items: [
-        "Dépistage mobile VIH, hépatites, tuberculose",
-        "Sensibilisation et éducation sanitaire",
-        "Distribution de médicaments essentiels"
+        {
+          text: "Dépistage mobile VIH, hépatites, tuberculose",
+          icon: faFlask
+        },
+        {
+          text: "Sensibilisation et éducation sanitaire",
+          icon: faUserMd
+        },
+        {
+          text: "Distribution de médicaments essentiels",
+          icon: faBriefcaseMedical
+        }
       ]
     },
     {
       title: "Santé en milieu carcéral ou minier",
       icon: "🧑‍⚕️",
       items: [
-        "Unité mobile de santé sur site (prison, site minier)",
-        "Télé-expertise embarquée"
+        {
+          text: "Unité mobile de santé sur site (prison, site minier)",
+          icon: faAmbulance
+        },
+        {
+          text: "Télé-expertise embarquée",
+          icon: faSatellite
+        }
       ]
     },
     {
       title: "Environnement militaire / humanitaire",
       icon: "🪖",
       items: [
-        "Déploiement en zones de conflit",
-        "Soins d'urgence en zone de crise",
-        "Appui logistique sanitaire (ONU, armée, Croix-Rouge)"
+        {
+          text: "Déploiement en zones de conflit",
+          icon: faTruck
+        },
+        {
+          text: "Soins d'urgence en zone de crise",
+          icon: faUserMd
+        },
+        {
+          text: "Appui logistique sanitaire (ONU, armée, Croix-Rouge)",
+          icon: faBriefcaseMedical
+        }
       ]
     }
   ];
 
   const advantages = [
-    "Adaptabilité au terrain : 4x4, pick-up, minibus selon les routes",
-    "Autonomie : groupe électrogène, climatisation, stockage sécurisé",
-    "Interopérabilité : compatible avec plateformes de télémédecine",
-    "Visibilité & crédibilité : outil de terrain pour bailleurs et décideurs",
-    "Maintenance & formation assurées par nos équipes locales"
+    {
+      text: "Adaptabilité au terrain : 4x4, pick-up, minibus selon les routes",
+      icon: faTruck
+    },
+    {
+      text: "Autonomie : groupe électrogène, climatisation, stockage sécurisé",
+      icon: faSolarPanel
+    },
+    {
+      text: "Interopérabilité : compatible avec plateformes de télémédecine",
+      icon: faWifi
+    },
+    {
+      text: "Visibilité & crédibilité : outil de terrain pour bailleurs et décideurs",
+      icon: faStethoscope
+    },
+    {
+      text: "Maintenance & formation assurées par nos équipes locales",
+      icon: faUserMd
+    }
   ];
 
   const projects = [
@@ -317,8 +414,8 @@ const VehiculesPage: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                   >
-                    <FontAwesomeIcon icon={faCheckCircle} className="text-green-500 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700 dark:text-gray-300">{item}</span>
+                    <FontAwesomeIcon icon={item.icon} className="text-primary-500 mt-1 flex-shrink-0" />
+                    <span className="text-gray-700 dark:text-gray-300">{item.item}</span>
                   </motion.div>
                 ))}
               </div>
@@ -356,8 +453,8 @@ const VehiculesPage: React.FC = () => {
                 <ul className="space-y-2">
                   {app.items.map((item, itemIndex) => (
                     <li key={itemIndex} className="flex items-start gap-2 text-gray-600 dark:text-gray-300">
-                      <FontAwesomeIcon icon={faCheckCircle} className="text-green-500 mt-1 flex-shrink-0" />
-                      <span>{item}</span>
+                      <FontAwesomeIcon icon={item.icon} className="text-primary-500 mt-1 flex-shrink-0" />
+                      <span>{item.text}</span>
                     </li>
                   ))}
                 </ul>
@@ -389,8 +486,8 @@ const VehiculesPage: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <FontAwesomeIcon icon={faCheckCircle} className="text-green-500 mt-1 flex-shrink-0" />
-                <span className="text-gray-700 dark:text-gray-300 font-medium">{advantage}</span>
+                <FontAwesomeIcon icon={advantage.icon} className="text-primary-500 mt-1 flex-shrink-0" />
+                <span className="text-gray-700 dark:text-gray-300 font-medium">{advantage.text}</span>
               </motion.div>
             ))}
           </div>

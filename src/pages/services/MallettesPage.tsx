@@ -10,7 +10,16 @@ import {
   faCheckCircle,
   faWifi,
   faBatteryFull,
-  faShieldAlt
+  faShieldAlt,
+  faMicroscope,
+  faTabletAlt,
+  faThermometerHalf,
+  faEye,
+  faTooth,
+  faWeight,
+  faDroplet,
+  faSolarPanel,
+  faCamera
 } from '@fortawesome/free-solid-svg-icons';
 import { ArrowLeft, Calendar, Users, MapPin, Zap, Shield, Wifi } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -35,7 +44,7 @@ const MallettesPage: React.FC = () => {
     {
       name: "Tablette connectée sécurisée",
       role: "Interface principale pour l'enregistrement, la transmission des données et la vidéoconsultation",
-      icon: faStethoscope
+      icon: faTabletAlt
     },
     {
       name: "Tensiomètre électronique connecté",
@@ -50,17 +59,17 @@ const MallettesPage: React.FC = () => {
     {
       name: "Thermomètre infrarouge",
       role: "Mesure sans contact de la température corporelle",
-      icon: faStethoscope
+      icon: faThermometerHalf
     },
     {
       name: "Glucomètre connecté",
       role: "Contrôle de la glycémie pour le suivi du diabète",
-      icon: faHeartbeat
+      icon: faDroplet
     },
     {
       name: "Électrocardiogramme portable (ECG)",
       role: "Analyse de l'activité cardiaque (rythme, anomalies) avec transmission au cardiologue",
-      icon: faUserMd
+      icon: faHeartbeat
     },
     {
       name: "Stéthoscope numérique",
@@ -70,32 +79,32 @@ const MallettesPage: React.FC = () => {
     {
       name: "Otoscope numérique HD",
       role: "Inspection des oreilles (ORL, pédiatrie), avec image envoyée au spécialiste",
-      icon: faHeartbeat
+      icon: faEye
     },
     {
       name: "Dermatoscope numérique HD",
       role: "Analyse des lésions cutanées en dermatologie",
-      icon: faUserMd
+      icon: faMicroscope
     },
     {
       name: "Caméra de consultation HD",
       role: "Prise d'images des patients ou zones examinées pour la documentation ou la télé-expertise",
-      icon: faStethoscope
+      icon: faCamera
     },
     {
       name: "Balance électronique avec IMC",
       role: "Évaluation du poids, de la croissance et calcul de l'IMC, utile en nutrition infantile",
-      icon: faHeartbeat
+      icon: faWeight
     },
     {
       name: "Hémocue",
       role: "Mesure rapide du taux d'hémoglobine capillaire pour le dépistage de l'anémie",
-      icon: faUserMd
+      icon: faDroplet
     },
     {
       name: "Batterie externe / Panneau solaire",
       role: "Autonomie énergétique en zones sans électricité, recharge des équipements",
-      icon: faStethoscope
+      icon: faSolarPanel
     }
   ];
 
@@ -137,64 +146,133 @@ const MallettesPage: React.FC = () => {
       title: "Santé maternelle et infantile",
       icon: "🤰",
       items: [
-        "Suivi de la grossesse en zone rurale (TA, protéinurie, poids, monitoring cardiaque)",
-        "Détection précoce de complications (pré-éclampsie, diabète gestationnel)",
-        "Téléconsultation en post-partum, suivi du nourrisson (température, saturation, poids)"
+        {
+          text: "Suivi de la grossesse en zone rurale (TA, protéinurie, poids, monitoring cardiaque)",
+          icon: faHeartbeat
+        },
+        {
+          text: "Détection précoce de complications (pré-éclampsie, diabète gestationnel)",
+          icon: faUserMd
+        },
+        {
+          text: "Téléconsultation en post-partum, suivi du nourrisson (température, saturation, poids)",
+          icon: faStethoscope
+        }
       ]
     },
     {
       title: "Cardiologie",
       icon: "❤️",
       items: [
-        "Réalisation d'un ECG 12 dérivations et transmission à un cardiologue",
-        "Surveillance à distance de patients hypertendus",
-        "Évaluation de l'état cardiovasculaire avant évacuation"
+        {
+          text: "Réalisation d'un ECG 12 dérivations et transmission à un cardiologue",
+          icon: faHeartbeat
+        },
+        {
+          text: "Surveillance à distance de patients hypertendus",
+          icon: faUserMd
+        },
+        {
+          text: "Évaluation de l'état cardiovasculaire avant évacuation",
+          icon: faStethoscope
+        }
       ]
     },
     {
       title: "Pneumologie",
       icon: "🫁",
       items: [
-        "Suivi de patients asthmatiques ou BPCO",
-        "Détection de signes d'insuffisance respiratoire via oxymètre + auscultation numérique",
-        "Télésurveillance post-COVID ou tuberculose"
+        {
+          text: "Suivi de patients asthmatiques ou BPCO",
+          icon: faStethoscope
+        },
+        {
+          text: "Détection de signes d'insuffisance respiratoire via oxymètre + auscultation numérique",
+          icon: faUserMd
+        },
+        {
+          text: "Télésurveillance post-COVID ou tuberculose",
+          icon: faHeartbeat
+        }
       ]
     },
     {
       title: "Dermatologie",
       icon: "🖐",
       items: [
-        "Capture d'images HD de lésions cutanées",
-        "Télé-expertise avec un dermatologue en ville ou à l'étranger",
-        "Suivi de traitements (ulcères, mycoses, lésions cancéreuses)"
+        {
+          text: "Capture d'images HD de lésions cutanées",
+          icon: faCamera
+        },
+        {
+          text: "Télé-expertise avec un dermatologue en ville ou à l'étranger",
+          icon: faMicroscope
+        },
+        {
+          text: "Suivi de traitements (ulcères, mycoses, lésions cancéreuses)",
+          icon: faEye
+        }
       ]
     },
     {
       title: "Diabétologie",
       icon: "🩸",
       items: [
-        "Suivi du taux de glycémie en mobilité",
-        "Éducation thérapeutique en zone enclavée",
-        "Surveillance des complications (plaies, neuropathies)"
+        {
+          text: "Suivi du taux de glycémie en mobilité",
+          icon: faDroplet
+        },
+        {
+          text: "Éducation thérapeutique en zone enclavée",
+          icon: faUserMd
+        },
+        {
+          text: "Surveillance des complications (plaies, neuropathies)",
+          icon: faStethoscope
+        }
       ]
     },
     {
       title: "Environnement militaire / situations de crise",
       icon: "🪖",
       items: [
-        "Déploiement rapide sur le terrain (zones de conflit, camps de réfugiés)",
-        "Diagnostic et surveillance de soldats en zone isolée",
-        "Intégration dans véhicules ou tentes médicales de campagne"
+        {
+          text: "Déploiement rapide sur le terrain (zones de conflit, camps de réfugiés)",
+          icon: faBriefcaseMedical
+        },
+        {
+          text: "Diagnostic et surveillance de soldats en zone isolée",
+          icon: faUserMd
+        },
+        {
+          text: "Intégration dans véhicules ou tentes médicales de campagne",
+          icon: faStethoscope
+        }
       ]
     }
   ];
 
   const advantages = [
-    "Accessibilité médicale renforcée en zone rurale",
-    "Réduction des délais de diagnostic",
-    "Gain de temps pour les professionnels de santé",
-    "Renforcement du lien ville-campagne / spécialiste-généraliste",
-    "Intégration possible dans des projets financés (AFD, ONG, État)"
+    {
+      text: "Accessibilité médicale renforcée en zone rurale",
+      icon: faStethoscope
+    },
+    {
+      text: "Réduction des délais de diagnostic",
+      icon: faUserMd
+    },
+    {
+      text: "Gain de temps pour les professionnels de santé",
+      icon: faHeartbeat
+    },
+    {
+      text: "Renforcement du lien ville-campagne / spécialiste-généraliste",
+      icon: faWifi
+    },
+    {
+      text: "Intégration possible dans des projets financés (AFD, ONG, État)",
+      icon: faBriefcaseMedical
+    }
   ];
 
   return (
@@ -421,8 +499,8 @@ const MallettesPage: React.FC = () => {
                 <ul className="space-y-2">
                   {useCase.items.map((item, itemIndex) => (
                     <li key={itemIndex} className="flex items-start gap-2 text-gray-600 dark:text-gray-300">
-                      <FontAwesomeIcon icon={faCheckCircle} className="text-green-500 mt-1 flex-shrink-0" />
-                      <span>{item}</span>
+                      <FontAwesomeIcon icon={item.icon} className="text-primary-500 mt-1 flex-shrink-0" />
+                      <span>{item.text}</span>
                     </li>
                   ))}
                 </ul>
@@ -468,8 +546,8 @@ const MallettesPage: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                   >
-                    <FontAwesomeIcon icon={faCheckCircle} className="text-green-500 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700 dark:text-gray-300 font-medium">{advantage}</span>
+                    <FontAwesomeIcon icon={advantage.icon} className="text-primary-500 mt-1 flex-shrink-0" />
+                    <span className="text-gray-700 dark:text-gray-300 font-medium">{advantage.text}</span>
                   </motion.div>
                 ))}
               </div>

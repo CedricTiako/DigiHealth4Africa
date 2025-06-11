@@ -13,7 +13,13 @@ import {
   faShieldAlt,
   faTabletAlt,
   faCamera,
-  faThermometerHalf
+  faThermometerHalf,
+  faMicroscope,
+  faEye,
+  faWeight,
+  faDroplet,
+  faPrint,
+  faHeadphones
 } from '@fortawesome/free-solid-svg-icons';
 import { ArrowLeft, Monitor, Wifi, Shield, Users, Settings, Camera } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -59,31 +65,43 @@ const BornesPage: React.FC = () => {
     },
     {
       name: "ECG portable",
-      icon: faStethoscope
-    },
-    {
-      name: "Otoscope et dermatoscope numériques",
-      icon: faUserMd
-    },
-    {
-      name: "Glucomètre et balance IMC",
       icon: faHeartbeat
     },
     {
+      name: "Otoscope et dermatoscope numériques",
+      icon: faEye
+    },
+    {
+      name: "Glucomètre et balance IMC",
+      icon: faWeight
+    },
+    {
       name: "Casque audio & micro pour confidentialité",
-      icon: faStethoscope
+      icon: faHeadphones
     },
     {
       name: "Option : imprimante intégrée pour ordonnances",
-      icon: faUserMd
+      icon: faPrint
     }
   ];
 
   const additionalModules = [
-    "Module gynécologie (sonde d'échographie, spéculum connecté)",
-    "Module ORL / pédiatrie",
-    "Module dentaire basique",
-    "Analyse rapide (Hb, glycémie, protéines urinaires)"
+    {
+      text: "Module gynécologie (sonde d'échographie, spéculum connecté)",
+      icon: faUserMd
+    },
+    {
+      text: "Module ORL / pédiatrie",
+      icon: faEye
+    },
+    {
+      text: "Module dentaire basique",
+      icon: faStethoscope
+    },
+    {
+      text: "Analyse rapide (Hb, glycémie, protéines urinaires)",
+      icon: faDroplet
+    }
   ];
 
   const features = [
@@ -124,62 +142,134 @@ const BornesPage: React.FC = () => {
       title: "Santé maternelle & infantile",
       icon: "🧑‍🍼",
       items: [
-        "Suivi de grossesse à distance",
-        "Téléconsultation postnatale",
-        "Dépistage du diabète gestationnel ou de l'anémie"
+        {
+          text: "Suivi de grossesse à distance",
+          icon: faHeartbeat
+        },
+        {
+          text: "Téléconsultation postnatale",
+          icon: faUserMd
+        },
+        {
+          text: "Dépistage du diabète gestationnel ou de l'anémie",
+          icon: faDroplet
+        }
       ]
     },
     {
       title: "Cardiologie / Hypertension",
       icon: "❤️",
       items: [
-        "Télé-ECG en cas de douleur thoracique",
-        "Suivi des patients hypertendus isolés",
-        "Éducation thérapeutique à distance"
+        {
+          text: "Télé-ECG en cas de douleur thoracique",
+          icon: faHeartbeat
+        },
+        {
+          text: "Suivi des patients hypertendus isolés",
+          icon: faStethoscope
+        },
+        {
+          text: "Éducation thérapeutique à distance",
+          icon: faUserMd
+        }
       ]
     },
     {
       title: "Dermatologie / ORL",
       icon: "🧑‍⚕️",
       items: [
-        "Envoi d'images HD pour télédiagnostic",
-        "Suivi des plaies chroniques, lésions cutanées",
-        "Consultation ORL pour enfants dans les zones rurales"
+        {
+          text: "Envoi d'images HD pour télédiagnostic",
+          icon: faCamera
+        },
+        {
+          text: "Suivi des plaies chroniques, lésions cutanées",
+          icon: faMicroscope
+        },
+        {
+          text: "Consultation ORL pour enfants dans les zones rurales",
+          icon: faEye
+        }
       ]
     },
     {
       title: "Pneumologie / Covid-19",
       icon: "🫁",
       items: [
-        "Évaluation respiratoire à distance",
-        "Suivi post-infection",
-        "Détection de détresse respiratoire aiguë"
+        {
+          text: "Évaluation respiratoire à distance",
+          icon: faStethoscope
+        },
+        {
+          text: "Suivi post-infection",
+          icon: faUserMd
+        },
+        {
+          text: "Détection de détresse respiratoire aiguë",
+          icon: faHeartbeat
+        }
       ]
     },
     {
       title: "Santé scolaire / communautaire",
       icon: "🎓",
       items: [
-        "Dépistage régulier dans les écoles",
-        "Réduction de l'absentéisme scolaire lié à l'accès aux soins",
-        "Campagnes de vaccination ou de dépistage"
+        {
+          text: "Dépistage régulier dans les écoles",
+          icon: faEye
+        },
+        {
+          text: "Réduction de l'absentéisme scolaire lié à l'accès aux soins",
+          icon: faUserMd
+        },
+        {
+          text: "Campagnes de vaccination ou de dépistage",
+          icon: faStethoscope
+        }
       ]
     }
   ];
 
   const specialUses = [
-    "Sites miniers ou industriels éloignés",
-    "Camps de réfugiés / zones post-catastrophes",
-    "Unités mobiles de l'armée ou de la protection civile",
-    "Prisons ou centres fermés"
+    {
+      text: "Sites miniers ou industriels éloignés",
+      icon: faDesktop
+    },
+    {
+      text: "Camps de réfugiés / zones post-catastrophes",
+      icon: faUserMd
+    },
+    {
+      text: "Unités mobiles de l'armée ou de la protection civile",
+      icon: faStethoscope
+    },
+    {
+      text: "Prisons ou centres fermés",
+      icon: faShieldAlt
+    }
   ];
 
   const advantages = [
-    "Fabriquées pour durer dans des environnements difficiles",
-    "Configurables selon vos spécialités et priorités locales",
-    "Faciles à utiliser par un personnel formé en 3 jours",
-    "Possibilité de maintenance à distance et mises à jour logicielles",
-    "Compatibles avec les politiques de santé digitale nationales"
+    {
+      text: "Fabriquées pour durer dans des environnements difficiles",
+      icon: faShieldAlt
+    },
+    {
+      text: "Configurables selon vos spécialités et priorités locales",
+      icon: faDesktop
+    },
+    {
+      text: "Faciles à utiliser par un personnel formé en 3 jours",
+      icon: faUserMd
+    },
+    {
+      text: "Possibilité de maintenance à distance et mises à jour logicielles",
+      icon: faWifi
+    },
+    {
+      text: "Compatibles avec les politiques de santé digitale nationales",
+      icon: faStethoscope
+    }
   ];
 
   return (
@@ -326,8 +416,8 @@ const BornesPage: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                   >
-                    <FontAwesomeIcon icon={faCheckCircle} className="text-green-500 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700 dark:text-gray-300">{module}</span>
+                    <FontAwesomeIcon icon={module.icon} className="text-primary-500 mt-1 flex-shrink-0" />
+                    <span className="text-gray-700 dark:text-gray-300">{module.text}</span>
                   </motion.div>
                 ))}
               </div>
@@ -410,8 +500,8 @@ const BornesPage: React.FC = () => {
                 <ul className="space-y-2">
                   {app.items.map((item, itemIndex) => (
                     <li key={itemIndex} className="flex items-start gap-2 text-gray-600 dark:text-gray-300">
-                      <FontAwesomeIcon icon={faCheckCircle} className="text-green-500 mt-1 flex-shrink-0" />
-                      <span>{item}</span>
+                      <FontAwesomeIcon icon={item.icon} className="text-primary-500 mt-1 flex-shrink-0" />
+                      <span>{item.text}</span>
                     </li>
                   ))}
                 </ul>
@@ -446,8 +536,8 @@ const BornesPage: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                   >
-                    <FontAwesomeIcon icon={faCheckCircle} className="text-green-500 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700 dark:text-gray-300 font-medium">{use}</span>
+                    <FontAwesomeIcon icon={use.icon} className="text-primary-500 mt-1 flex-shrink-0" />
+                    <span className="text-gray-700 dark:text-gray-300 font-medium">{use.text}</span>
                   </motion.div>
                 ))}
               </div>
@@ -478,8 +568,8 @@ const BornesPage: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <FontAwesomeIcon icon={faCheckCircle} className="text-green-500 mt-1 flex-shrink-0" />
-                <span className="text-gray-700 dark:text-gray-300 font-medium">{advantage}</span>
+                <FontAwesomeIcon icon={advantage.icon} className="text-primary-500 mt-1 flex-shrink-0" />
+                <span className="text-gray-700 dark:text-gray-300 font-medium">{advantage.text}</span>
               </motion.div>
             ))}
           </div>

@@ -13,7 +13,16 @@ import {
   faShieldAlt,
   faGlobe,
   faClock,
-  faUsers
+  faUsers,
+  faFileAlt,
+  faPassport,
+  faHandshake,
+  faPhoneAlt,
+  faEnvelope,
+  faMapMarkerAlt,
+  faCalendarAlt,
+  faChartLine,
+  faLanguage
 } from '@fortawesome/free-solid-svg-icons';
 import { ArrowLeft, Plane, Ambulance, Guitar as Hospital, Shield, Globe, Clock, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -38,9 +47,18 @@ const EvacuationsPage: React.FC = () => {
       icon: faStethoscope,
       color: "from-blue-500 to-blue-600",
       items: [
-        "Échange avec le médecin traitant",
-        "Analyse du dossier médical, bilan, imagerie",
-        "Décision concertée avec nos référents spécialistes"
+        {
+          text: "Échange avec le médecin traitant",
+          icon: faUserMd
+        },
+        {
+          text: "Analyse du dossier médical, bilan, imagerie",
+          icon: faFileAlt
+        },
+        {
+          text: "Décision concertée avec nos référents spécialistes",
+          icon: faUsers
+        }
       ]
     },
     {
@@ -48,9 +66,18 @@ const EvacuationsPage: React.FC = () => {
       icon: faAmbulance,
       color: "from-green-500 to-green-600",
       items: [
-        "Réservation d'ambulance locale (avec ou sans médicalisation)",
-        "Appui aux démarches d'autorisation de transfert",
-        "Coordination aéroportuaire (civière, accès prioritaire, douanes)"
+        {
+          text: "Réservation d'ambulance locale (avec ou sans médicalisation)",
+          icon: faAmbulance
+        },
+        {
+          text: "Appui aux démarches d'autorisation de transfert",
+          icon: faFileAlt
+        },
+        {
+          text: "Coordination aéroportuaire (civière, accès prioritaire, douanes)",
+          icon: faPlane
+        }
       ]
     },
     {
@@ -58,9 +85,18 @@ const EvacuationsPage: React.FC = () => {
       icon: faPlane,
       color: "from-purple-500 to-purple-600",
       items: [
-        "Billet d'avion du patient (si transport en vol commercial possible)",
-        "Accompagnement par personnel soignant formé",
-        "Option : vol sanitaire dédié avec équipe médicale (MEDEVAC)"
+        {
+          text: "Billet d'avion du patient (si transport en vol commercial possible)",
+          icon: faPlane
+        },
+        {
+          text: "Accompagnement par personnel soignant formé",
+          icon: faUserMd
+        },
+        {
+          text: "Option : vol sanitaire dédié avec équipe médicale (MEDEVAC)",
+          icon: faHeartbeat
+        }
       ]
     },
     {
@@ -68,9 +104,18 @@ const EvacuationsPage: React.FC = () => {
       icon: faHospital,
       color: "from-orange-500 to-orange-600",
       items: [
-        "Orientation vers un établissement partenaire (public ou privé)",
-        "Coordination avec l'équipe médicale réceptrice",
-        "Suivi du dossier jusqu'à stabilisation du patient"
+        {
+          text: "Orientation vers un établissement partenaire (public ou privé)",
+          icon: faHospital
+        },
+        {
+          text: "Coordination avec l'équipe médicale réceptrice",
+          icon: faUsers
+        },
+        {
+          text: "Suivi du dossier jusqu'à stabilisation du patient",
+          icon: faStethoscope
+        }
       ]
     },
     {
@@ -78,9 +123,18 @@ const EvacuationsPage: React.FC = () => {
       icon: faShieldAlt,
       color: "from-teal-500 to-teal-600",
       items: [
-        "Aide à la rédaction de certificats médicaux",
-        "Assistance pour visa sanitaire d'urgence",
-        "Coordination avec les assurances santé / mutuelles"
+        {
+          text: "Aide à la rédaction de certificats médicaux",
+          icon: faFileAlt
+        },
+        {
+          text: "Assistance pour visa sanitaire d'urgence",
+          icon: faPassport
+        },
+        {
+          text: "Coordination avec les assurances santé / mutuelles",
+          icon: faHandshake
+        }
       ]
     }
   ];
@@ -104,11 +158,26 @@ const EvacuationsPage: React.FC = () => {
   ];
 
   const partners = [
-    "Hôpitaux privés et cliniques de référence (Europe, Maghreb, Afrique)",
-    "Réseau de médecins et spécialistes d'appui",
-    "Ambulanciers agréés + transporteurs aériens sanitaires",
-    "Sociétés d'assurance et mutuelles santé",
-    "Organisations internationales (Croix-Rouge, agences humanitaires)"
+    {
+      text: "Hôpitaux privés et cliniques de référence (Europe, Maghreb, Afrique)",
+      icon: faHospital
+    },
+    {
+      text: "Réseau de médecins et spécialistes d'appui",
+      icon: faUserMd
+    },
+    {
+      text: "Ambulanciers agréés + transporteurs aériens sanitaires",
+      icon: faAmbulance
+    },
+    {
+      text: "Sociétés d'assurance et mutuelles santé",
+      icon: faShieldAlt
+    },
+    {
+      text: "Organisations internationales (Croix-Rouge, agences humanitaires)",
+      icon: faGlobe
+    }
   ];
 
   const advantages = [
@@ -137,31 +206,31 @@ const EvacuationsPage: React.FC = () => {
   const frequentCases = [
     {
       case: "Urgences cardio-vasculaires (AVC, infarctus)",
-      icon: "❤️"
+      icon: faHeartbeat
     },
     {
       case: "Polytraumatismes (accidents de la voie publique)",
-      icon: "🚑"
+      icon: faAmbulance
     },
     {
       case: "Grossesses à haut risque",
-      icon: "🤰"
+      icon: faUserMd
     },
     {
       case: "Pathologies cancéreuses nécessitant un traitement complexe",
-      icon: "🧬"
+      icon: faStethoscope
     },
     {
       case: "Réanimations néonatales ou pédiatriques",
-      icon: "👶"
+      icon: faHeartbeat
     },
     {
       case: "Brûlures graves",
-      icon: "🔥"
+      icon: faUserMd
     },
     {
       case: "Maladies rares ou orphelines",
-      icon: "🧬"
+      icon: faStethoscope
     }
   ];
 
@@ -296,8 +365,8 @@ const EvacuationsPage: React.FC = () => {
                 <ul className="space-y-2">
                   {service.items.map((item, itemIndex) => (
                     <li key={itemIndex} className="flex items-start gap-2 text-gray-600 dark:text-gray-300 text-sm">
-                      <FontAwesomeIcon icon={faCheckCircle} className="text-green-500 mt-1 flex-shrink-0" />
-                      <span>{item}</span>
+                      <FontAwesomeIcon icon={item.icon} className="text-primary-500 mt-1 flex-shrink-0" />
+                      <span>{item.text}</span>
                     </li>
                   ))}
                 </ul>
@@ -379,8 +448,8 @@ const EvacuationsPage: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                   >
-                    <FontAwesomeIcon icon={faCheckCircle} className="text-green-500 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700 dark:text-gray-300">{partner}</span>
+                    <FontAwesomeIcon icon={partner.icon} className="text-primary-500 mt-1 flex-shrink-0" />
+                    <span className="text-gray-700 dark:text-gray-300">{partner.text}</span>
                   </motion.div>
                 ))}
               </div>
@@ -446,7 +515,7 @@ const EvacuationsPage: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                   >
-                    <span className="text-2xl flex-shrink-0">{caseItem.icon}</span>
+                    <FontAwesomeIcon icon={caseItem.icon} className="text-primary-500 mt-1 flex-shrink-0" />
                     <span className="text-gray-700 dark:text-gray-300 font-medium">{caseItem.case}</span>
                   </motion.div>
                 ))}
