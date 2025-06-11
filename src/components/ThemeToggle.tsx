@@ -10,58 +10,112 @@ const ThemeToggle: React.FC = () => {
   return (
     <motion.button
       onClick={toggleTheme}
-      className="relative w-12 h-7 md:w-14 md:h-8 bg-gray-200 dark:bg-gray-700 rounded-full p-1 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 flex-shrink-0"
+      className="relative group p-2 rounded-xl glass backdrop-blur-sm border border-white/20 hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       aria-label={isDark ? 'Passer en mode clair' : 'Passer en mode sombre'}
     >
-      {/* Toggle Background */}
-      <motion.div
-        className="absolute inset-1 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full shadow-lg"
-        animate={{
-          x: isDark ? 20 : 0,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 500,
-          damping: 30
-        }}
-      />
+      {/* Background Glow */}
+      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary-500/20 to-accent-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
       
-      {/* Icons */}
-      <div className="relative flex items-center justify-between w-full h-full px-1">
+      {/* Icon Container */}
+      <div className="relative w-8 h-8 flex items-center justify-center">
         <motion.div
-          className="text-yellow-500 flex items-center justify-center"
+          className="absolute inset-0 flex items-center justify-center"
           animate={{
-            scale: isDark ? 0.7 : 1,
-            opacity: isDark ? 0.5 : 1,
+            rotate: isDark ? 180 : 0,
+            scale: isDark ? 0 : 1,
+            opacity: isDark ? 0 : 1,
           }}
-          transition={{ duration: 0.2 }}
+          transition={{
+            duration: 0.4,
+            ease: [0.4, 0, 0.2, 1]
+          }}
         >
-          <FontAwesomeIcon icon={faSun} className="text-xs md:text-sm" />
+          <div className="w-6 h-6 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg">
+            <FontAwesomeIcon 
+              icon={faSun} 
+              className="text-white text-sm drop-shadow-sm" 
+            />
+          </div>
         </motion.div>
         
         <motion.div
-          className="text-blue-300 flex items-center justify-center"
+          className="absolute inset-0 flex items-center justify-center"
           animate={{
-            scale: isDark ? 1 : 0.7,
-            opacity: isDark ? 1 : 0.5,
+            rotate: isDark ? 0 : -180,
+            scale: isDark ? 1 : 0,
+            opacity: isDark ? 1 : 0,
           }}
-          transition={{ duration: 0.2 }}
+          transition={{
+            duration: 0.4,
+            ease: [0.4, 0, 0.2, 1]
+          }}
         >
-          <FontAwesomeIcon icon={faMoon} className="text-xs md:text-sm" />
+          <div className="w-6 h-6 bg-gradient-to-br from-blue-600 to-purple-700 rounded-full flex items-center justify-center shadow-lg">
+            <FontAwesomeIcon 
+              icon={faMoon} 
+              className="text-white text-sm drop-shadow-sm" 
+            />
+          </div>
         </motion.div>
       </div>
       
-      {/* Glow Effect */}
+      {/* Floating Particles Effect */}
+      <div className="absolute inset-0 overflow-hidden rounded-xl pointer-events-none">
+        <motion.div
+          className="absolute top-1 left-1 w-1 h-1 bg-yellow-400 rounded-full opacity-0 group-hover:opacity-100"
+          animate={{
+            y: [0, -8, 0],
+            x: [0, 4, 0],
+            scale: [0, 1, 0],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            delay: 0.2,
+          }}
+        />
+        <motion.div
+          className="absolute top-2 right-1 w-1 h-1 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100"
+          animate={{
+            y: [0, -6, 0],
+            x: [0, -3, 0],
+            scale: [0, 1, 0],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            delay: 0.5,
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1 left-2 w-1 h-1 bg-purple-400 rounded-full opacity-0 group-hover:opacity-100"
+          animate={{
+            y: [0, 6, 0],
+            x: [0, 2, 0],
+            scale: [0, 1, 0],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            delay: 0.8,
+          }}
+        />
+      </div>
+      
+      {/* Ripple Effect */}
       <motion.div
-        className="absolute inset-0 rounded-full"
+        className="absolute inset-0 rounded-xl border-2 border-primary-400/30 opacity-0"
         animate={{
-          boxShadow: isDark 
-            ? '0 0 15px rgba(59, 130, 246, 0.3)' 
-            : '0 0 15px rgba(251, 191, 36, 0.3)'
+          scale: [1, 1.2, 1],
+          opacity: [0, 0.5, 0],
         }}
-        transition={{ duration: 0.3 }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
       />
     </motion.button>
   );
