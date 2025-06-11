@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, Heart } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import ThemeToggle from './ThemeToggle';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -64,7 +65,7 @@ const Navbar: React.FC = () => {
     <motion.nav
       className={`fixed w-full z-50 transition-all duration-500 ${
         isScrolled
-          ? 'glass backdrop-blur-xl py-2 shadow-lg'
+          ? 'glass backdrop-blur-xl py-2 shadow-lg dark:shadow-gray-900/20'
           : 'bg-transparent py-4'
       }`}
       variants={navVariants}
@@ -80,8 +81,8 @@ const Navbar: React.FC = () => {
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.6 }}
             >
-              <Heart className="h-8 w-8 text-primary-600" />
-              <div className="absolute inset-0 h-8 w-8 bg-primary-600/20 rounded-full blur-md group-hover:bg-primary-600/40 transition-colors"></div>
+              <Heart className="h-8 w-8 text-primary-600 dark:text-primary-400" />
+              <div className="absolute inset-0 h-8 w-8 bg-primary-600/20 dark:bg-primary-400/20 rounded-full blur-md group-hover:bg-primary-600/40 dark:group-hover:bg-primary-400/40 transition-colors"></div>
             </motion.div>
             <span className="text-xl font-bold text-modern">
               <span className="gradient-text">DIGI</span>
@@ -97,9 +98,13 @@ const Navbar: React.FC = () => {
             <NavLink href="#about">À propos</NavLink>
             <NavLink href="#projects">Réalisations</NavLink>
             <NavLink href="#blog">Actualités</NavLink>
+            
+            {/* Theme Toggle */}
+            <ThemeToggle />
+            
             <motion.a
               href="#contact"
-              className="btn-modern px-6 py-2 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-full font-medium hover:shadow-glow transition-all duration-300"
+              className="btn-modern px-6 py-2 bg-gradient-to-r from-primary-600 to-primary-700 dark:from-primary-500 dark:to-primary-600 text-white rounded-full font-medium hover:shadow-glow transition-all duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -107,37 +112,40 @@ const Navbar: React.FC = () => {
             </motion.a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <motion.button
-            className="md:hidden p-2 rounded-lg glass focus:outline-none"
-            onClick={toggleMenu}
-            whileTap={{ scale: 0.95 }}
-            aria-label="Toggle menu"
-          >
-            <AnimatePresence mode="wait">
-              {isOpen ? (
-                <motion.div
-                  key="close"
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <X className="h-6 w-6 text-gray-700" />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="menu"
-                  initial={{ rotate: 90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: -90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Menu className="h-6 w-6 text-gray-700" />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.button>
+          {/* Mobile Menu Button & Theme Toggle */}
+          <div className="md:hidden flex items-center space-x-3">
+            <ThemeToggle />
+            <motion.button
+              className="p-2 rounded-lg glass focus:outline-none"
+              onClick={toggleMenu}
+              whileTap={{ scale: 0.95 }}
+              aria-label="Toggle menu"
+            >
+              <AnimatePresence mode="wait">
+                {isOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <X className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Menu className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
+          </div>
         </div>
       </div>
 
@@ -145,7 +153,7 @@ const Navbar: React.FC = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="md:hidden glass backdrop-blur-xl border-t border-white/10"
+            className="md:hidden glass backdrop-blur-xl border-t border-white/10 dark:border-gray-700/50"
             variants={menuVariants}
             initial="hidden"
             animate="visible"
@@ -175,7 +183,7 @@ const Navbar: React.FC = () => {
               <motion.div variants={itemVariants}>
                 <a
                   href="#contact"
-                  className="block w-full text-center py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl font-medium"
+                  className="block w-full text-center py-3 bg-gradient-to-r from-primary-600 to-primary-700 dark:from-primary-500 dark:to-primary-600 text-white rounded-xl font-medium"
                   onClick={toggleMenu}
                 >
                   Contact
@@ -198,11 +206,11 @@ const NavLink: React.FC<NavLinkProps> = ({ href, children }) => {
   return (
     <motion.a
       href={href}
-      className="relative text-gray-700 hover:text-primary-600 font-medium transition-colors duration-300 group"
+      className="relative text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-colors duration-300 group"
       whileHover={{ y: -2 }}
     >
       {children}
-      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-600 to-primary-700 group-hover:w-full transition-all duration-300"></span>
+      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-600 to-primary-700 dark:from-primary-400 dark:to-primary-500 group-hover:w-full transition-all duration-300"></span>
     </motion.a>
   );
 };
@@ -215,7 +223,7 @@ const MobileNavLink: React.FC<MobileNavLinkProps> = ({ href, onClick, children }
   return (
     <a
       href={href}
-      className="block py-3 px-4 text-gray-700 hover:text-primary-600 font-medium text-lg rounded-lg hover:bg-white/10 transition-all duration-300"
+      className="block py-3 px-4 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium text-lg rounded-lg hover:bg-white/10 dark:hover:bg-gray-800/50 transition-all duration-300"
       onClick={onClick}
     >
       {children}
