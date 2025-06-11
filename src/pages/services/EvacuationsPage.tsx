@@ -15,7 +15,7 @@ import {
   faClock,
   faUsers
 } from '@fortawesome/free-solid-svg-icons';
-import { ArrowLeft, Plane, Ambulance, Hospital, Shield, Globe, Clock, Users } from 'lucide-react';
+import { ArrowLeft, Plane, Ambulance, Guitar as Hospital, Shield, Globe, Clock, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SolutionForm from '../../components/SolutionForm';
 
