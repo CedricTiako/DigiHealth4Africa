@@ -142,15 +142,15 @@ const Solutions: React.FC = () => {
   };
 
   return (
-    <section id="solutions" className="py-20 relative overflow-hidden">
+    <section id="solutions" className="py-12 md:py-20 relative overflow-hidden">
       {/* African Pattern Background */}
       <div className="absolute inset-0 african-pattern-1"></div>
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50/90 via-white/95 to-gray-50/90"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50/90 via-white/95 to-gray-50/90 dark:from-gray-900/90 dark:via-gray-800/95 dark:to-gray-900/90"></div>
 
-      {/* Floating Medical Icons */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Floating Medical Icons - Hidden on mobile for performance */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none hidden lg:block">
         <motion.div
-          className="absolute top-20 left-10 text-primary-200"
+          className="absolute top-20 left-10 text-primary-200 dark:text-primary-300"
           animate={{
             y: [0, -20, 0],
             rotate: [0, 10, 0],
@@ -165,7 +165,7 @@ const Solutions: React.FC = () => {
         </motion.div>
         
         <motion.div
-          className="absolute top-40 right-20 text-accent-200"
+          className="absolute top-40 right-20 text-accent-200 dark:text-accent-300"
           animate={{
             y: [0, 15, 0],
             rotate: [0, -10, 0],
@@ -181,7 +181,7 @@ const Solutions: React.FC = () => {
         </motion.div>
 
         <motion.div
-          className="absolute bottom-40 left-1/4 text-secondary-200"
+          className="absolute bottom-40 left-1/4 text-secondary-200 dark:text-secondary-300"
           animate={{
             y: [0, -15, 0],
             scale: [1, 1.1, 1],
@@ -199,14 +199,14 @@ const Solutions: React.FC = () => {
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
           <motion.div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100 text-primary-700 text-sm font-medium mb-6"
+            className="inline-flex items-center gap-2 px-3 py-2 md:px-4 md:py-2 rounded-full bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 text-xs md:text-sm font-medium mb-4 md:mb-6"
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
@@ -216,18 +216,19 @@ const Solutions: React.FC = () => {
             Solutions Innovantes
           </motion.div>
 
-          <h2 className="text-4xl md:text-6xl font-bold mb-6 text-modern">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-modern">
             <span className="gradient-text">Nos solutions</span>
           </h2>
           
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-base md:text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed px-2">
             Des solutions innovantes et adaptées pour répondre aux besoins de santé en Afrique,
             même dans les zones les plus reculées.
           </p>
         </motion.div>
 
+        {/* Solutions Grid - Mobile-first responsive */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -244,36 +245,37 @@ const Solutions: React.FC = () => {
           ))}
         </motion.div>
 
-        {/* Call to Action */}
+        {/* Call to Action - Mobile-optimized */}
         <motion.div
-          className="mt-20 text-center"
+          className="mt-12 md:mt-20 text-center px-4"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <div className="glass rounded-3xl p-8 md:p-12 max-w-4xl mx-auto relative overflow-hidden">
+          <div className="glass rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-12 max-w-4xl mx-auto relative overflow-hidden">
             {/* African pattern overlay */}
             <div className="absolute inset-0 african-pattern-2 opacity-50"></div>
             <div className="relative z-10">
-              <div className="flex items-center justify-center gap-3 mb-6">
-                <FontAwesomeIcon icon={faHeartbeat} className="text-3xl text-primary-600 fa-heartbeat-custom" />
-                <h3 className="text-2xl md:text-3xl font-bold gradient-text">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-4 md:mb-6">
+                <FontAwesomeIcon icon={faHeartbeat} className="text-2xl md:text-3xl text-primary-600 dark:text-primary-400 fa-heartbeat-custom" />
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold gradient-text text-center">
                   Besoin d'une solution personnalisée ?
                 </h3>
               </div>
-              <p className="text-gray-600 mb-8 text-lg">
+              <p className="text-gray-600 dark:text-gray-300 mb-6 md:mb-8 text-sm md:text-lg leading-relaxed">
                 Notre équipe d'experts est à votre disposition pour étudier vos besoins spécifiques 
                 et vous proposer la solution la plus adaptée.
               </p>
               <motion.a
                 href="#contact"
-                className="btn-modern inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-2xl font-semibold text-lg shadow-glow hover:shadow-glow-accent transition-all duration-300"
+                className="btn-modern inline-flex items-center gap-3 w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-primary-600 to-primary-700 dark:from-primary-500 dark:to-primary-600 text-white rounded-xl md:rounded-2xl font-semibold text-base md:text-lg shadow-glow hover:shadow-glow-accent transition-all duration-300"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <FontAwesomeIcon icon={faUserMd} className="fa-bounce-custom" />
-                Discutons de votre projet
+                <span className="hidden sm:inline">Discutons de votre projet</span>
+                <span className="sm:hidden">Contactez-nous</span>
               </motion.a>
             </div>
           </div>
