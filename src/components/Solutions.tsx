@@ -16,16 +16,15 @@ import {
   faAmbulance
 } from '@fortawesome/free-solid-svg-icons';
 import SolutionCard from './SolutionCard';
-import { cn } from '../utils/cn';
 
 const Solutions: React.FC = () => {
   const solutions = [
     {
       id: 1,
       title: "Mallettes de télémédecine",
-      description: "Kits portables avec outils de diagnostic (ECG, tension, otoscope…).",
-      icon: <FontAwesomeIcon icon={faBriefcaseMedical} className="animate-medical-pulse" />,
-      action: "Demander une démonstration ou un échange",
+      description: "Kits portables avec outils de diagnostic (ECG, tension, otoscope…) pour consultations à distance dans les zones reculées.",
+      icon: <FontAwesomeIcon icon={faBriefcaseMedical} className="animate-pulse" />,
+      action: "Demander une démonstration",
       formFields: [
         { name: "entityName", label: "Nom de l'entité", type: "text" },
         { name: "country", label: "Pays & ville", type: "text" },
@@ -41,9 +40,9 @@ const Solutions: React.FC = () => {
     {
       id: 2,
       title: "Bornes de télémédecine",
-      description: "Dispositifs fixes connectés pour les téléconsultations.",
+      description: "Dispositifs fixes connectés pour téléconsultations dans les centres de santé et hôpitaux.",
       icon: <FontAwesomeIcon icon={faDesktop} className="animate-pulse" />,
-      action: "Planifier un rendez-vous d'étude technique",
+      action: "Planifier un rendez-vous",
       formFields: [
         { name: "establishmentName", label: "Nom de l'établissement", type: "text" },
         { name: "location", label: "Localisation", type: "text" },
@@ -57,9 +56,9 @@ const Solutions: React.FC = () => {
     {
       id: 3,
       title: "Véhicules médicalisés",
-      description: "Ambulances et unités mobiles pour zones isolées.",
+      description: "Ambulances et unités mobiles équipées pour interventions d'urgence et soins dans les zones isolées.",
       icon: <FontAwesomeIcon icon={faAmbulance} className="animate-bounce" />,
-      action: "Obtenir une fiche technique et un devis",
+      action: "Obtenir un devis",
       formFields: [
         { name: "structure", label: "Structure concernée", type: "text" },
         { name: "vehicleType", label: "Type de véhicule recherché", type: "text" },
@@ -73,9 +72,9 @@ const Solutions: React.FC = () => {
     {
       id: 4,
       title: "Conteneurs santé",
-      description: "Structures médicalisées à installer.",
-      icon: <FontAwesomeIcon icon={faHospital} className="animate-float" />,
-      action: "Demander un échange sur les modules santé",
+      description: "Structures médicalisées modulaires à installer rapidement pour créer des centres de soins temporaires ou permanents.",
+      icon: <FontAwesomeIcon icon={faHospital} className="animate-pulse" />,
+      action: "Demander un échange",
       formFields: [
         { name: "organization", label: "Organisation demandeuse", type: "text" },
         { name: "containerType", label: "Type de conteneur", type: "text" },
@@ -88,10 +87,10 @@ const Solutions: React.FC = () => {
     },
     {
       id: 5,
-      title: "Télé-expertise locale et internationale",
-      description: "Mise en réseau avec spécialistes.",
+      title: "Télé-expertise médicale",
+      description: "Mise en réseau avec spécialistes internationaux pour consultations expertes et formation continue.",
       icon: <FontAwesomeIcon icon={faSatellite} className="animate-spin" style={{ animationDuration: '3s' }} />,
-      action: "Organiser une réunion d'intégration de la télé-expertise",
+      action: "Organiser une réunion",
       formFields: [
         { name: "medicalStructure", label: "Structure médicale", type: "text" },
         { name: "specialties", label: "Spécialités visées", type: "text" },
@@ -103,10 +102,10 @@ const Solutions: React.FC = () => {
     },
     {
       id: 6,
-      title: "Assistance aux évacuations sanitaires",
-      description: "Transferts médicaux assistés.",
-      icon: <FontAwesomeIcon icon={faPlane} className="animate-heartbeat" />,
-      action: "Demander une convention ou un partenariat",
+      title: "Évacuations sanitaires",
+      description: "Assistance et coordination pour transferts médicaux d'urgence vers centres spécialisés.",
+      icon: <FontAwesomeIcon icon={faPlane} className="animate-pulse" />,
+      action: "Demander un partenariat",
       formFields: [
         { name: "entityType", label: "Type d'entité", type: "text" },
         { name: "careCountry", label: "Pays de prise en charge", type: "text" },
@@ -143,14 +142,15 @@ const Solutions: React.FC = () => {
   };
 
   return (
-    <section id="solutions" className="py-12 md:py-20 bg-base-100 relative overflow-hidden">
-      {/* African Pattern Background */}
-      <div className="absolute inset-0 african-pattern-1"></div>
+    <section id="solutions" className="py-20 relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"></div>
+      <div className="absolute inset-0 african-pattern-2 opacity-20"></div>
 
-      {/* Floating Medical Icons - Hidden on mobile for performance */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none hidden lg:block">
+      {/* Floating Medical Icons */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-20 left-10 text-medical-200"
+          className="absolute top-20 left-10 text-primary-200"
           animate={{
             y: [0, -20, 0],
             rotate: [0, 10, 0],
@@ -165,7 +165,7 @@ const Solutions: React.FC = () => {
         </motion.div>
         
         <motion.div
-          className="absolute top-40 right-20 text-health-200"
+          className="absolute top-40 right-20 text-accent-200"
           animate={{
             y: [0, 15, 0],
             rotate: [0, -10, 0],
@@ -181,7 +181,7 @@ const Solutions: React.FC = () => {
         </motion.div>
 
         <motion.div
-          className="absolute bottom-40 left-1/4 text-africa-200"
+          className="absolute bottom-40 left-1/4 text-green-200"
           animate={{
             y: [0, -15, 0],
             scale: [1, 1.1, 1],
@@ -197,40 +197,41 @@ const Solutions: React.FC = () => {
         </motion.div>
       </div>
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
+      <div className="container mx-auto px-4 lg:px-6 relative z-10">
+        {/* Section Header */}
         <motion.div
-          className="text-center mb-12 md:mb-16"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
           <motion.div
-            className="badge badge-lg bg-medical-100 text-medical-700 border-medical-200 mb-4 md:mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary-100 to-accent-100 text-primary-700 text-sm font-medium mb-6 border border-primary-200"
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <FontAwesomeIcon icon={faStethoscope} className="mr-2 animate-medical-pulse" />
+            <FontAwesomeIcon icon={faStethoscope} className="animate-pulse" />
             Solutions Innovantes
           </motion.div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 font-heading">
-            <span className="bg-gradient-to-r from-medical-600 to-health-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+            <span className="bg-gradient-to-r from-primary-600 via-accent-600 to-green-600 bg-clip-text text-transparent">
               Nos solutions
             </span>
           </h2>
           
-          <p className="text-base md:text-xl text-base-content/70 max-w-4xl mx-auto leading-relaxed px-2">
+          <p className="text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
             Des solutions innovantes et adaptées pour répondre aux besoins de santé en Afrique,
             même dans les zones les plus reculées.
           </p>
         </motion.div>
 
-        {/* Solutions Grid - Mobile-first responsive */}
+        {/* Solutions Grid */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -247,42 +248,38 @@ const Solutions: React.FC = () => {
           ))}
         </motion.div>
 
-        {/* Call to Action - Mobile-optimized */}
+        {/* Call to Action */}
         <motion.div
-          className="mt-12 md:mt-20 text-center px-4"
+          className="mt-20 text-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <div className="card bg-base-200/50 backdrop-blur-sm border border-base-300 shadow-xl max-w-4xl mx-auto">
-            <div className="card-body p-6 md:p-8 lg:p-12">
-              {/* African pattern overlay */}
-              <div className="absolute inset-0 african-pattern-2 opacity-50 rounded-2xl"></div>
-              <div className="relative z-10">
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-4 md:mb-6">
-                  <FontAwesomeIcon icon={faHeartbeat} className="text-2xl md:text-3xl text-health-600 animate-heartbeat" />
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-center">
-                    <span className="bg-gradient-to-r from-medical-600 to-health-600 bg-clip-text text-transparent">
-                      Besoin d'une solution personnalisée ?
-                    </span>
-                  </h3>
-                </div>
-                <p className="text-base-content/70 mb-6 md:mb-8 text-sm md:text-lg leading-relaxed">
-                  Notre équipe d'experts est à votre disposition pour étudier vos besoins spécifiques 
-                  et vous proposer la solution la plus adaptée.
-                </p>
-                <motion.a
-                  href="#contact"
-                  className="btn btn-primary btn-lg gap-3 w-full sm:w-auto shadow-glow"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FontAwesomeIcon icon={faUserMd} className="animate-bounce" />
-                  <span className="hidden sm:inline">Discutons de votre projet</span>
-                  <span className="sm:hidden">Contactez-nous</span>
-                </motion.a>
+          <div className="glass rounded-3xl p-8 lg:p-12 backdrop-blur-xl border border-white/20 max-w-4xl mx-auto relative overflow-hidden">
+            <div className="absolute inset-0 african-pattern-3 opacity-20"></div>
+            <div className="relative z-10">
+              <div className="flex items-center justify-center gap-3 mb-6">
+                <FontAwesomeIcon icon={faHeartbeat} className="text-3xl text-primary-600 animate-pulse" />
+                <h3 className="text-2xl lg:text-3xl font-bold">
+                  <span className="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
+                    Besoin d'une solution personnalisée ?
+                  </span>
+                </h3>
               </div>
+              <p className="text-gray-600 dark:text-gray-300 mb-8 text-lg leading-relaxed">
+                Notre équipe d'experts est à votre disposition pour étudier vos besoins spécifiques 
+                et vous proposer la solution la plus adaptée à votre contexte.
+              </p>
+              <motion.a
+                href="#contact"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-xl font-semibold text-lg shadow-glow hover:shadow-glow-accent transition-all duration-300"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <FontAwesomeIcon icon={faUserMd} className="animate-pulse" />
+                Discutons de votre projet
+              </motion.a>
             </div>
           </div>
         </motion.div>

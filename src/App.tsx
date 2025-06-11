@@ -14,7 +14,6 @@ function App() {
           <main className="flex-grow">
             <Routes>
               <Route path="/" element={<Home />} />
-              {/* Additional routes can be added here */}
             </Routes>
           </main>
           <Footer />
