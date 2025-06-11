@@ -18,6 +18,7 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showSolutions, setShowSolutions] = useState(false);
+  const [showMobileSolutions, setShowMobileSolutions] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,44 +29,57 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+    setShowMobileSolutions(false);
+  };
+
+  const toggleMobileSolutions = () => {
+    setShowMobileSolutions(!showMobileSolutions);
+  };
 
   const solutions = [
     {
       title: "Mallettes de télémédecine",
       description: "Kits portables pour consultations à distance",
       icon: faBriefcaseMedical,
-      href: "/services/mallettes"
+      href: "/services/mallettes",
+      color: "from-blue-500 to-blue-600"
     },
     {
       title: "Bornes de télémédecine",
       description: "Dispositifs fixes connectés",
       icon: faDesktop,
-      href: "/services/bornes"
+      href: "/services/bornes",
+      color: "from-green-500 to-green-600"
     },
     {
       title: "Véhicules médicalisés",
       description: "Ambulances et unités mobiles",
       icon: faAmbulance,
-      href: "/services/vehicules"
+      href: "/services/vehicules",
+      color: "from-red-500 to-red-600"
     },
     {
       title: "Conteneurs santé",
       description: "Structures médicalisées modulaires",
       icon: faHospital,
-      href: "/services/conteneurs"
+      href: "/services/conteneurs",
+      color: "from-purple-500 to-purple-600"
     },
     {
       title: "Télé-expertise médicale",
       description: "Réseau de spécialistes",
       icon: faSatellite,
-      href: "/services/tele-expertise"
+      href: "/services/tele-expertise",
+      color: "from-teal-500 to-teal-600"
     },
     {
       title: "Évacuations sanitaires",
       description: "Transferts médicaux d'urgence",
       icon: faPlane,
-      href: "/services/evacuations"
+      href: "/services/evacuations",
+      color: "from-orange-500 to-orange-600"
     }
   ];
 
@@ -96,7 +110,7 @@ const Navbar: React.FC = () => {
       transition: {
         duration: 0.3,
         ease: [0.4, 0, 0.2, 1],
-        staggerChildren: 0.1,
+        staggerChildren: 0.05,
         delayChildren: 0.1
       }
     }
@@ -108,6 +122,27 @@ const Navbar: React.FC = () => {
       x: 0,
       opacity: 1,
       transition: { duration: 0.3 }
+    }
+  };
+
+  const solutionsVariants = {
+    hidden: {
+      opacity: 0,
+      height: 0,
+      transition: {
+        duration: 0.2,
+        ease: [0.4, 0, 0.2, 1]
+      }
+    },
+    visible: {
+      opacity: 1,
+      height: 'auto',
+      transition: {
+        duration: 0.3,
+        ease: [0.4, 0, 0.2, 1],
+        staggerChildren: 0.03,
+        delayChildren: 0.1
+      }
     }
   };
 
@@ -189,28 +224,28 @@ const Navbar: React.FC = () => {
                   <AnimatePresence>
                     {showSolutions && (
                       <motion.div
-                        className="absolute top-full left-0 mt-2 w-96 glass backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 overflow-hidden"
+                        className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[600px] glass backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 overflow-hidden"
                         initial={{ opacity: 0, y: 10, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 10, scale: 0.95 }}
                         transition={{ duration: 0.2 }}
                       >
-                        <div className="p-4">
-                          <div className="grid grid-cols-1 gap-2">
+                        <div className="p-6">
+                          <div className="grid grid-cols-2 gap-4">
                             {solutions.map((solution, index) => (
                               <Link
                                 key={index}
                                 to={solution.href}
-                                className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/20 dark:hover:bg-gray-800/50 transition-all duration-300 group/item"
+                                className="flex items-center gap-4 p-4 rounded-xl hover:bg-white/20 dark:hover:bg-gray-800/50 transition-all duration-300 group/item"
                               >
-                                <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-500 rounded-lg flex items-center justify-center text-white group-hover/item:scale-110 transition-transform duration-300">
-                                  <FontAwesomeIcon icon={solution.icon} className="text-sm" />
+                                <div className={`w-12 h-12 bg-gradient-to-br ${solution.color} rounded-xl flex items-center justify-center text-white group-hover/item:scale-110 transition-transform duration-300 shadow-lg`}>
+                                  <FontAwesomeIcon icon={solution.icon} className="text-lg" />
                                 </div>
-                                <div className="flex-1">
-                                  <h4 className="font-semibold text-gray-900 dark:text-white text-sm">
+                                <div className="flex-1 min-w-0">
+                                  <h4 className="font-semibold text-gray-900 dark:text-white text-sm mb-1 group-hover/item:text-primary-600 transition-colors">
                                     {solution.title}
                                   </h4>
-                                  <p className="text-xs text-gray-600 dark:text-gray-400">
+                                  <p className="text-xs text-gray-600 dark:text-gray-400 line-clamp-2">
                                     {solution.description}
                                   </p>
                                 </div>
@@ -290,31 +325,58 @@ const Navbar: React.FC = () => {
               animate="visible"
               exit="hidden"
             >
-              <div className="container mx-auto px-4 py-6">
+              <div className="container mx-auto px-4 py-6 max-h-[80vh] overflow-y-auto">
                 {/* Solutions Section */}
                 <motion.div variants={itemVariants} className="mb-6">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Nos solutions</h3>
-                  <div className="space-y-2">
-                    {solutions.map((solution, index) => (
-                      <Link
-                        key={index}
-                        to={solution.href}
-                        className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/20 dark:hover:bg-gray-800/50 transition-all duration-300"
-                        onClick={toggleMenu}
+                  <button
+                    onClick={toggleMobileSolutions}
+                    className="flex items-center justify-between w-full text-left py-3 px-4 rounded-xl hover:bg-white/10 transition-colors"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-gradient-to-r from-primary-500 to-accent-500 rounded-lg flex items-center justify-center text-white">
+                        <FontAwesomeIcon icon={faStethoscope} className="text-sm" />
+                      </div>
+                      <span className="text-lg font-semibold text-gray-900 dark:text-white">Nos solutions</span>
+                    </div>
+                    <ChevronDown className={`w-5 h-5 text-gray-500 transition-transform duration-300 ${showMobileSolutions ? 'rotate-180' : ''}`} />
+                  </button>
+                  
+                  <AnimatePresence>
+                    {showMobileSolutions && (
+                      <motion.div
+                        className="mt-3 ml-4 space-y-2"
+                        variants={solutionsVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="hidden"
                       >
-                        <div className="w-8 h-8 bg-gradient-to-br from-primary-500 to-accent-500 rounded-lg flex items-center justify-center text-white">
-                          <FontAwesomeIcon icon={solution.icon} className="text-xs" />
-                        </div>
-                        <div>
-                          <h4 className="font-medium text-gray-900 dark:text-white text-sm">
-                            {solution.title}
-                          </h4>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
+                        {solutions.map((solution, index) => (
+                          <motion.div key={index} variants={itemVariants}>
+                            <Link
+                              to={solution.href}
+                              className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/20 dark:hover:bg-gray-800/50 transition-all duration-300"
+                              onClick={toggleMenu}
+                            >
+                              <div className={`w-10 h-10 bg-gradient-to-br ${solution.color} rounded-lg flex items-center justify-center text-white shadow-md`}>
+                                <FontAwesomeIcon icon={solution.icon} className="text-sm" />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <h4 className="font-medium text-gray-900 dark:text-white text-sm mb-1">
+                                  {solution.title}
+                                </h4>
+                                <p className="text-xs text-gray-600 dark:text-gray-400 line-clamp-1">
+                                  {solution.description}
+                                </p>
+                              </div>
+                            </Link>
+                          </motion.div>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </motion.div>
 
+                {/* Other Navigation Links */}
                 <motion.div variants={itemVariants} className="space-y-2 mb-6">
                   <MobileNavLink href="/#about" onClick={toggleMenu}>
                     À propos
@@ -327,10 +389,11 @@ const Navbar: React.FC = () => {
                   </MobileNavLink>
                 </motion.div>
 
-                <motion.div variants={itemVariants} className="border-t border-gray-200 dark:border-gray-700 pt-4">
+                {/* Contact Button */}
+                <motion.div variants={itemVariants} className="border-t border-gray-200 dark:border-gray-700 pt-4 mb-6">
                   <a
                     href="/#contact"
-                    className="block w-full text-center py-3 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-xl font-semibold"
+                    className="block w-full text-center py-4 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-xl font-semibold text-lg shadow-lg"
                     onClick={toggleMenu}
                   >
                     Nous contacter
@@ -338,14 +401,14 @@ const Navbar: React.FC = () => {
                 </motion.div>
 
                 {/* Mobile Contact Info */}
-                <motion.div variants={itemVariants} className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+                <motion.div variants={itemVariants} className="pt-4 border-t border-gray-200 dark:border-gray-700">
                   <div className="space-y-3 text-sm text-gray-600 dark:text-gray-400">
-                    <div className="flex items-center gap-2">
-                      <Phone className="w-4 h-4" />
+                    <div className="flex items-center gap-3 p-3 rounded-xl bg-white/10">
+                      <Phone className="w-4 h-4 text-primary-600" />
                       <span>+33 7 53 45 82 24</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Mail className="w-4 h-4" />
+                    <div className="flex items-center gap-3 p-3 rounded-xl bg-white/10">
+                      <Mail className="w-4 h-4 text-primary-600" />
                       <span>contact@digihealth4africa.fr</span>
                     </div>
                   </div>

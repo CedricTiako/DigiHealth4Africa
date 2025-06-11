@@ -116,7 +116,7 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ solution }) => {
         <div className="relative z-10 p-6 md:p-8 h-full flex flex-col">
           {/* Icon */}
           <motion.div
-            className="flex justify-center mb-4 md:mb-6"
+            className="flex justify-center mb-6"
             variants={iconVariants}
             whileHover="hover"
           >
@@ -132,10 +132,10 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ solution }) => {
 
           {/* Content */}
           <div className="text-center flex-grow flex flex-col">
-            <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 text-gray-900 dark:text-white group-hover:bg-gradient-to-r group-hover:from-primary-600 group-hover:to-accent-600 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 leading-tight">
+            <h3 className="text-lg md:text-xl font-bold mb-4 text-gray-900 dark:text-white group-hover:bg-gradient-to-r group-hover:from-primary-600 group-hover:to-accent-600 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 leading-tight">
               {solution.title}
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-6 md:mb-8 leading-relaxed text-sm md:text-base flex-grow">
+            <p className="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed text-sm md:text-base flex-grow">
               {solution.description}
             </p>
 
@@ -144,22 +144,23 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ solution }) => {
               {/* En savoir plus Button */}
               <Link
                 to={getServiceHref(solution.id)}
-                className="w-full flex items-center justify-center gap-2 py-3 px-4 border-2 border-primary-600 text-primary-600 dark:text-primary-400 rounded-xl font-semibold text-sm md:text-base hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all duration-300"
+                className="w-full flex items-center justify-center gap-2 py-3 px-4 border-2 border-primary-600 text-primary-600 dark:text-primary-400 rounded-xl font-semibold text-sm md:text-base hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all duration-300 group/btn"
               >
-                <ExternalLink className="w-4 h-4" />
+                <ExternalLink className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
                 En savoir plus
+                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
               </Link>
 
               {/* Prendre Rendez-vous Button */}
               <motion.button
                 onClick={toggleForm}
-                className="w-full bg-gradient-to-r from-primary-600 to-accent-600 dark:from-primary-500 dark:to-accent-500 text-white py-3 md:py-4 px-4 md:px-6 rounded-xl md:rounded-2xl font-semibold text-sm md:text-base shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+                className="w-full bg-gradient-to-r from-primary-600 to-accent-600 dark:from-primary-500 dark:to-accent-500 text-white py-3 md:py-4 px-4 md:px-6 rounded-xl md:rounded-2xl font-semibold text-sm md:text-base shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 group/btn"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <FontAwesomeIcon icon={faCalendarCheck} className="animate-pulse" />
+                <FontAwesomeIcon icon={faCalendarCheck} className="animate-pulse group-hover/btn:animate-bounce" />
                 Prendre Rendez-vous
-                <ArrowRight className="w-3 h-3 md:w-4 md:h-4" />
+                <ArrowRight className="w-3 h-3 md:w-4 md:h-4 group-hover/btn:translate-x-1 transition-transform" />
               </motion.button>
             </div>
           </div>
