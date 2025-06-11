@@ -149,20 +149,20 @@ const Navbar: React.FC = () => {
   return (
     <>
       {/* Top Bar - Contact Info */}
-      <div className="hidden lg:block bg-gradient-to-r from-primary-600 to-accent-600 text-white py-2">
-        <div className="container mx-auto px-6">
-          <div className="flex justify-between items-center text-sm">
-            <div className="flex items-center gap-6">
+      <div className="hidden lg:block bg-gradient-to-r from-primary-600 to-accent-600 text-white py-2 xl:py-3">
+        <div className="container mx-auto px-6 xl:px-8 max-w-8xl">
+          <div className="flex justify-between items-center text-sm xl:text-base">
+            <div className="flex items-center gap-6 xl:gap-8">
               <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4" />
+                <Phone className="w-4 h-4 xl:w-5 xl:h-5" />
                 <span>+33 7 53 45 82 24</span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4" />
+                <Mail className="w-4 h-4 xl:w-5 xl:h-5" />
                 <span>contact@digihealth4africa.fr</span>
               </div>
             </div>
-            <div className="text-sm">
+            <div className="text-sm xl:text-base">
               <span>La télémédecine au service de l'Afrique</span>
             </div>
           </div>
@@ -173,14 +173,14 @@ const Navbar: React.FC = () => {
       <motion.nav
         className={`sticky top-0 w-full z-50 transition-all duration-500 ${
           isScrolled
-            ? 'glass backdrop-blur-xl py-2 lg:py-3 shadow-lg border-b border-white/10'
-            : 'bg-white/95 dark:bg-gray-900/95 py-3 lg:py-4'
+            ? 'glass backdrop-blur-xl py-2 lg:py-3 xl:py-4 shadow-lg border-b border-white/10'
+            : 'bg-white/95 dark:bg-gray-900/95 py-3 lg:py-4 xl:py-6'
         }`}
         variants={navVariants}
         initial="hidden"
         animate="visible"
       >
-        <div className="container mx-auto px-4 lg:px-6">
+        <div className="container mx-auto px-4 lg:px-6 xl:px-8 max-w-8xl">
           <div className="flex justify-between items-center">
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-3 group flex-shrink-0">
@@ -189,63 +189,63 @@ const Navbar: React.FC = () => {
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.6 }}
               >
-                <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl flex items-center justify-center text-white shadow-lg">
-                  <FontAwesomeIcon icon={faStethoscope} className="text-lg lg:text-xl" />
+                <div className="w-10 h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl xl:rounded-2xl flex items-center justify-center text-white shadow-lg">
+                  <FontAwesomeIcon icon={faStethoscope} className="text-lg lg:text-xl xl:text-2xl" />
                 </div>
-                <div className="absolute inset-0 w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl blur-md opacity-30 group-hover:opacity-50 transition-opacity"></div>
+                <div className="absolute inset-0 w-10 h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl xl:rounded-2xl blur-md opacity-30 group-hover:opacity-50 transition-opacity"></div>
               </motion.div>
               <div className="flex flex-col">
-                <span className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white">
+                <span className="text-xl lg:text-2xl xl:text-3xl font-bold text-gray-900 dark:text-white">
                   <span className="text-primary-600">DIGI</span>
                   <span className="text-accent-600">HEALTH</span>
                   <span className="text-primary-600">4</span>
                   <span className="text-accent-600">AFRICA</span>
                 </span>
-                <span className="text-xs text-gray-500 dark:text-gray-400 hidden lg:block">
+                <span className="text-xs xl:text-sm text-gray-500 dark:text-gray-400 hidden lg:block">
                   Télémédecine & Innovation
                 </span>
               </div>
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center justify-center flex-1 mx-12">
-              <div className="flex items-center space-x-8">
+            <div className="hidden lg:flex items-center justify-center flex-1 mx-12 xl:mx-16">
+              <div className="flex items-center space-x-8 xl:space-x-12">
                 {/* Solutions Dropdown */}
                 <div 
                   className="relative group"
                   onMouseEnter={() => setShowSolutions(true)}
                   onMouseLeave={() => setShowSolutions(false)}
                 >
-                  <button className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-colors duration-300 py-2 px-3">
+                  <button className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-colors duration-300 py-2 px-3 xl:text-lg">
                     Nos solutions
-                    <ChevronDown className="w-4 h-4 transition-transform duration-300 group-hover:rotate-180" />
+                    <ChevronDown className="w-4 h-4 xl:w-5 xl:h-5 transition-transform duration-300 group-hover:rotate-180" />
                   </button>
                   
                   <AnimatePresence>
                     {showSolutions && (
                       <motion.div
-                        className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[600px] glass backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 overflow-hidden"
+                        className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[600px] xl:w-[700px] glass backdrop-blur-xl rounded-2xl xl:rounded-3xl shadow-2xl border border-white/20 overflow-hidden"
                         initial={{ opacity: 0, y: 10, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 10, scale: 0.95 }}
                         transition={{ duration: 0.2 }}
                       >
-                        <div className="p-6">
-                          <div className="grid grid-cols-2 gap-4">
+                        <div className="p-6 xl:p-8">
+                          <div className="grid grid-cols-2 gap-4 xl:gap-6">
                             {solutions.map((solution, index) => (
                               <Link
                                 key={index}
                                 to={solution.href}
-                                className="flex items-center gap-4 p-4 rounded-xl hover:bg-white/20 dark:hover:bg-gray-800/50 transition-all duration-300 group/item"
+                                className="flex items-center gap-4 p-4 xl:p-6 rounded-xl xl:rounded-2xl hover:bg-white/20 dark:hover:bg-gray-800/50 transition-all duration-300 group/item"
                               >
-                                <div className={`w-12 h-12 bg-gradient-to-br ${solution.color} rounded-xl flex items-center justify-center text-white group-hover/item:scale-110 transition-transform duration-300 shadow-lg`}>
-                                  <FontAwesomeIcon icon={solution.icon} className="text-lg" />
+                                <div className={`w-12 h-12 xl:w-14 xl:h-14 bg-gradient-to-br ${solution.color} rounded-xl xl:rounded-2xl flex items-center justify-center text-white group-hover/item:scale-110 transition-transform duration-300 shadow-lg`}>
+                                  <FontAwesomeIcon icon={solution.icon} className="text-lg xl:text-xl" />
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                  <h4 className="font-semibold text-gray-900 dark:text-white text-sm mb-1 group-hover/item:text-primary-600 transition-colors">
+                                  <h4 className="font-semibold text-gray-900 dark:text-white text-sm xl:text-base mb-1 group-hover/item:text-primary-600 transition-colors">
                                     {solution.title}
                                   </h4>
-                                  <p className="text-xs text-gray-600 dark:text-gray-400 line-clamp-2">
+                                  <p className="text-xs xl:text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
                                     {solution.description}
                                   </p>
                                 </div>
@@ -265,15 +265,15 @@ const Navbar: React.FC = () => {
             </div>
 
             {/* Desktop Actions */}
-            <div className="hidden lg:flex items-center space-x-4 flex-shrink-0">
+            <div className="hidden lg:flex items-center space-x-4 xl:space-x-6 flex-shrink-0">
               <ThemeToggle />
               <motion.a
                 href="/#contact"
-                className="px-6 py-3 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-xl font-semibold hover:shadow-glow transition-all duration-300 flex items-center gap-2"
+                className="px-6 py-3 xl:px-8 xl:py-4 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-xl xl:rounded-2xl font-semibold xl:text-lg hover:shadow-glow transition-all duration-300 flex items-center gap-2"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Heart className="w-4 h-4" />
+                <Heart className="w-4 h-4 xl:w-5 xl:h-5" />
                 Contact
               </motion.a>
             </div>
@@ -431,7 +431,7 @@ const NavLink: React.FC<NavLinkProps> = ({ href, children }) => {
   return (
     <motion.a
       href={href}
-      className="relative text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-colors duration-300 group py-2 px-3"
+      className="relative text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-colors duration-300 group py-2 px-3 xl:text-lg"
       whileHover={{ y: -2 }}
     >
       {children}

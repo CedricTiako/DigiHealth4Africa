@@ -88,6 +88,16 @@ export default {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         heading: ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
       },
+      fontSize: {
+        '10xl': ['10rem', { lineHeight: '1' }],
+        '11xl': ['12rem', { lineHeight: '1' }],
+        '12xl': ['14rem', { lineHeight: '1' }],
+      },
+      maxWidth: {
+        '8xl': '88rem',
+        '9xl': '96rem',
+        '10xl': '104rem',
+      },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out',
         'slide-up': 'slideUp 0.6s ease-out',
@@ -163,10 +173,15 @@ export default {
         '18': '4.5rem',
         '88': '22rem',
         '128': '32rem',
+        '144': '36rem',
+        '160': '40rem',
+        '176': '44rem',
+        '192': '48rem',
       },
       borderRadius: {
         '4xl': '2rem',
         '5xl': '2.5rem',
+        '6xl': '3rem',
       },
       zIndex: {
         '60': '60',
@@ -174,6 +189,10 @@ export default {
         '80': '80',
         '90': '90',
         '100': '100',
+      },
+      screens: {
+        '3xl': '1920px',
+        '4xl': '2560px',
       },
     },
   },
