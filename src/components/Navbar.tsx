@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Menu, X, Heart, Phone, Mail, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import logoDigiHealth4Africa from '../images/logo-digi.png';
+import logoDigiHealth4Africa from '../images/logo2-digi-green.png';
 import { 
   faStethoscope, 
   faBriefcaseMedical, 
