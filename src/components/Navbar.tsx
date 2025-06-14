@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Menu, X, Heart, Phone, Mail, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import logoDigiHealth4Africa from '../images/logo-digi.png';
 import { 
   faStethoscope, 
   faBriefcaseMedical, 
@@ -13,6 +14,7 @@ import {
   faPlane 
 } from '@fortawesome/free-solid-svg-icons';
 import ThemeToggle from './ThemeToggle';
+
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -189,8 +191,12 @@ const Navbar: React.FC = () => {
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.6 }}
               >
-                <div className="w-10 h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl xl:rounded-2xl flex items-center justify-center text-white shadow-lg">
-                  <FontAwesomeIcon icon={faStethoscope} className="text-lg lg:text-xl xl:text-2xl" />
+                <div className="w-10 h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 bg-white rounded-xl xl:rounded-2xl flex items-center justify-center overflow-hidden shadow-lg">
+                  <img 
+                    src={logoDigiHealth4Africa} 
+                    alt="Logo DigiHealth4Africa" 
+                    className="w-full h-full object-contain p-1"
+                  />
                 </div>
                 <div className="absolute inset-0 w-10 h-10 lg:w-12 lg:h-12 xl:w-14 xl:h-14 bg-gradient-to-br from-primary-500 to-accent-500 rounded-xl xl:rounded-2xl blur-md opacity-30 group-hover:opacity-50 transition-opacity"></div>
               </motion.div>
