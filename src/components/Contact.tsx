@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Facebook, Linkedin, Twitter, Instagram, Send, CheckCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
   faEnvelope, 
   faPhone, 
@@ -9,8 +9,11 @@ import {
   faComments,
   faHeartbeat,
   faUserMd,
-  faStethoscope
-} from '@fortawesome/free-solid-svg-icons';
+  faStethoscope,
+  faCalendarAlt,
+  faClock,
+  faExclamationCircle 
+} from "@fortawesome/free-solid-svg-icons";
 import { useForm } from 'react-hook-form';
 
 const Contact: React.FC = () => {
@@ -268,6 +271,51 @@ const Contact: React.FC = () => {
                           className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 bg-white/50 focus:outline-none focus:border-primary-500 focus:bg-white transition-all duration-300 backdrop-blur-sm"
                           placeholder="Nom de votre organisation"
                         />
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2">
+                          <FontAwesomeIcon icon={faCalendarAlt} className="text-primary-600" />
+                          <label htmlFor="appointment" className="block text-sm font-semibold text-gray-700">
+                            Date et heure du rendez-vous *
+                          </label>
+                        </div>
+                        <div className="relative">
+                          <input
+                            id="appointment"
+                            type="datetime-local"
+                            {...register('appointment', { 
+                              required: 'Ce champ est requis',
+                              validate: (value) => {
+                                if (!value) return 'Ce champ est requis';
+                                return new Date(value) > new Date() || 'La date doit être dans le futur';
+                              }
+                            })}
+                            min={new Date().toISOString().slice(0, 16)}
+                            className={`w-full pl-12 pr-4 py-3.5 rounded-xl border-2 ${
+                              errors.appointment 
+                                ? 'border-red-300 bg-red-50' 
+                                : 'border-gray-200 bg-white/70 hover:border-primary-300'
+                            } focus:outline-none focus:ring-2 focus:ring-primary-500/30 focus:border-primary-500 focus:bg-white transition-all duration-300 backdrop-blur-sm appearance-none`}
+                          />
+                          <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+                            <FontAwesomeIcon icon={faClock} className="text-lg" />
+                          </div>
+                        </div>
+                        {errors.appointment ? (
+                          <motion.p
+                            className="text-red-500 text-sm flex items-center gap-2 mt-1"
+                            initial={{ opacity: 0, x: -5 }}
+                            animate={{ opacity: 1, x: 0 }}
+                          >
+                            <FontAwesomeIcon icon={faExclamationCircle} className="text-red-500" />
+                            {errors.appointment.message as string}
+                          </motion.p>
+                        ) : (
+                          <p className="text-xs text-gray-500 mt-1">
+                            Sélectionnez une date et une heure pour votre rendez-vous
+                          </p>
+                        )}
                       </div>
                       
                       <div className="space-y-2">

@@ -12,8 +12,8 @@ import {
   faHospital,
   faTrophy
 } from '@fortawesome/free-solid-svg-icons';
-import formationImage from '../images/formation.png';
-import nordMissionImage from '../images/nord-mission.png';
+import formationImage from '../images/image_40_agents.png';
+import nordMissionImage from '../images/mission_nord_cameroun.jpeg';
 import partenartImage from '../images/partenart.png';
 
 const Projects: React.FC = () => {

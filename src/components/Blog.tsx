@@ -11,10 +11,11 @@ import {
   faHeartbeat,
   faUserMd
 } from '@fortawesome/free-solid-svg-icons';
-import newTechRevolutionImage from '../images/new-tech-revolution.png';
-import tchadMissionImage from '../images/tchad-mission.png';
-import santeImage from '../images/sante.png';
-import remoteHealthImage from '../images/remote-heatlh.png';
+import newTechRevolutionImage from '../images/iamge_borne _telemedecine.png';
+import contenerSaveLiveImage from '../images/article-contenure_sauve_des_vies.png';
+import tchadMissionImage from '../images/article-mission_tchad.png';
+import santeImage from '../images/article_impact_santé_maternelle.png';
+import remoteHealthImage from '../images/article_education_distance.png';
 import clinicHomeImage from '../images/clinic-home.jpg';
 
 const Blog: React.FC = () => {
@@ -44,7 +45,7 @@ const Blog: React.FC = () => {
       id: 2,
       title: "Comment nos conteneurs sauvent des vies dans les zones de conflit",
       excerpt: "Retour sur le déploiement de conteneurs médicalisés dans l'est de la RDC et leur impact sur les populations déplacées...",
-      image: "https://images.pexels.com/photos/247786/pexels-photo-247786.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      image: contenerSaveLiveImage,
       date: "3 avril 2025",
       author: "Jean Ndongo",
       category: "Missions",

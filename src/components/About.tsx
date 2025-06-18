@@ -13,7 +13,7 @@ import {
   faUserMd,
   faHospital
 } from '@fortawesome/free-solid-svg-icons';
-import doctorImage from '../images/docor.png';
+import doctorImage from '../images/image_a_propos.png';
 
 const About: React.FC = () => {
   const ref = useRef(null);
