@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ArrowDown, Play, Sparkles, Users, Award, Globe } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import EnteteImage from '../images/image-entête.png';
 import { 
   faStethoscope, 
   faHeartbeat, 
@@ -50,8 +51,13 @@ const Hero: React.FC = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"></div>
+      {/* Background Image with Overlay */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${EnteteImage})` }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/70 via-primary-900/50 to-green-900/70 dark:from-gray-900/90 dark:via-gray-800/90 dark:to-gray-900/90"></div>
+      </div>
       
       {/* African Pattern Background */}
       <div className="absolute inset-0 african-pattern-1 opacity-30"></div>
