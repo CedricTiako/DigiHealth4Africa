@@ -16,15 +16,42 @@ import {
   faAmbulance
 } from '@fortawesome/free-solid-svg-icons';
 import SolutionCard from './SolutionCard';
+import MalletteImage from '../images/image_malette-telemedecine.png';
+import BorneImage from '../images/iamge_borne _telemedecine.png';
+import VehiculeImage from '../images/image_vehicule-médicalisé.png';
+import ConteneurImage from '../images/image_conteneur_santé.png';
+import ExpertiseImage from '../images/image_teleexpertise.png';
+import EvacuationImage from '../images/image_evacuation_sanitaire.png';
+
+interface Solution {
+  id: number;
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  action: string;
+  formFields: FormField[];
+  href?: string;
+  image: string;
+  imagePosition?: string;
+}
+
+interface FormField {
+  name: string;
+  label: string;
+  type: string;
+  options?: string[];
+}
 
 const Solutions: React.FC = () => {
-  const solutions = [
+  const solutions: Solution[] = [
     {
       id: 1,
       title: "Mallettes de télémédecine",
       description: "Kits portables avec outils de diagnostic (ECG, tension, otoscope…) pour consultations à distance dans les zones reculées.",
       icon: <FontAwesomeIcon icon={faBriefcaseMedical} className="animate-pulse" />,
       action: "Prendre Rendez-vous",
+      image: MalletteImage,
+      imagePosition: 'center 30%',
       formFields: [
         { name: "entityName", label: "Nom de l'entité", type: "text" },
         { name: "country", label: "Pays & ville", type: "text" },
@@ -43,6 +70,8 @@ const Solutions: React.FC = () => {
       description: "Dispositifs fixes connectés pour téléconsultations dans les centres de santé et hôpitaux.",
       icon: <FontAwesomeIcon icon={faDesktop} className="animate-pulse" />,
       action: "Prendre Rendez-vous",
+      image: BorneImage,
+      imagePosition: 'center center',
       formFields: [
         { name: "establishmentName", label: "Nom de l'établissement", type: "text" },
         { name: "location", label: "Localisation", type: "text" },
@@ -59,6 +88,8 @@ const Solutions: React.FC = () => {
       description: "Ambulances et unités mobiles équipées pour interventions d'urgence et soins dans les zones isolées.",
       icon: <FontAwesomeIcon icon={faAmbulance} className="animate-bounce" />,
       action: "Prendre Rendez-vous",
+      image: VehiculeImage,
+      imagePosition: 'center 70%',
       formFields: [
         { name: "structure", label: "Structure concernée", type: "text" },
         { name: "vehicleType", label: "Type de véhicule recherché", type: "text" },
@@ -75,6 +106,8 @@ const Solutions: React.FC = () => {
       description: "Structures médicalisées modulaires à installer rapidement pour créer des centres de soins temporaires ou permanents.",
       icon: <FontAwesomeIcon icon={faHospital} className="animate-pulse" />,
       action: "Prendre Rendez-vous",
+      image: ConteneurImage,
+      imagePosition: 'center 40%',
       formFields: [
         { name: "organization", label: "Organisation demandeuse", type: "text" },
         { name: "containerType", label: "Type de conteneur", type: "text" },
@@ -91,6 +124,8 @@ const Solutions: React.FC = () => {
       description: "Mise en réseau avec spécialistes internationaux pour consultations expertes et formation continue.",
       icon: <FontAwesomeIcon icon={faSatellite} className="animate-spin" style={{ animationDuration: '3s' }} />,
       action: "Prendre Rendez-vous",
+      image: ExpertiseImage,
+      imagePosition: 'center 50%',
       formFields: [
         { name: "medicalStructure", label: "Structure médicale", type: "text" },
         { name: "specialties", label: "Spécialités visées", type: "text" },
@@ -106,6 +141,8 @@ const Solutions: React.FC = () => {
       description: "Assistance et coordination pour transferts médicaux d'urgence vers centres spécialisés.",
       icon: <FontAwesomeIcon icon={faPlane} className="animate-pulse" />,
       action: "Prendre Rendez-vous",
+      image: EvacuationImage,
+      imagePosition: 'center 60%',
       formFields: [
         { name: "entityType", label: "Type d'entité", type: "text" },
         { name: "careCountry", label: "Pays de prise en charge", type: "text" },

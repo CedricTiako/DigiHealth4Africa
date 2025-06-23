@@ -51,12 +51,18 @@ const Hero: React.FC = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${EnteteImage})` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/70 via-primary-900/50 to-green-900/70 dark:from-gray-900/90 dark:via-gray-800/90 dark:to-gray-900/90"></div>
+      {/* Background Image with Simple Overlay */}
+      <div className="absolute inset-0">
+        <img 
+          src={EnteteImage} 
+          alt="Background"
+          className="w-full h-full object-cover object-center"
+          style={{
+            opacity: 0.9,
+            transform: 'scale(1.05)'
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/70 via-primary-900/50 to-green-900/70 dark:from-gray-900/90 dark:via-gray-800/90 dark:to-gray-900/90" />
       </div>
       
       {/* African Pattern Background */}

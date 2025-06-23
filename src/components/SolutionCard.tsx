@@ -21,6 +21,8 @@ interface Solution {
   action: string;
   formFields: FormField[];
   href?: string;
+  image: string;
+  imagePosition?: string;
 }
 
 interface SolutionCardProps {
@@ -104,11 +106,21 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ solution }) => {
         whileHover={{ y: -8, scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
       >
-        {/* Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-white to-accent-50 dark:from-primary-900/20 dark:via-gray-800 dark:to-accent-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        {/* Image de fond */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-105"
+          style={{
+            backgroundImage: `url(${solution.image})`,
+            backgroundPosition: solution.imagePosition || 'center',
+            opacity: 0.65,
+            filter: 'contrast(1.3) brightness(1.2) saturate(1.2)'
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/30 to-black/80 dark:to-black/90"></div>
+        </div>
         
-        {/* African Pattern Background */}
-        <div className="absolute inset-0 african-pattern-1 opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-50/40 via-white/20 to-accent-50/40 dark:from-primary-900/40 dark:via-gray-800/50 dark:to-accent-900/40 opacity-100 group-hover:opacity-10 transition-opacity duration-500"></div>
         
         {/* Glow Effect */}
         <div className="absolute inset-0 bg-gradient-to-r from-primary-600/10 to-accent-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
