@@ -83,6 +83,13 @@ export default {
           900: '#7f1d1d',
           950: '#450a0a',
         },
+        // Better text colors for light mode
+        text: {
+          primary: '#111827',    // Very dark gray for primary text
+          secondary: '#374151',  // Dark gray for secondary text
+          muted: '#4b5563',      // Medium gray for muted text
+          light: '#6b7280',      // Light gray for less important text
+        }
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

@@ -179,10 +179,11 @@ const Solutions: React.FC = () => {
   };
 
   return (
-    <section id="solutions" className="py-20 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"></div>
-      <div className="absolute inset-0 african-pattern-2 opacity-20"></div>
+    <section id="solutions" className="py-20 relative overflow-hidden section-hover-animation">
+      {/* Motifs africains authentiques en arrière-plan */}
+      <div className="absolute inset-0 ndop-pattern"></div>
+      <div className="absolute inset-0 bogolan-pattern" style={{ animationDelay: '5s' }}></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-white/95 via-gray-50/90 to-white/95 dark:from-gray-900/95 dark:via-gray-800/90 dark:to-gray-900/95"></div>
 
       {/* Floating Medical Icons */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -244,7 +245,7 @@ const Solutions: React.FC = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary-100 to-accent-100 text-primary-700 text-sm font-medium mb-6 border border-primary-200"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary-100 to-accent-100 text-primary-700 text-sm font-medium mb-6 border border-primary-200 shimmer-effect"
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
@@ -260,7 +261,7 @@ const Solutions: React.FC = () => {
             </span>
           </h2>
           
-          <p className="text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-lg lg:text-xl text-gray-800 dark:text-gray-200 max-w-4xl mx-auto leading-relaxed font-medium">
             Des solutions innovantes et adaptées pour répondre aux besoins de santé en Afrique,
             même dans les zones les plus reculées.
           </p>
@@ -279,6 +280,7 @@ const Solutions: React.FC = () => {
               key={solution.id}
               variants={itemVariants}
               custom={index}
+              className="card-hover-lift"
             >
               <SolutionCard solution={solution} />
             </motion.div>
@@ -293,8 +295,8 @@ const Solutions: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <div className="glass rounded-3xl p-8 lg:p-12 backdrop-blur-xl border border-white/20 max-w-4xl mx-auto relative overflow-hidden">
-            <div className="absolute inset-0 african-pattern-3 opacity-20"></div>
+          <div className="glass rounded-3xl p-8 lg:p-12 backdrop-blur-xl border border-white/20 max-w-4xl mx-auto relative overflow-hidden section-hover-animation">
+            <div className="absolute inset-0 kente-pattern"></div>
             <div className="relative z-10">
               <div className="flex items-center justify-center gap-3 mb-6">
                 <FontAwesomeIcon icon={faHeartbeat} className="text-3xl text-primary-600 animate-pulse" />
@@ -304,7 +306,7 @@ const Solutions: React.FC = () => {
                   </span>
                 </h3>
               </div>
-              <p className="text-gray-600 dark:text-gray-300 mb-8 text-lg leading-relaxed">
+              <p className="text-gray-700 dark:text-gray-200 mb-8 text-lg leading-relaxed font-medium">
                 Notre équipe d'experts est à votre disposition pour étudier vos besoins spécifiques 
                 et vous proposer la solution la plus adaptée à votre contexte.
               </p>

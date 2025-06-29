@@ -15,18 +15,45 @@ import {
   faExclamationCircle 
 } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from 'react-hook-form';
+import { submitContactForm, validateContactForm, type ContactFormData } from '../services/contactService';
 
 const Contact: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const { register, handleSubmit, formState: { errors }, reset } = useForm();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<ContactFormData>();
 
-  const onSubmit = (data: any) => {
-    console.log('Contact form submitted:', data);
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      reset();
-    }, 3000);
+  const onSubmit = async (data: ContactFormData) => {
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      // Valider les données
+      const validation = validateContactForm(data);
+      if (!validation.isValid) {
+        setSubmitError(validation.errors.join(', '));
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Soumettre à l'API
+      const result = await submitContactForm(data);
+      
+      if (result.success) {
+        setIsSubmitted(true);
+        reset();
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 5000);
+      } else {
+        setSubmitError(result.message);
+      }
+    } catch (error) {
+      console.error('Erreur lors de la soumission:', error);
+      setSubmitError('Une erreur inattendue est survenue. Veuillez réessayer.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const containerVariants = {
@@ -190,7 +217,7 @@ const Contact: React.FC = () => {
                           <input
                             id="name"
                             type="text"
-                            {...register('name', { required: true })}
+                            {...register('name', { required: 'Ce champ est requis' })}
                             className={`w-full px-4 py-3 rounded-xl border-2 ${
                               errors.name ? 'border-red-300 bg-red-50' : 'border-gray-200 bg-white/50'
                             } focus:outline-none focus:border-primary-500 focus:bg-white transition-all duration-300 backdrop-blur-sm`}
@@ -202,7 +229,7 @@ const Contact: React.FC = () => {
                               initial={{ opacity: 0, y: -10 }}
                               animate={{ opacity: 1, y: 0 }}
                             >
-                              Ce champ est requis
+                              {errors.name.message}
                             </motion.p>
                           )}
                         </div>
@@ -229,7 +256,13 @@ const Contact: React.FC = () => {
                           <input
                             id="email"
                             type="email"
-                            {...register('email', { required: true })}
+                            {...register('email', { 
+                              required: 'Ce champ est requis',
+                              pattern: {
+                                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                message: 'Email invalide'
+                              }
+                            })}
                             className={`w-full px-4 py-3 rounded-xl border-2 ${
                               errors.email ? 'border-red-300 bg-red-50' : 'border-gray-200 bg-white/50'
                             } focus:outline-none focus:border-primary-500 focus:bg-white transition-all duration-300 backdrop-blur-sm`}
@@ -241,7 +274,7 @@ const Contact: React.FC = () => {
                               initial={{ opacity: 0, y: -10 }}
                               animate={{ opacity: 1, y: 0 }}
                             >
-                              Ce champ est requis
+                              {errors.email.message}
                             </motion.p>
                           )}
                         </div>
@@ -324,7 +357,7 @@ const Contact: React.FC = () => {
                         </label>
                         <textarea
                           id="message"
-                          {...register('message', { required: true })}
+                          {...register('message', { required: 'Ce champ est requis' })}
                           className={`w-full px-4 py-3 rounded-xl border-2 ${
                             errors.message ? 'border-red-300 bg-red-50' : 'border-gray-200 bg-white/50'
                           } focus:outline-none focus:border-primary-500 focus:bg-white transition-all duration-300 backdrop-blur-sm resize-none`}
@@ -337,21 +370,39 @@ const Contact: React.FC = () => {
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                           >
-                            Ce champ est requis
+                            {errors.message.message}
                           </motion.p>
                         )}
                       </div>
+
+                      {/* Affichage des erreurs de soumission */}
+                      {submitError && (
+                        <motion.div
+                          className="p-4 bg-red-50 border border-red-200 rounded-xl"
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                        >
+                          <div className="flex items-center gap-2 text-red-700">
+                            <FontAwesomeIcon icon={faExclamationCircle} />
+                            <span className="text-sm font-medium">{submitError}</span>
+                          </div>
+                        </motion.div>
+                      )}
                       
                       <motion.button
                         type="submit"
-                        className="w-full btn-modern bg-gradient-to-r from-primary-600 to-accent-600 text-white py-4 px-6 rounded-xl font-semibold text-lg shadow-glow hover:shadow-glow-accent transition-all duration-300"
-                        whileHover={{ scale: 1.02, y: -2 }}
-                        whileTap={{ scale: 0.98 }}
+                        disabled={isSubmitting}
+                        className="w-full btn-modern bg-gradient-to-r from-primary-600 to-accent-600 text-white py-4 px-6 rounded-xl font-semibold text-lg shadow-glow hover:shadow-glow-accent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                        whileHover={!isSubmitting ? { scale: 1.02, y: -2 } : {}}
+                        whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                       >
                         <span className="flex items-center justify-center gap-2">
-                          <FontAwesomeIcon icon={faEnvelope} className="fa-bounce-custom" />
-                          Envoyer le message
-                          <Send className="w-5 h-5" />
+                          <FontAwesomeIcon 
+                            icon={faEnvelope} 
+                            className={isSubmitting ? 'animate-pulse' : 'fa-bounce-custom'} 
+                          />
+                          {isSubmitting ? 'Envoi en cours...' : 'Envoyer le message'}
+                          {!isSubmitting && <Send className="w-5 h-5" />}
                         </span>
                       </motion.button>
                     </motion.form>

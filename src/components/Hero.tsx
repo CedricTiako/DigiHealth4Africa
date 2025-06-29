@@ -152,10 +152,10 @@ const Hero: React.FC = () => {
             <span className="block text-gray-900 dark:text-white">l'Afrique</span>
           </motion.h1>
 
-          {/* Subtitle */}
+          {/* Subtitle - TEXTE CORRIGÉ AVEC MEILLEUR CONTRASTE */}
           <motion.p
             variants={itemVariants}
-            className="text-lg sm:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl mb-12 xl:mb-16 text-gray-600 dark:text-gray-300 max-w-5xl xl:max-w-6xl mx-auto leading-relaxed"
+            className="text-lg sm:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl mb-12 xl:mb-16 text-gray-800 dark:text-gray-200 max-w-5xl xl:max-w-6xl mx-auto leading-relaxed font-medium"
           >
             DIGIHEALTH4AFRICA révolutionne l'accès aux soins de santé en Afrique 
             grâce à des solutions de télémédecine innovantes et adaptées aux réalités locales.
@@ -201,7 +201,7 @@ const Hero: React.FC = () => {
                 </div>
               </div>
               <div className="text-3xl xl:text-5xl font-bold text-gray-900 dark:text-white mb-2 xl:mb-4">3000+</div>
-              <div className="text-gray-600 dark:text-gray-400 xl:text-lg">Patients pris en charge</div>
+              <div className="text-gray-700 dark:text-gray-300 xl:text-lg font-medium">Patients pris en charge</div>
             </div>
             
             <div className="glass rounded-2xl xl:rounded-3xl p-6 xl:p-10 backdrop-blur-xl border border-white/20 hover:border-accent-300 transition-all duration-300 group">
@@ -211,7 +211,7 @@ const Hero: React.FC = () => {
                 </div>
               </div>
               <div className="text-3xl xl:text-5xl font-bold text-gray-900 dark:text-white mb-2 xl:mb-4">15</div>
-              <div className="text-gray-600 dark:text-gray-400 xl:text-lg">Centres équipés</div>
+              <div className="text-gray-700 dark:text-gray-300 xl:text-lg font-medium">Centres équipés</div>
             </div>
             
             <div className="glass rounded-2xl xl:rounded-3xl p-6 xl:p-10 backdrop-blur-xl border border-white/20 hover:border-green-300 transition-all duration-300 group">
@@ -221,7 +221,7 @@ const Hero: React.FC = () => {
                 </div>
               </div>
               <div className="text-3xl xl:text-5xl font-bold text-gray-900 dark:text-white mb-2 xl:mb-4">75%</div>
-              <div className="text-gray-600 dark:text-gray-400 xl:text-lg">Réduction des évacuations</div>
+              <div className="text-gray-700 dark:text-gray-300 xl:text-lg font-medium">Réduction des évacuations</div>
             </div>
           </motion.div>
         </motion.div>
@@ -235,9 +235,9 @@ const Hero: React.FC = () => {
       >
         <a
           href="#solutions"
-          className="flex flex-col items-center text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors group"
+          className="flex flex-col items-center text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors group"
         >
-          <span className="text-sm xl:text-base mb-2 opacity-0 group-hover:opacity-100 transition-opacity">
+          <span className="text-sm xl:text-base mb-2 opacity-0 group-hover:opacity-100 transition-opacity font-medium">
             Découvrir
           </span>
           <div className="w-6 h-10 xl:w-8 xl:h-12 border-2 border-current rounded-full flex justify-center">

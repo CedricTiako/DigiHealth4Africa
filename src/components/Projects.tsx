@@ -119,10 +119,11 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <section id="projects" className="py-20 relative overflow-hidden" ref={ref}>
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"></div>
-      <div className="absolute inset-0 african-pattern-2 opacity-20"></div>
+    <section id="projects" className="py-20 relative overflow-hidden section-hover-animation" ref={ref}>
+      {/* Motifs africains authentiques */}
+      <div className="absolute inset-0 adinkra-pattern"></div>
+      <div className="absolute inset-0 mudcloth-pattern" style={{ animationDelay: '10s' }}></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50/95 via-white/90 to-blue-50/95 dark:from-gray-900/95 dark:via-gray-800/90 dark:to-gray-900/95"></div>
 
       {/* Animated Background */}
       <motion.div
@@ -177,7 +178,7 @@ const Projects: React.FC = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary-100 to-accent-100 text-primary-700 text-sm font-medium mb-6 border border-primary-200"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary-100 to-accent-100 text-primary-700 text-sm font-medium mb-6 border border-primary-200 shimmer-effect"
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
@@ -193,7 +194,7 @@ const Projects: React.FC = () => {
             </span>
           </h2>
           
-          <p className="text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-lg lg:text-xl text-gray-800 dark:text-gray-200 max-w-4xl mx-auto leading-relaxed font-medium">
             Des projets concrets qui transforment l'accès aux soins et améliorent la vie des populations.
           </p>
         </motion.div>
@@ -209,7 +210,7 @@ const Projects: React.FC = () => {
             <motion.div
               key={project.id}
               variants={itemVariants}
-              className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 items-center`}
+              className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 items-center card-hover-lift`}
             >
               {/* Image */}
               <div className="lg:w-1/2 relative group">
@@ -245,9 +246,9 @@ const Projects: React.FC = () => {
 
               {/* Content */}
               <div className="lg:w-1/2 space-y-8">
-                <div className="glass rounded-3xl p-8 backdrop-blur-xl relative overflow-hidden border border-white/20">
+                <div className="glass rounded-3xl p-8 backdrop-blur-xl relative overflow-hidden border border-white/20 section-hover-animation">
                   {/* African pattern overlay */}
-                  <div className="absolute inset-0 african-pattern-5 opacity-20"></div>
+                  <div className="absolute inset-0 kente-pattern"></div>
                   
                   <div className="relative z-10">
                     <div className="flex items-center gap-3 mb-6">
@@ -258,7 +259,7 @@ const Projects: React.FC = () => {
                         </span>
                       </h3>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-300 mb-8 text-lg leading-relaxed">
+                    <p className="text-gray-700 dark:text-gray-200 mb-8 text-lg leading-relaxed font-medium">
                       {project.description}
                     </p>
 
@@ -267,7 +268,7 @@ const Projects: React.FC = () => {
                       {project.stats.map((stat, i) => (
                         <motion.div
                           key={i}
-                          className="text-center p-4 rounded-2xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm relative overflow-hidden border border-white/20"
+                          className="text-center p-4 rounded-2xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm relative overflow-hidden border border-white/20 card-hover-lift"
                           whileHover={{ scale: 1.05, y: -2 }}
                           transition={{ duration: 0.2 }}
                         >
@@ -279,7 +280,7 @@ const Projects: React.FC = () => {
                               </div>
                             </div>
                             <p className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent mb-1">{stat.value}</p>
-                            <p className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</p>
+                            <p className="text-sm text-gray-700 dark:text-gray-300 font-medium">{stat.label}</p>
                           </div>
                         </motion.div>
                       ))}
@@ -293,13 +294,13 @@ const Projects: React.FC = () => {
 
         {/* Key Achievements */}
         <motion.div
-          className="glass rounded-3xl p-8 lg:p-12 backdrop-blur-xl relative overflow-hidden border border-white/20"
+          className="glass rounded-3xl p-8 lg:p-12 backdrop-blur-xl relative overflow-hidden border border-white/20 section-hover-animation"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <div className="absolute inset-0 african-pattern-3 opacity-20"></div>
+          <div className="absolute inset-0 bogolan-pattern"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-primary-50/30 via-white/20 to-accent-50/30 dark:from-primary-900/20 dark:via-gray-800/20 dark:to-accent-900/20"></div>
           
           <div className="relative z-10">
@@ -312,14 +313,14 @@ const Projects: React.FC = () => {
                   </span>
                 </h3>
               </div>
-              <p className="text-gray-600 dark:text-gray-300 text-lg">L'impact concret de nos actions sur le terrain</p>
+              <p className="text-gray-700 dark:text-gray-200 text-lg font-medium">L'impact concret de nos actions sur le terrain</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {achievements.map((achievement, index) => (
                 <motion.div
                   key={index}
-                  className="group flex items-start gap-4 p-6 rounded-2xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-gray-800/70 transition-all duration-300 relative overflow-hidden border border-white/20"
+                  className="group flex items-start gap-4 p-6 rounded-2xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-gray-800/70 transition-all duration-300 relative overflow-hidden border border-white/20 card-hover-lift"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
@@ -334,7 +335,7 @@ const Projects: React.FC = () => {
                   >
                     <CheckCircle className="w-5 h-5 text-white" />
                   </motion.div>
-                  <p className="text-gray-700 dark:text-gray-300 font-medium group-hover:text-gray-900 dark:group-hover:text-white transition-colors relative z-10">
+                  <p className="text-gray-800 dark:text-gray-200 font-medium group-hover:text-gray-900 dark:group-hover:text-white transition-colors relative z-10">
                     {achievement.text}
                   </p>
                 </motion.div>

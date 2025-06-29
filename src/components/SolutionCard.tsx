@@ -147,9 +147,12 @@ const SolutionCard: React.FC<SolutionCardProps> = ({ solution }) => {
             <h3 className="text-lg md:text-xl font-bold mb-4 text-gray-900 dark:text-white group-hover:bg-gradient-to-r group-hover:from-primary-600 group-hover:to-accent-600 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 leading-tight">
               {solution.title}
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed text-sm md:text-base flex-grow">
-              {solution.description}
-            </p>
+<p className="relative z-10 text-gray-700 dark:text-gray-200 mb-8 leading-relaxed text-sm md:text-base flex-grow font-medium bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm px-3 py-2 rounded-lg">
+  {solution.description}
+</p>
+
+
+
 
             {/* Action Buttons */}
             <div className="space-y-3 mt-auto">

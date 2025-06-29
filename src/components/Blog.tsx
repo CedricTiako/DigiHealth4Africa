@@ -129,10 +129,11 @@ const Blog: React.FC = () => {
   };
 
   return (
-    <section id="blog" className="py-20 relative overflow-hidden">
-      {/* African Pattern Background */}
-      <div className="absolute inset-0 african-pattern-4"></div>
-      <div className="absolute inset-0 bg-gradient-to-br from-white/95 via-gray-50/90 to-white/95"></div>
+    <section id="blog" className="py-20 relative overflow-hidden section-hover-animation">
+      {/* Motifs africains authentiques */}
+      <div className="absolute inset-0 kente-pattern"></div>
+      <div className="absolute inset-0 ndop-pattern" style={{ animationDelay: '15s' }}></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-white/95 via-gray-50/90 to-white/95 dark:from-gray-900/95 dark:via-gray-800/90 dark:to-gray-900/95"></div>
 
       {/* Floating Medical Icons */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -177,7 +178,7 @@ const Blog: React.FC = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100 text-primary-700 text-sm font-medium mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100 text-primary-700 text-sm font-medium mb-6 shimmer-effect"
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
@@ -191,7 +192,7 @@ const Blog: React.FC = () => {
             <span className="gradient-text">Actualités</span>
           </h2>
           
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-800 dark:text-gray-200 max-w-4xl mx-auto leading-relaxed font-medium">
             Découvrez nos dernières actualités et articles sur la santé digitale en Afrique.
           </p>
         </motion.div>
@@ -211,7 +212,7 @@ const Blog: React.FC = () => {
               className={`flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300 ${
                 selectedCategory === category.name
                   ? 'bg-gradient-to-r from-primary-600 to-accent-600 text-white shadow-glow'
-                  : 'glass text-gray-700 hover:bg-white/70'
+                  : 'glass text-gray-700 dark:text-gray-300 hover:bg-white/70 dark:hover:bg-gray-800/70'
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -234,9 +235,9 @@ const Blog: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <div className="glass rounded-3xl overflow-hidden backdrop-blur-xl shadow-2xl relative">
+            <div className="glass rounded-3xl overflow-hidden backdrop-blur-xl shadow-2xl relative section-hover-animation">
               {/* African pattern overlay */}
-              <div className="absolute inset-0 african-pattern-5 opacity-20"></div>
+              <div className="absolute inset-0 bogolan-pattern opacity-20"></div>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 relative z-10">
                 <div className="relative group overflow-hidden">
                   <motion.img
@@ -254,7 +255,7 @@ const Blog: React.FC = () => {
                 </div>
                 
                 <div className="p-8 lg:p-12 flex flex-col justify-center">
-                  <div className="flex items-center gap-4 mb-6 text-sm text-gray-500">
+                  <div className="flex items-center gap-4 mb-6 text-sm text-gray-600 dark:text-gray-400">
                     <div className="flex items-center gap-2">
                       <Calendar className="w-4 h-4" />
                       <span>{featuredPost.date}</span>
@@ -273,7 +274,7 @@ const Blog: React.FC = () => {
                     {featuredPost.title}
                   </h3>
                   
-                  <p className="text-gray-600 mb-8 text-lg leading-relaxed">
+                  <p className="text-gray-700 dark:text-gray-200 mb-8 text-lg leading-relaxed font-medium">
                     {featuredPost.excerpt}
                   </p>
                   
@@ -309,6 +310,7 @@ const Blog: React.FC = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="card-hover-lift"
               >
                 <BlogCard post={post} />
               </motion.div>
@@ -325,7 +327,7 @@ const Blog: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <motion.button
-            className="btn-modern inline-flex items-center gap-3 px-8 py-4 glass rounded-2xl font-semibold text-lg hover:bg-white/70 transition-all duration-300"
+            className="btn-modern inline-flex items-center gap-3 px-8 py-4 glass rounded-2xl font-semibold text-lg hover:bg-white/70 dark:hover:bg-gray-800/70 transition-all duration-300"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -378,11 +380,11 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
 
   return (
     <motion.article
-      className="group glass rounded-3xl overflow-hidden backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-500 relative"
+      className="group glass rounded-3xl overflow-hidden backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-500 relative section-hover-animation"
       whileHover={{ y: -8, scale: 1.02 }}
     >
       {/* African pattern overlay */}
-      <div className="absolute inset-0 african-pattern-2 opacity-10"></div>
+      <div className="absolute inset-0 mudcloth-pattern opacity-10"></div>
       
       {/* Image */}
       <div className="relative overflow-hidden">
@@ -405,7 +407,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
       {/* Content */}
       <div className="p-6 relative z-10">
         {/* Meta Info */}
-        <div className="flex items-center gap-4 mb-4 text-sm text-gray-500">
+        <div className="flex items-center gap-4 mb-4 text-sm text-gray-600 dark:text-gray-400">
           <div className="flex items-center gap-1">
             <Calendar className="w-3 h-3" />
             <span>{post.date}</span>
@@ -417,18 +419,18 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
         </div>
 
         {/* Title */}
-        <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:gradient-text transition-all duration-300 line-clamp-2">
+        <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:gradient-text transition-all duration-300 line-clamp-2">
           {post.title}
         </h3>
 
         {/* Excerpt */}
-        <p className="text-gray-600 mb-4 leading-relaxed line-clamp-3">
+        <p className="text-gray-700 dark:text-gray-200 mb-4 leading-relaxed line-clamp-3 font-medium">
           {post.excerpt}
         </p>
 
         {/* Author & CTA */}
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 text-sm text-gray-500">
+          <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
             <User className="w-3 h-3" />
             <span>{post.author}</span>
           </div>
